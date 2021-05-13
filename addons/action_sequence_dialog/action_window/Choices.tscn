@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://addons/action_sequence_dialog/action_window/ActionWindow.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/action_sequence_dialog/colored_themes/Orange.tres" type="Theme" id=2]
+[ext_resource path="res://addons/action_sequence_dialog/action_icons/choices.svg" type="Texture" id=3]
+[ext_resource path="res://addons/action_sequence_dialog/action_window/components/text_edit.gd" type="Script" id=4]
+[ext_resource path="res://addons/action_sequence_dialog/action_window/components/choice/add_choice.gd" type="Script" id=6]
+
+[node name="ActionWindow" instance=ExtResource( 1 )]
+theme = ExtResource( 2 )
+
+[node name="MarginContainer" parent="." index="0"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 1023.0
+margin_bottom = 575.0
+
+[node name="VBoxContainer" parent="MarginContainer" index="0"]
+margin_right = 1018.0
+margin_bottom = 570.0
+
+[node name="Header" parent="MarginContainer/VBoxContainer" index="0"]
+margin_right = 1014.0
+
+[node name="TextureRect" parent="MarginContainer/VBoxContainer/Header" index="0"]
+margin_right = 32.0
+texture = ExtResource( 3 )
+
+[node name="Number" parent="MarginContainer/VBoxContainer/Header" index="1"]
+margin_left = 36.0
+margin_right = 56.0
+
+[node name="LabelCdr" parent="MarginContainer/VBoxContainer/Header" index="2"]
+margin_left = 60.0
+margin_right = 134.0
+text = "- Choices"
+
+[node name="Control" parent="MarginContainer/VBoxContainer/Header" index="3"]
+margin_left = 138.0
+margin_right = 994.0
+
+[node name="Remove" parent="MarginContainer/VBoxContainer/Header" index="4"]
+margin_left = 998.0
+margin_right = 1014.0
+
+[node name="Prelude" type="Label" parent="MarginContainer/VBoxContainer" index="1"]
+visible = false
+margin_top = 36.0
+margin_right = 1014.0
+margin_bottom = 50.0
+size_flags_vertical = 1
+text = "Size"
+align = 2
+
+[node name="TextEdit" type="TextEdit" parent="MarginContainer/VBoxContainer" index="2"]
+visible = false
+margin_top = 36.0
+margin_right = 1014.0
+margin_bottom = 36.0
+size_flags_vertical = 0
+wrap_enabled = true
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AddChoice" type="Button" parent="MarginContainer/VBoxContainer" index="3"]
+margin_top = 36.0
+margin_right = 1014.0
+margin_bottom = 50.0
+text = "+ Add Choice"
+script = ExtResource( 6 )
+choice_filepath = "res://addons/action_sequence_dialog/action_window/components/choice/Choice.tscn"
+[connection signal="connect_to_editor" from="." to="MarginContainer/VBoxContainer/TextEdit" method="_on_connecting_editor_plugin"]
+[connection signal="connect_to_editor" from="." to="MarginContainer/VBoxContainer/AddChoice" method="_on_connecting_editor_plugin"]

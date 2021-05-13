@@ -1,0 +1,98 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://addons/action_sequence_dialog/action_window/components/choice/comp_choice.gd" type="Script" id=1]
+[ext_resource path="res://addons/action_sequence_dialog/action_window/components/line_edit.gd" type="Script" id=2]
+[ext_resource path="res://addons/action_sequence_dialog/action_window/close.svg" type="Texture" id=3]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.768627, 0.432353, 0, 1 )
+
+[node name="Choice" type="VBoxContainer"]
+margin_top = 36.0
+margin_right = 1014.0
+margin_bottom = 88.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Header" type="PanelContainer" parent="."]
+margin_right = 1014.0
+margin_bottom = 24.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Header"]
+margin_right = 1014.0
+margin_bottom = 24.0
+
+[node name="Index" type="Label" parent="Header/HBoxContainer"]
+margin_top = 5.0
+margin_right = 982.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Choice 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Remove" type="ToolButton" parent="Header/HBoxContainer"]
+margin_left = 986.0
+margin_right = 1014.0
+margin_bottom = 24.0
+icon = ExtResource( 3 )
+
+[node name="Text" type="HBoxContainer" parent="."]
+margin_top = 28.0
+margin_right = 1014.0
+margin_bottom = 52.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Text"]
+margin_top = 5.0
+margin_right = 505.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Text"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="Text"]
+margin_left = 509.0
+margin_right = 1014.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+script = ExtResource( 2 )
+associated_key = "text"
+signal_call = "_on_le_in_choice_changed"
+
+[node name="Jump" type="HBoxContainer" parent="."]
+margin_top = 56.0
+margin_right = 1014.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Jump"]
+margin_top = 5.0
+margin_right = 505.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Target"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="Jump"]
+margin_left = 509.0
+margin_right = 1014.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+script = ExtResource( 2 )
+associated_key = "jump_target"
+signal_call = "_on_le_in_choice_changed"
+[connection signal="connect_to_editor" from="." to="Text/LineEdit" method="_on_connecting_editor_plugin"]
+[connection signal="connect_to_editor" from="." to="Jump/LineEdit" method="_on_connecting_editor_plugin"]

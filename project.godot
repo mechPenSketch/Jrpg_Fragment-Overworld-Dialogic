@@ -1,0 +1,97 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Node",
+"class": "ActionManager",
+"language": "GDScript",
+"path": "res://addons/action_sequence_dialog/nodes/action_manager.gd"
+}, {
+"base": "CollisionShape2D",
+"class": "ColShapePiece",
+"language": "GDScript",
+"path": "res://addons/snap_map/nodes/colshape_piece.gd"
+}, {
+"base": "ColShapePiece",
+"class": "ColShapePieceEx",
+"language": "GDScript",
+"path": "res://addons/snap_map/nodes/colshape_expiece.gd"
+}, {
+"base": "Node",
+"class": "Controller",
+"language": "GDScript",
+"path": "res://content/event/controller.gd"
+}, {
+"base": "PlayingPiece",
+"class": "Event",
+"language": "GDScript",
+"path": "res://content/event/event.gd"
+}, {
+"base": "Area2D",
+"class": "PlayingPiece",
+"language": "GDScript",
+"path": "res://addons/snap_map/nodes/playing_piece.gd"
+}, {
+"base": "RayCast2D",
+"class": "RayCastPiece",
+"language": "GDScript",
+"path": "res://addons/snap_map/nodes/raycast_piece.gd"
+}, {
+"base": "TileMap",
+"class": "SnapboundTiles",
+"language": "GDScript",
+"path": "res://addons/snap_map/nodes/snapbound_tiles.gd"
+}, {
+"base": "VBoxContainer",
+"class": "SubChoice",
+"language": "GDScript",
+"path": "res://addons/action_sequence_dialog/action_window/components/choice/comp_choice.gd"
+}, {
+"base": "Object",
+"class": "TypeFormattingLogic",
+"language": "GDScript",
+"path": "res://addons/metadata_inspector/TypeFormattingLogic.gd"
+} ]
+_global_script_class_icons={
+"ActionManager": "",
+"ColShapePiece": "res://addons/snap_map/nodes/colshape_piece.svg",
+"ColShapePieceEx": "res://addons/snap_map/nodes/colshape_expiece.svg",
+"Controller": "res://content/event/game_controller_icon.svg",
+"Event": "",
+"PlayingPiece": "res://addons/snap_map/nodes/playing_piece.svg",
+"RayCastPiece": "res://addons/snap_map/nodes/raycast_piece.svg",
+"SnapboundTiles": "res://addons/snap_map/nodes/snapbound_tiles.svg",
+"SubChoice": "",
+"TypeFormattingLogic": ""
+}
+
+[application]
+
+config/name="JRPG Fragment - Overworld"
+run/main_scene="res://Game.tscn"
+config/icon="res://icon.png"
+
+[display]
+
+window/size/height=576
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "action_sequence_dialog", "jrpg_overwolrd", "snap_map" )
+
+[layer_names]
+
+2d_physics/layer_1="Wall"
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
