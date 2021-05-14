@@ -8,7 +8,7 @@
 position = Vector2( 16, 16 )
 script = ExtResource( 1 )
 __meta__ = {
-"as_property": "action_sequences"
+"": ""
 }
 raycast_directions = {
 }

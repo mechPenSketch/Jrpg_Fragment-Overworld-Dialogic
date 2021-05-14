@@ -30,7 +30,6 @@ func set_direction_ratio(val):
 		#	- PARENT IS NOT NULL
 		#	- PARENT IS PLAYING PIECE
 		#	- THERE IS GRANDPARENT TILEMAP
-		print(parent)
 		if parent and parent.is_class("PlayingPiece") and parent.parent_tilemap:
 			set_direction(parent.parent_tilemap.get_cell_size())
 		else:

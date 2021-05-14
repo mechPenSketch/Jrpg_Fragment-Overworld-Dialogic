@@ -9,11 +9,6 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node",
-"class": "ActionManager",
-"language": "GDScript",
-"path": "res://addons/action_sequence_dialog/nodes/action_manager.gd"
-}, {
 "base": "CollisionShape2D",
 "class": "ColShapePiece",
 "language": "GDScript",
@@ -48,28 +43,15 @@ _global_script_classes=[ {
 "class": "SnapboundTiles",
 "language": "GDScript",
 "path": "res://addons/snap_map/nodes/snapbound_tiles.gd"
-}, {
-"base": "VBoxContainer",
-"class": "SubChoice",
-"language": "GDScript",
-"path": "res://addons/action_sequence_dialog/action_window/components/choice/comp_choice.gd"
-}, {
-"base": "Object",
-"class": "TypeFormattingLogic",
-"language": "GDScript",
-"path": "res://addons/metadata_inspector/TypeFormattingLogic.gd"
 } ]
 _global_script_class_icons={
-"ActionManager": "",
 "ColShapePiece": "res://addons/snap_map/nodes/colshape_piece.svg",
 "ColShapePieceEx": "res://addons/snap_map/nodes/colshape_expiece.svg",
 "Controller": "res://content/event/game_controller_icon.svg",
 "Event": "",
 "PlayingPiece": "res://addons/snap_map/nodes/playing_piece.svg",
 "RayCastPiece": "res://addons/snap_map/nodes/raycast_piece.svg",
-"SnapboundTiles": "res://addons/snap_map/nodes/snapbound_tiles.svg",
-"SubChoice": "",
-"TypeFormattingLogic": ""
+"SnapboundTiles": "res://addons/snap_map/nodes/snapbound_tiles.svg"
 }
 
 [application]
@@ -86,7 +68,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "action_sequence_dialog", "jrpg_overwolrd", "snap_map" )
+enabled=PoolStringArray( "res://addons/jrpg_overwolrd/plugin.cfg", "res://addons/snap_map/plugin.cfg" )
 
 [layer_names]
 
