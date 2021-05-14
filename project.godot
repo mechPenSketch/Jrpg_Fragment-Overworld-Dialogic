@@ -24,6 +24,31 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://content/event/controller.gd"
 }, {
+"base": "Node",
+"class": "Dialogic",
+"language": "GDScript",
+"path": "res://addons/dialogic/Other/DialogicClass.gd"
+}, {
+"base": "Control",
+"class": "DialogicBackgroundMusic",
+"language": "GDScript",
+"path": "res://addons/dialogic/Nodes/BackgroundMusic.gd"
+}, {
+"base": "Node",
+"class": "DialogicDefinitionsUtil",
+"language": "GDScript",
+"path": "res://addons/dialogic/Other/DialogicDefinitionsUtil.gd"
+}, {
+"base": "Reference",
+"class": "DialogicResources",
+"language": "GDScript",
+"path": "res://addons/dialogic/Other/DialogicResources.gd"
+}, {
+"base": "Reference",
+"class": "DialogicUtil",
+"language": "GDScript",
+"path": "res://addons/dialogic/Other/DialogicUtil.gd"
+}, {
 "base": "PlayingPiece",
 "class": "Event",
 "language": "GDScript",
@@ -48,6 +73,11 @@ _global_script_class_icons={
 "ColShapePiece": "res://addons/snap_map/nodes/colshape_piece.svg",
 "ColShapePieceEx": "res://addons/snap_map/nodes/colshape_expiece.svg",
 "Controller": "res://content/event/game_controller_icon.svg",
+"Dialogic": "",
+"DialogicBackgroundMusic": "",
+"DialogicDefinitionsUtil": "",
+"DialogicResources": "",
+"DialogicUtil": "",
 "Event": "",
 "PlayingPiece": "res://addons/snap_map/nodes/playing_piece.svg",
 "RayCastPiece": "res://addons/snap_map/nodes/raycast_piece.svg",
@@ -60,6 +90,10 @@ config/name="JRPG Fragment - Overworld"
 run/main_scene="res://Game.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+DialogicSingleton="*res://addons/dialogic/Other/DialogicSingleton.gd"
+
 [display]
 
 window/size/height=576
@@ -68,7 +102,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/jrpg_overwolrd/plugin.cfg", "res://addons/snap_map/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/dialogic/plugin.cfg", "res://addons/jrpg_overwolrd/plugin.cfg", "res://addons/snap_map/plugin.cfg" )
 
 [layer_names]
 
