@@ -19,7 +19,7 @@ export (Dictionary) var raycast_directions
 var raycast
 export (Resource) var incoming
 signal incoming_gone
-export (Array, Dictionary) var action_sequences
+export (String) var dialog_timeline
 var jump_targets = {}
 
 func _notification(what):
@@ -45,11 +45,6 @@ func _ready():
 		
 		if raycast_directions.has(Vector2(0,1)):
 			turn(Vector2(0,1))
-			
-		for i in action_sequences.size():
-			var d = action_sequences[i]
-			if d["action_type"] == "Label" and d.has("name"):
-				jump_targets[d["name"]] = i
 
 func disconnect_children_sprites():
 	if children_sprites:
@@ -83,7 +78,7 @@ func _action():
 	if !get_tree().is_paused():
 		var collider = raycast.get_collider()
 		if collider:
-			collider.perform_actions()
+			collider.activate_dialog()
 
 func _direction(dir:Vector2):
 	if !get_tree().is_paused() and !is_moving:
@@ -114,6 +109,11 @@ func _on_area_entered(a):
 func _on_area_exited(a):
 	blocks.erase(a)
 	is_blocked = blocks.size()
+
+func activate_dialog():
+	if dialog_timeline:
+		var new_dialog = Dialogic.start(dialog_timeline)
+		base.add_child(new_dialog)
 
 func get_default_texture_filepath():
 	return "res://content/event/event.svg"
@@ -146,9 +146,6 @@ func is_drawable_sprite_then_children(node):
 			if is_drawable_sprite_then_children(c):
 				return true
 	return false
-
-func perform_actions(i = 0):
-	get_node("/root/Game/Action").initiate_action_sequence(self, i)
 
 func plugset_cell_width(w):
 	.plugset_cell_width(w)

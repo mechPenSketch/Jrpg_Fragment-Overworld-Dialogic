@@ -139,10 +139,6 @@ position = Vector2( 528, 240 )
 collision_mask = 0
 raycast_directions = {
 }
-action_sequences = [ {
-"action_type": "Text",
-"default_text": "Hello! This is a sample dialog."
-} ]
 
 [node name="Sprite" parent="Grid/Signpost" index="1"]
 texture = ExtResource( 3 )
@@ -155,30 +151,7 @@ Vector2( 0, -1 ): NodePath("RayUp"),
 Vector2( 0, 1 ): NodePath("RayDown"),
 Vector2( 1, 0 ): NodePath("RayRight")
 }
-action_sequences = [ {
-"action_type": "Text",
-"default_text": "Hi, do you like apples or oranges?"
-}, {
-"action_type": "Choices",
-"choices": [ {
-"jump_target": "2",
-"text": "Apples"
-}, {
-"jump_target": "Oranges",
-"text": "Oranges"
-} ]
-}, {
-"action_type": "Text",
-"default_text": "I like apples too - they're sweet and crunchy!"
-}, {
-"action_type": "End"
-}, {
-"action_type": "Label",
-"name": "Oranges"
-}, {
-"action_type": "Text",
-"default_text": "I love oranges too - they're soooo juicy!"
-} ]
+dialog_timeline = "Bob's Question"
 
 [node name="Sprite" parent="Grid/Bob" index="1"]
 texture = ExtResource( 9 )
