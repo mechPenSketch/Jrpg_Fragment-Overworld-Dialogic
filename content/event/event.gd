@@ -4,6 +4,7 @@ extends PlayingPiece
 class_name Event
 
 var base
+var controller
 
 var default_texture
 var children_sprites
@@ -38,6 +39,7 @@ func _ready():
 		prepare_for_when_children_sprites_are_set()
 	else:
 		base = get_node("/root/Game")
+		controller = base.get_node("Controller")
 		
 		set_parent_tilemap(get_parent())
 	
@@ -112,8 +114,12 @@ func _on_area_exited(a):
 
 func activate_dialog():
 	if dialog_timeline:
+		controller.current_mode = controller.DIALOG
+		
 		var new_dialog = Dialogic.start(dialog_timeline)
 		base.add_child(new_dialog)
+		
+		new_dialog.connect("timeline_end", controller, "_end_of_dialog")
 
 func get_default_texture_filepath():
 	return "res://content/event/event.svg"
