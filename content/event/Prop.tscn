@@ -3,13 +3,9 @@
 [ext_resource path="res://content/event/Event.tscn" type="PackedScene" id=1]
 [ext_resource path="res://content/event/four_dir_sheet.gd" type="Script" id=3]
 
-
 [node name="Event" instance=ExtResource( 1 )]
 position = Vector2( 32, 32 )
-cell_width = 64
-cell_height = 64
 raycast_directions = {
-
 }
 
 [node name="Sprite" type="Sprite" parent="." index="1"]

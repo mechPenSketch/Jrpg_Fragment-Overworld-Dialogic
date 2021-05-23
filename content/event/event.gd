@@ -80,6 +80,17 @@ func _action():
 	if !get_tree().is_paused():
 		var collider = raycast.get_collider()
 		if collider:
+			
+			# GET COLLIDER TO TURN TO PLAYER
+			var dir_v = Vector2()
+			var collider_position = collider.get_position()
+			for i in 2:
+				if position[i] < collider_position[i]:
+					dir_v[i] = -1
+				elif position[i] > collider_position[i]:
+					dir_v[i] = 1
+			collider.emit_signal("turning", dir_v)
+			
 			collider.activate_dialog()
 
 func _direction(dir:Vector2):
