@@ -4,7 +4,7 @@ Overworld map for a JRPG
 ## About
 This asset contains an example of a typical overworld aspect of a JRPG.
 
-This variant utilizes Dialogic to handle in-game dialogs.
+This variant utilizes Dialogic to handle in-game dialogs. Recommended to those who are using Dialogic in their game projects.
 
 ## Author
 * mechPenSketch
