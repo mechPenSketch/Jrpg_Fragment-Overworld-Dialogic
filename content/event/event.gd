@@ -64,7 +64,7 @@ func _draw():
 	if !is_drawable_sprite_then_children(self):
 		var rect_size
 		if parent_tilemap:
-			rect_size = parent_tilemap.get_cell_size
+			rect_size = parent_tilemap.get_cell_size()
 		else:
 			rect_size = Vector2(32, 32)
 		var rect_topleft = get_topleft_corner()

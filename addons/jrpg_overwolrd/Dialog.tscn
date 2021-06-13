@@ -10,7 +10,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-dir = "res://event"
+dir = "res://content/event"
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -91,4 +91,5 @@ margin_bottom = 20.0
 text = "Event"
 items = [ "Event", null, false, 0, false, "Prop", null, false, 0, false, "Actor", null, false, 0, false ]
 selected = 0
+
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/Class/OptionClass" to="." method="_on_item_selected"]
