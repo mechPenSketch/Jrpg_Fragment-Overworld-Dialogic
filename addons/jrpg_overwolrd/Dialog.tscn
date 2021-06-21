@@ -10,7 +10,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-dir = "res://content/event"
+dir = "res://addons/jrpg_overwolrd/nodes"
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0

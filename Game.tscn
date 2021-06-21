@@ -1,13 +1,19 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=25 format=2]
 
-[ext_resource path="res://content/map/base_tile.png" type="Texture" id=1]
-[ext_resource path="res://content/event/sprites/signpost.png" type="Texture" id=3]
-[ext_resource path="res://content/event/Prop.tscn" type="PackedScene" id=4]
+[ext_resource path="res://overworld/map/base_tile.png" type="Texture" id=1]
+[ext_resource path="res://overworld/event/sprites/signpost.png" type="Texture" id=3]
+[ext_resource path="res://addons/jrpg_overwolrd/nodes/Prop.tscn" type="PackedScene" id=4]
 [ext_resource path="res://addons/snap_map/nodes/snapbound_tiles.gd" type="Script" id=5]
-[ext_resource path="res://content/event/sprites/characters/alice.png" type="Texture" id=7]
-[ext_resource path="res://content/event/Actor.tscn" type="PackedScene" id=8]
-[ext_resource path="res://content/event/sprites/characters/bob.png" type="Texture" id=9]
-[ext_resource path="res://content/event/controller.gd" type="Script" id=12]
+[ext_resource path="res://addons/snap_map/nodes/colshape.tres" type="Shape2D" id=6]
+[ext_resource path="res://overworld/event/sprites/characters/alice.png" type="Texture" id=7]
+[ext_resource path="res://addons/jrpg_overwolrd/nodes/Actor.tscn" type="PackedScene" id=8]
+[ext_resource path="res://overworld/event/sprites/characters/bob.png" type="Texture" id=9]
+[ext_resource path="res://addons/snap_map/nodes/raycast_piece.gd" type="Script" id=10]
+[ext_resource path="res://addons/snap_map/nodes/colshape_piece.gd" type="Script" id=11]
+[ext_resource path="res://overworld/event/controller.gd" type="Script" id=12]
+[ext_resource path="res://overworld/event/char_tween.gd" type="Script" id=13]
+[ext_resource path="res://overworld/event/four_dir_sheet.gd" type="Script" id=15]
+[ext_resource path="res://overworld/event/sprites/characters/diana.png" type="Texture" id=16]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
@@ -86,6 +92,106 @@ points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 3/z_index = 0
+
+[sub_resource type="Animation" id=4]
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:side")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=5]
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:action_frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=6]
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:side")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.75
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:action_frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.375 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 0 ]
+}
+
+[sub_resource type="Animation" id=8]
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:side")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 0.75
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:action_frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.38 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 0 ]
+}
+
+[sub_resource type="Animation" id=10]
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:side")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
 
 [node name="Game" type="Node"]
 
@@ -176,9 +282,107 @@ cast_to = Vector2( -16, 0 )
 position = Vector2( 16, 0 )
 cast_to = Vector2( 16, 0 )
 
-[connection signal="action" from="Controller" to="Grid/Player" method="_action"]
-[connection signal="sig_dir" from="Controller" to="Grid/Player" method="_direction"]
+[node name="Diana" parent="Grid" instance=ExtResource( 8 )]
+position = Vector2( 528, 112 )
+raycast_directions = {
+Vector2( -1, 0 ): NodePath("RayLeft"),
+Vector2( 0, -1 ): NodePath("RayUp"),
+Vector2( 0, 1 ): NodePath("RayDown"),
+Vector2( 1, 0 ): NodePath("RayRight")
+}
+dialog_timeline = "Diana's Teleportation"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Grid/Diana/Sprite" index="1"]
+anims/Down = SubResource( 4 )
+anims/Idle = SubResource( 5 )
+anims/Left = SubResource( 6 )
+"anims/Left Step" = SubResource( 7 )
+anims/Right = SubResource( 8 )
+"anims/Right Step" = SubResource( 9 )
+anims/Up = SubResource( 10 )
+
+[node name="RayUp" parent="Grid/Diana" index="3"]
+position = Vector2( 0, -16 )
+cast_to = Vector2( 0, -16 )
+
+[node name="RayDown" parent="Grid/Diana" index="4"]
+position = Vector2( 0, 16 )
+cast_to = Vector2( 0, 16 )
+
+[node name="RayLeft" parent="Grid/Diana" index="5"]
+position = Vector2( -16, 0 )
+cast_to = Vector2( -16, 0 )
+
+[node name="RayRight" parent="Grid/Diana" index="6"]
+position = Vector2( 16, 0 )
+cast_to = Vector2( 16, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grid/Diana"]
+shape = ExtResource( 6 )
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Grid/Diana"]
+texture = ExtResource( 16 )
+offset = Vector2( 0, -16 )
+hframes = 4
+vframes = 4
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_lock_": true
+}
+is_symmetrical = true
+
+[node name="Tween" type="Tween" parent="Grid/Diana"]
+script = ExtResource( 13 )
+np_anim_player = NodePath("../Sprite/AnimationPlayer")
+
+[node name="RayUp" type="RayCast2D" parent="Grid/Diana"]
+enabled = true
+cast_to = Vector2( 0, -64 )
+collide_with_areas = true
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_lock_": true
+}
+direction_ratio = Vector2( 0, -1 )
+
+[node name="RayDown" type="RayCast2D" parent="Grid/Diana"]
+enabled = true
+exclude_parent = false
+cast_to = Vector2( 0, 64 )
+collide_with_areas = true
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_lock_": true
+}
+direction_ratio = Vector2( 0, 1 )
+
+[node name="RayLeft" type="RayCast2D" parent="Grid/Diana"]
+enabled = true
+exclude_parent = false
+cast_to = Vector2( -64, 0 )
+collide_with_areas = true
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_lock_": true
+}
+direction_ratio = Vector2( -1, 0 )
+
+[node name="RayRight" type="RayCast2D" parent="Grid/Diana"]
+enabled = true
+exclude_parent = false
+cast_to = Vector2( 64, 0 )
+collide_with_areas = true
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_lock_": true
+}
+direction_ratio = Vector2( 1, 0 )
 
 [editable path="Grid/Player"]
 [editable path="Grid/Signpost"]
 [editable path="Grid/Bob"]
+[editable path="Grid/Diana"]

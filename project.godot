@@ -22,7 +22,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Controller",
 "language": "GDScript",
-"path": "res://content/event/controller.gd"
+"path": "res://overworld/event/controller.gd"
 }, {
 "base": "Node",
 "class": "Dialogic",
@@ -52,7 +52,7 @@ _global_script_classes=[ {
 "base": "PlayingPiece",
 "class": "Event",
 "language": "GDScript",
-"path": "res://content/event/event.gd"
+"path": "res://addons/jrpg_overwolrd/nodes/event.gd"
 }, {
 "base": "Area2D",
 "class": "PlayingPiece",
@@ -72,7 +72,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "ColShapePiece": "res://addons/snap_map/nodes/colshape_piece.svg",
 "ColShapePieceEx": "res://addons/snap_map/nodes/colshape_expiece.svg",
-"Controller": "res://content/event/game_controller_icon.svg",
+"Controller": "res://overworld/event/controller.svg",
 "Dialogic": "",
 "DialogicBackgroundMusic": "",
 "DialogicDefinitionsUtil": "",
