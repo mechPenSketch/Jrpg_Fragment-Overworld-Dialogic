@@ -1,1 +1,62 @@
-{"events":[{"action":"join","character":"character-1621182649.json","mirror":false,"portrait":"Default","position":{"0":false,"1":false,"2":false,"3":false,"4":false}},{"character":"","options":[],"portrait":"","question":"Hi, I'm practising my teleportation spell. Would you like to volunteer?"},{"choice":"Yes","condition":"","definition":"","value":""},{"character":"character-1621182649.json","portrait":"","text":"Okay, here goes......"},{"character":"character-1621182649.json","portrait":"","text":"Oh! Sorry, looks like I failed to get it right again."},{"choice":"No","condition":"","definition":"","value":""},{"endbranch":""}],"metadata":{"dialogic-version":"1.1","file":"timeline-1623599410.json","name":"Diana's Teleportation"}}
+{
+	"events": [
+		{
+			"action": "join",
+			"character": "character-1621182649.json",
+			"event_id": "dialogic_002",
+			"mirror": false,
+			"portrait": "Default",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			}
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "Hi, I'm practising my teleportation spell. Would you like to volunteer?"
+		},
+		{
+			"choice": "Yes",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1621182649.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Okay, here goes......"
+		},
+		{
+			"character": "character-1621182649.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Oh! Sorry, looks like I failed to get it right again."
+		},
+		{
+			"choice": "No",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"endbranch": "",
+			"event_id": "dialogic_013"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.1",
+		"file": "timeline-1623599410.json",
+		"name": "Diana's Teleportation"
+	}
+}

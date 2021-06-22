@@ -340,8 +340,9 @@ script = ExtResource( 13 )
 np_anim_player = NodePath("../Sprite/AnimationPlayer")
 
 [node name="RayUp" type="RayCast2D" parent="Grid/Diana"]
+position = Vector2( 0, -16 )
 enabled = true
-cast_to = Vector2( 0, -64 )
+cast_to = Vector2( 0, -16 )
 collide_with_areas = true
 script = ExtResource( 10 )
 __meta__ = {
@@ -350,9 +351,10 @@ __meta__ = {
 direction_ratio = Vector2( 0, -1 )
 
 [node name="RayDown" type="RayCast2D" parent="Grid/Diana"]
+position = Vector2( 0, 16 )
 enabled = true
 exclude_parent = false
-cast_to = Vector2( 0, 64 )
+cast_to = Vector2( 0, 16 )
 collide_with_areas = true
 script = ExtResource( 10 )
 __meta__ = {
@@ -361,9 +363,10 @@ __meta__ = {
 direction_ratio = Vector2( 0, 1 )
 
 [node name="RayLeft" type="RayCast2D" parent="Grid/Diana"]
+position = Vector2( -16, 0 )
 enabled = true
 exclude_parent = false
-cast_to = Vector2( -64, 0 )
+cast_to = Vector2( -16, 0 )
 collide_with_areas = true
 script = ExtResource( 10 )
 __meta__ = {
@@ -372,9 +375,10 @@ __meta__ = {
 direction_ratio = Vector2( -1, 0 )
 
 [node name="RayRight" type="RayCast2D" parent="Grid/Diana"]
+position = Vector2( 16, 0 )
 enabled = true
 exclude_parent = false
-cast_to = Vector2( 64, 0 )
+cast_to = Vector2( 16, 0 )
 collide_with_areas = true
 script = ExtResource( 10 )
 __meta__ = {

@@ -10,5 +10,4 @@ This variant utilizes Dialogic to handle in-game dialogs. Recommended to those w
 * mechPenSketch
 
 ## Acknowledgements
-* [Metadata-Inspector](https://github.com/ballerburg9005/godot-metadata-inspector) by ballerburg9005 is used to add metadata in Godot editor.
-* [Dialogic 1.1](https://github.com/coppolaemilio/dialogic) by [Emilio Coppola](https://github.com/coppolaemilio) and other contributors.
+* [Dialogic 1.2](https://github.com/coppolaemilio/dialogic) by [Emilio Coppola](https://github.com/coppolaemilio) and other contributors.

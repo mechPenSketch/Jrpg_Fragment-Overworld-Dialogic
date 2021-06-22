@@ -1,1 +1,67 @@
-{"events":[{"action":"join","character":"character-1620978753.json","mirror":false,"portrait":"Default","position":{"0":false,"1":false,"2":false,"3":false,"4":false}},{"character":"character-1620978753.json","options":[],"portrait":"","question":"Hi, do you like apples or oranges?"},{"choice":"Apples","condition":"","definition":"","value":""},{"character":"character-1620978753.json","portrait":"","text":"I like apples too - they're sweet and crunchy!"},{"choice":"Oranges","condition":"","definition":"","value":""},{"character":"","portrait":"","text":"I love oranges too - they're soooo juicy!"},{"endbranch":""},{"action":"leaveall","character":"character-1620978753.json"}],"metadata":{"dialogic-version":"1.1","file":"timeline-1620978768.json","name":"Bob's Question"}}
+{
+	"events": [
+		{
+			"action": "join",
+			"character": "character-1620978753.json",
+			"event_id": "dialogic_002",
+			"mirror": false,
+			"portrait": "Default",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			}
+		},
+		{
+			"character": "character-1620978753.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "Hi, do you like apples or oranges?"
+		},
+		{
+			"choice": "Apples",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1620978753.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "I like apples too - they're sweet and crunchy!"
+		},
+		{
+			"choice": "Oranges",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "I love oranges too - they're soooo juicy!"
+		},
+		{
+			"endbranch": "",
+			"event_id": "dialogic_013"
+		},
+		{
+			"action": "leaveall",
+			"character": "character-1620978753.json",
+			"event_id": "dialogic_003"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.1",
+		"file": "timeline-1620978768.json",
+		"name": "Bob's Question"
+	}
+}
