@@ -107,13 +107,13 @@ tracks/0/keys = {
 
 [node name="Actor" instance=ExtResource( 1 )]
 position = Vector2( 16, 16 )
+np_tween = NodePath("Tween")
 raycast_directions = {
 Vector2( -1, 0 ): NodePath("RayLeft"),
 Vector2( 0, -1 ): NodePath("RayUp"),
 Vector2( 0, 1 ): NodePath("RayDown"),
 Vector2( 1, 0 ): NodePath("RayRight")
 }
-np_tween = NodePath("Tween")
 incoming = ExtResource( 6 )
 
 [node name="Sprite" parent="." index="1"]
@@ -176,4 +176,5 @@ __meta__ = {
 }
 direction_ratio = Vector2( 1, 0 )
 
+[connection signal="turning" from="." to="Sprite" method="_on_turning"]
 [connection signal="tween_completed" from="Tween" to="." method="_on_tween_completed"]
