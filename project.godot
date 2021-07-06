@@ -93,6 +93,7 @@ config/icon="res://icon.png"
 [autoload]
 
 DialogicSingleton="*res://addons/dialogic/Other/DialogicSingleton.gd"
+GlobalOverworld="*res://overworld/global.gd"
 
 [display]
 
