@@ -1,1 +1,20 @@
-{"color":"#ffffffff","default_speaker":false,"description":"The main heroine of this demo.","display_name":"","display_name_bool":false,"id":"character-1621182636.json","mirror_portraits":false,"name":"Alice","offset_x":0,"offset_y":0,"portraits":[{"name":"Default","path":""}],"scale":100}
+{
+	"color": "#ffffffff",
+	"description": "The main heroine of this demo.",
+	"display_name": "",
+	"display_name_bool": false,
+	"id": "character-1621182636.json",
+	"mirror_portraits": false,
+	"name": "Alice",
+	"nickname": "",
+	"nickname_bool": false,
+	"offset_x": 0,
+	"offset_y": 0,
+	"portraits": [
+		{
+			"name": "Default",
+			"path": ""
+		}
+	],
+	"scale": 100
+}
