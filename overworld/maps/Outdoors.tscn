@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://overworld/Base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/snap_map/nodes/raycast_piece.gd" type="Script" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://addons/jrpg_overwolrd/nodes/Actor.tscn" type="PackedScene" id=8]
 [ext_resource path="res://overworld/event/sprites/characters/diana.png" type="Texture" id=9]
 [ext_resource path="res://overworld/event/sprites/characters/alice.png" type="Texture" id=10]
-[ext_resource path="res://addons/jrpg_overwolrd/nodes/event.gd" type="Script" id=11]
 [ext_resource path="res://overworld/event/sprites/characters/bob.png" type="Texture" id=12]
 [ext_resource path="res://overworld/event/sprites/signpost.png" type="Texture" id=13]
 
@@ -21,7 +20,6 @@ tile_data = PoolIntArray( -65536, 536870915, 0, -65535, 536870915, 0, -65534, 53
 
 [node name="Player" parent="Grid" index="0" instance=ExtResource( 8 )]
 position = Vector2( 304, 112 )
-script = ExtResource( 11 )
 raycast_directions = {
 Vector2( -1, 0 ): NodePath("RayLeft"),
 Vector2( 0, -1 ): NodePath("RayUp"),
@@ -60,7 +58,6 @@ texture = ExtResource( 13 )
 
 [node name="Bob" parent="Grid" index="2" instance=ExtResource( 8 )]
 position = Vector2( 336, 304 )
-script = ExtResource( 11 )
 raycast_directions = {
 Vector2( -1, 0 ): NodePath("RayLeft"),
 Vector2( 0, -1 ): NodePath("RayUp"),
@@ -90,7 +87,6 @@ cast_to = Vector2( 16, 0 )
 
 [node name="Diana" parent="Grid" index="3" instance=ExtResource( 8 )]
 position = Vector2( 528, 112 )
-script = ExtResource( 11 )
 raycast_directions = {
 Vector2( -1, 0 ): NodePath("RayLeft"),
 Vector2( 0, -1 ): NodePath("RayUp"),
@@ -183,6 +179,9 @@ __meta__ = {
 "_edit_lock_": true
 }
 direction_ratio = Vector2( 1, 0 )
+
+[connection signal="action" from="Controller" to="Grid/Player" method="_action"]
+[connection signal="sig_dir" from="Controller" to="Grid/Player" method="_direction"]
 
 [editable path="Grid/Player"]
 [editable path="Grid/Signpost"]
