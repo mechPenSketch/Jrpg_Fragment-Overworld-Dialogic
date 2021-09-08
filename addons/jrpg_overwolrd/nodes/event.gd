@@ -81,17 +81,20 @@ func _action():
 		var collider = raycast.get_collider()
 		if collider:
 			
-			# GET COLLIDER TO TURN TO PLAYER
-			var dir_v = Vector2()
-			var collider_position = collider.get_position()
-			for i in 2:
-				if position[i] < collider_position[i]:
-					dir_v[i] = -1
-				elif position[i] > collider_position[i]:
-					dir_v[i] = 1
-			collider.emit_signal("turning", dir_v)
+			# COLLIDER SHOULD BE AN EVENT
+			if collider.get_class() == "Event":
 			
-			collider.activate_dialog()
+				# GET COLLIDER TO TURN TO PLAYER
+				var dir_v = Vector2()
+				var collider_position = collider.get_position()
+				for i in 2:
+					if position[i] < collider_position[i]:
+						dir_v[i] = -1
+					elif position[i] > collider_position[i]:
+						dir_v[i] = 1
+				collider.emit_signal("turning", dir_v)
+				
+				collider.activate_dialog()
 
 func _direction(dir:Vector2):
 	if !get_tree().is_paused() and !is_moving:
@@ -131,6 +134,9 @@ func activate_dialog():
 		base.add_child(new_dialog)
 		
 		new_dialog.connect("timeline_end", controller, "_end_of_dialog")
+
+func get_class():
+	return "Event"
 
 func get_default_texture_filepath():
 	return "res://addons/jrpg_overwolrd/nodes/event.svg"
