@@ -61,14 +61,16 @@ func play(from_position=0.0, playing_sample_nb=-1):
 			if random_volume_range != 0:
 				.set_volume_db(base_volume + (randf() - .5) * random_volume_range)
 			if random_pitch_range != 0:
-				.set_pitch_scale(base_pitch + (randf() - .5) * random_pitch_range)
+				.set_pitch_scale(max(0.0001, base_pitch + (randf() - .5) * random_pitch_range))
 		set_stream(samples[playing_sample_nb])
 		.play(from_position)
 
 func set_volume_db(new_volume_db):
+	.set_volume_db(new_volume_db)
 	base_volume = new_volume_db
 
 func set_pitch_scale(new_pitch):
+	.set_pitch_scale(max(0.0001, new_pitch))
 	base_pitch = new_pitch
 
 func load_samples_from_folder(path):
@@ -79,11 +81,11 @@ func load_samples_from_folder(path):
 			dir.list_dir_begin(true)
 			var file_name = dir.get_next()
 			while file_name != "":
-				if not dir.current_is_dir():
-					if file_name.to_lower().ends_with(".wav") or file_name.to_lower().ends_with(".ogg"):
-						#print(dir.get_current_dir() + "/" + file_name)
-						var resource = ResourceLoader.load(dir.get_current_dir() + "/" + file_name)
-						#print(resource)
-						samples.append(resource)
+				if not dir.current_is_dir() and file_name.ends_with(".import"):
+					var resource_path = dir.get_current_dir() + "/" + file_name.replace('.import', '')
+					if resource_path.get_extension().to_lower() in ["wav", "ogg"]:
+						var resource = load(resource_path)
+						if resource != null:
+							samples.append(resource)
 				file_name = dir.get_next()
 		select_samples_from_folder = ""

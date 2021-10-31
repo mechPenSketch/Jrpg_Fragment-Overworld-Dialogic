@@ -1,13 +1,14 @@
 tool
 extends Tree
 
-onready var editor_reference = get_node('../../../')
+var editor_reference
 onready var timeline_editor = get_node('../../TimelineEditor')
 onready var character_editor = get_node('../../CharacterEditor')
 onready var value_editor = get_node('../../ValueEditor')
 onready var glossary_entry_editor = get_node('../../GlossaryEntryEditor')
 onready var settings_editor = get_node('../../SettingsEditor')
 onready var theme_editor = get_node('../../ThemeEditor')
+onready var documentation_viewer = get_node('../../DocumentationViewer')
 onready var empty_editor = get_node('../../Empty')
 onready var filter_tree_edit = get_node('../FilterMasterTreeEdit')
 
@@ -18,12 +19,14 @@ var character_icon
 var theme_icon
 var definition_icon
 var glossary_icon
+var documentation_icon
 
 var timelines_tree
 var characters_tree
 var definitions_tree
 var themes_tree
 var settings_tree
+var documentation_tree
 
 
 var item_path_before_edit = ""
@@ -39,10 +42,13 @@ var filter_tree_term = ''
 signal editor_selected(selected)
 
 func _ready():
+	editor_reference = find_parent('EditorView')
+	# Tree Settings
 	allow_rmb_select = true
 	var root = tree.create_item()
 	tree.set_hide_root(true)
 	
+	# Scaling
 	var modifier = ''
 	var _scale = get_constant("inspector_margin", "Editor")
 	_scale = _scale * 0.125
@@ -60,6 +66,8 @@ func _ready():
 		modifier = '-2'
 		rect_min_size.x = 360
 	rect_size.x = 0
+	
+	# Icons
 	timeline_icon = load("res://addons/dialogic/Images/Resources/timeline" + modifier + ".svg")
 	character_icon = load("res://addons/dialogic/Images/Resources/character" + modifier + ".svg")
 	theme_icon = load("res://addons/dialogic/Images/Resources/theme" + modifier + ".svg")
@@ -67,38 +75,43 @@ func _ready():
 	glossary_icon = get_icon("ListSelect", "EditorIcons")
 	
 	# Creating the root items
-	timelines_tree = tree.create_item(root)
-	timelines_tree.set_text(0, "Timelines")
-	timelines_tree.set_icon(0, get_icon("Folder", "EditorIcons"))
-	timelines_tree.set_icon_modulate(0, get_color("folder_icon_modulate", "FileDialog"))
-	timelines_tree.collapsed = DialogicUtil.get_folder_meta('Timelines', 'folded')
-	timelines_tree.set_metadata(0, {'editor': 'Timeline Root'})
-	
-	characters_tree = tree.create_item(root)
-	characters_tree.set_text(0, "Characters")
-	characters_tree.set_icon(0, get_icon("Folder", "EditorIcons"))
-	characters_tree.set_icon_modulate(0, get_color("folder_icon_modulate", "FileDialog"))
-	characters_tree.collapsed = DialogicUtil.get_folder_meta('Characters', 'folded')
-	characters_tree.set_metadata(0, {'editor': 'Character Root'})
-
-	definitions_tree = tree.create_item(root)
-	definitions_tree.set_text(0, "Definitions")
-	definitions_tree.set_icon(0, get_icon("Folder", "EditorIcons"))
-	definitions_tree.set_icon_modulate(0, get_color("folder_icon_modulate", "FileDialog"))
-	definitions_tree.collapsed = DialogicUtil.get_folder_meta('Definitions', 'folded')
-	definitions_tree.set_metadata(0, {'editor': 'Definition Root'})
-	
-	themes_tree = tree.create_item(root)
-	themes_tree.set_text(0, "Themes")
-	themes_tree.set_icon(0, get_icon("Folder", "EditorIcons"))
-	themes_tree.set_icon_modulate(0, get_color("folder_icon_modulate", "FileDialog"))
-	themes_tree.collapsed = DialogicUtil.get_folder_meta('Themes', 'folded')
-	themes_tree.set_metadata(0, {'editor': 'Theme Root'})
+	for tree_info in [
+		# variable		 name		  editor
+		["Timelines", "Timeline Root"],
+		["Characters", "Character Root"],
+		["Definitions", "Definition Root"],
+		["Themes", "Theme Root"],
+			]:
+		# create tree item
+		var sub_tree = tree.create_item(root)
+		# set the item
+		sub_tree.set_icon(0, get_icon("Folder", "EditorIcons"))
+		sub_tree.set_icon_modulate(0, get_color("folder_icon_modulate", "FileDialog"))
+		# set info
+		sub_tree.set_text(0, tree_info[0])
+		sub_tree.collapsed = DialogicUtil.get_folder_meta(tree_info[0], 'folded')
+		sub_tree.set_metadata(0, {'editor': tree_info[1]})
+		# set the correct tree variable
+		match tree_info[0]:
+			"Timelines":
+				timelines_tree = sub_tree
+			"Characters":
+				characters_tree = sub_tree
+			"Definitions":
+				definitions_tree = sub_tree
+			"Themes":
+				themes_tree = sub_tree
 	
 	settings_tree = tree.create_item(root)
 	settings_tree.set_text(0, "Settings")
 	settings_tree.set_icon(0, get_icon("GDScript", "EditorIcons"))
 	settings_tree.set_metadata(0, {'editor': 'Settings'})
+	
+	documentation_tree = tree.create_item(root)
+	documentation_tree.set_text(0, "Help")
+	documentation_tree.set_icon(0, get_icon("HelpSearch", "EditorIcons"))
+	documentation_tree.set_metadata(0, {'editor': 'Documentation Root', 'name':'Start', 'path':'Welcome.md'})
+	
 	
 	# creates the context menus
 	create_rmb_context_menus()
@@ -112,9 +125,11 @@ func _ready():
 	$RenamerReset.connect("timeout", self, '_on_renamer_reset_timeout')
 	filter_tree_edit.connect("text_changed", self, '_on_filter_tree_edit_changed')
 	
-	
 	# build all tree parts
 	build_full_tree()
+	
+	# Adding docs
+	build_documentation()
 	
 	# Default empty screen.
 	hide_all_editors() 
@@ -122,14 +137,6 @@ func _ready():
 	# AutoSave timer
 	$AutoSave.connect("timeout", self, '_on_autosave_timeout')
 	$AutoSave.start(0.5)
-
-func _process(delta):
-	if dragging_item != null:
-		if Input.is_mouse_button_pressed(1):
-			dragging_item.rect_global_position = get_global_mouse_position()+Vector2(10,10)
-		else:
-			dragging_item.queue_free()
-			dragging_item = null
 
 ## *****************************************************************************
 ##						BUILDING THE TREE
@@ -145,73 +152,105 @@ func build_full_tree(selected_item: String = ''):
 	# Adding Themes
 	build_themes(selected_item)
 
+
 func _clear_tree_children(parent: TreeItem):
 	while parent.get_children() != null:
 		parent.get_children().free()
 
-func _add_folder_item(parent_item: TreeItem, folder_name: String, editor:String, meta_folder_info:Dictionary):
-	var folder_item:TreeItem= tree.create_item(parent_item)
-	folder_item.set_text(0, folder_name)
-	folder_item.set_icon(0, get_icon("Folder", "EditorIcons"))
-	folder_item.set_icon_modulate(0, get_color("folder_icon_modulate", "FileDialog"))
-	folder_item.set_metadata(0, {'editor': editor, 'editable': true})
-	if filter_tree_term.empty():
-		folder_item.collapsed = meta_folder_info['folded']
-	return folder_item
 
-## TIMELINES
 func build_resource_folder(parent_folder_item:TreeItem, folder_data:Dictionary, selected_item:String, folder_editor:String, resource_type: String):
+	## BUILD ALL THE FOLDER ITEMS (by calling this method for them)
 	for folder in folder_data["folders"].keys():
 		var folder_item = _add_folder_item(parent_folder_item, folder, folder_editor, folder_data["folders"][folder]['metadata'])
 		var contains_something = build_resource_folder(folder_item, folder_data["folders"][folder], selected_item, folder_editor, resource_type)
 		if (not filter_tree_term.empty()) and (not contains_something):
 			folder_item.free()
+	
+	## BUILD ALL THE FILE ITEMS
 	for file in folder_data["files"]:
+		# get the file_metadata
+		var file_metadata
 		match resource_type:
 			"Timeline":
-				var file_metadata = DialogicUtil.get_timeline_dict()[file]
-				if (filter_tree_term == '') or (filter_tree_term.to_lower() in file_metadata['name'].to_lower()):
-					_add_timeline(parent_folder_item, file_metadata, not selected_item.empty() and file == selected_item)
+				file_metadata = DialogicUtil.get_timeline_dict()[file]
 			"Character":
-				var file_metadata = DialogicUtil.get_characters_dict()[file]
-				if (filter_tree_term == '') or (filter_tree_term.to_lower() in file_metadata['name'].to_lower()):
-					_add_character(parent_folder_item, file_metadata ,not selected_item.empty() and file == selected_item)
+				file_metadata = DialogicUtil.get_characters_dict()[file]
 			"Theme":
-				var file_metadata = DialogicUtil.get_theme_dict()[file]
-				if (filter_tree_term == '') or (filter_tree_term.to_lower() in file_metadata['name'].to_lower()):
-					_add_theme(parent_folder_item, file_metadata ,not selected_item.empty() and file == selected_item)
+				file_metadata = DialogicUtil.get_theme_dict()[file]
 			"Definition":
-				var file_metadata = DialogicUtil.get_default_definitions_dict()[file]
-				if (filter_tree_term == '') or (filter_tree_term.to_lower() in file_metadata['name'].to_lower()):
-					_add_definition(parent_folder_item, file_metadata ,not selected_item.empty() and file == selected_item)
+				file_metadata = DialogicUtil.get_default_definitions_dict()[file]
+		
+		# add the file item (considering the filter_term)
+		if (filter_tree_term == '') or (filter_tree_term.to_lower() in file_metadata['name'].to_lower()):
+			_add_resource_item(resource_type, parent_folder_item, file_metadata, not selected_item.empty() and file == selected_item)
 	
 	# force redraw control
 	update()
 	
 	return true if (parent_folder_item.get_children() != null) else false
 
+
+func _add_folder_item(parent_item: TreeItem, folder_name: String, editor:String, meta_folder_info:Dictionary):
+	# create item
+	var folder_item:TreeItem= tree.create_item(parent_item)
+	# set text and icon
+	folder_item.set_text(0, folder_name)
+	folder_item.set_icon(0, get_icon("Folder", "EditorIcons"))
+	folder_item.set_icon_modulate(0, get_color("folder_icon_modulate", "FileDialog"))
+	# set metadata
+	folder_item.set_metadata(0, {'editor': editor, 'editable': true})
+	# set collapsed
+	if filter_tree_term.empty():
+		folder_item.collapsed = meta_folder_info['folded']
+	return folder_item
+
+
+func _add_resource_item(resource_type, parent_item, resource_data, select):
+	# create item
+	var item = tree.create_item(parent_item)
+	# set the text
+	if resource_data.has('name'):
+		item.set_text(0, resource_data['name'])
+	else:
+		item.set_text(0, resource_data['file'])
+	if not get_constant("dark_theme", "Editor"):
+		item.set_icon_modulate(0, get_color("property_color", "Editor"))
+	# set it as editable
+	resource_data['editable'] = true
+	# resource specific changes
+	match resource_type:
+		"Timeline":
+			item.set_icon(0, timeline_icon)
+			resource_data['editor'] = 'Timeline'
+		"Character":
+			item.set_icon(0, character_icon)
+			resource_data['editor'] = 'Character'
+			if resource_data.has('color'):
+				item.set_icon_modulate(0, resource_data['color'])
+		"Definition":
+			if resource_data['type'] == 0:
+				item.set_icon(0, definition_icon)
+				resource_data['editor'] = 'Value'
+			else:
+				item.set_icon(0, glossary_icon)
+				resource_data['editor'] = 'GlossaryEntry'
+		"Theme":
+			item.set_icon(0, theme_icon)
+			resource_data['editor'] = 'Theme'
+	
+	item.set_metadata(0, resource_data)
+	
+	if select:
+		item.select(0)
+
+
+## TIMELINES
 func build_timelines(selected_item: String=''):
 	_clear_tree_children(timelines_tree)
 	
 	DialogicUtil.update_resource_folder_structure()
 	var structure = DialogicUtil.get_timelines_folder_structure()
 	build_resource_folder(timelines_tree, structure, selected_item, "Timeline Root", "Timeline")
-
-func _add_timeline(parent_item, timeline_data, select = false):
-	var item = tree.create_item(parent_item)
-	item.set_icon(0, timeline_icon)
-	if timeline_data.has('name'):
-		item.set_text(0, timeline_data['name'])
-	else:
-		item.set_text(0, timeline_data['file'])
-	timeline_data['editor'] = 'Timeline'
-	timeline_data['editable'] = true
-	item.set_metadata(0, timeline_data)
-	if not get_constant("dark_theme", "Editor"):
-		item.set_icon_modulate(0, get_color("property_color", "Editor"))
-	#item.set_editable(0, true)
-	if select: # Auto selecting
-		item.select(0)
 
 
 ## CHARACTERS
@@ -222,23 +261,6 @@ func build_characters(selected_item: String=''):
 	var structure = DialogicUtil.get_characters_folder_structure()
 	build_resource_folder(characters_tree, structure, selected_item, "Character Root", "Character")
 
-func _add_character(parent_item, character_data, select = false):
-	var item = tree.create_item(parent_item)
-	item.set_icon(0, character_icon)
-	if character_data.has('name'):
-		item.set_text(0, character_data['name'])
-	else:
-		item.set_text(0, character_data['file'])
-	character_data['editor'] = 'Character'
-	character_data['editable'] = true
-	item.set_metadata(0, character_data)
-	#item.set_editable(0, true)
-	if character_data.has('color'):
-		item.set_icon_modulate(0, character_data['color'])
-	# Auto selecting
-	if select: 
-		item.select(0)
-
 
 ## DEFINTIONS
 func build_definitions(selected_item: String=''):
@@ -247,22 +269,6 @@ func build_definitions(selected_item: String=''):
 	DialogicUtil.update_resource_folder_structure()
 	var structure = DialogicUtil.get_definitions_folder_structure()
 	build_resource_folder(definitions_tree, structure, selected_item, "Definition Root", "Definition")
-	
-
-func _add_definition(parent_folder_item, definition_data, select = false):
-	var item = tree.create_item(parent_folder_item)
-	item.set_text(0, definition_data['name'])
-	item.set_icon(0, definition_icon)
-	definition_data['editor'] = 'Value'
-	if definition_data['type'] == 1:
-		item.set_icon(0, glossary_icon)
-		definition_data['editor'] = 'GlossaryEntry'
-	definition_data['editable'] = true
-	item.set_metadata(0, definition_data)
-	if not get_constant("dark_theme", "Editor"):
-		item.set_icon_modulate(0, get_color("property_color", "Editor"))
-	if select: # Auto selecting
-		item.select(0)
 
 
 ## THEMES
@@ -273,22 +279,19 @@ func build_themes(selected_item: String=''):
 	var structure = DialogicUtil.get_theme_folder_structure()
 	build_resource_folder(themes_tree, structure, selected_item, "Theme Root", "Theme")
 
-func _add_theme(parent_folder_item, theme_data, select = false):
-	var item = tree.create_item(parent_folder_item)
-	item.set_icon(0, theme_icon)
-	item.set_text(0, theme_data['name'])
-	theme_data['editor'] = 'Theme'
-	theme_data['editable'] = true
-	item.set_metadata(0, theme_data)
-	if not get_constant("dark_theme", "Editor"):
-		item.set_icon_modulate(0, get_color("property_color", "Editor"))
-	if select: # Auto selecting
-		item.select(0)
 
 func _on_item_collapsed(item: TreeItem):
-	if filter_tree_term.empty() and item != null and 'Root' in item.get_metadata(0)['editor']:
+	if filter_tree_term.empty() and item != null and 'Root' in item.get_metadata(0)['editor'] and not 'Documentation' in item.get_metadata(0)['editor']:
 		DialogicUtil.set_folder_meta(get_item_folder(item, ''), 'folded', item.collapsed)
 
+func build_documentation(selected_item: String=''):
+	var child = documentation_tree.get_children()
+	while child:
+		child.call_recursive("call_deferred", "free")
+		child = child.get_next()
+	$DocsTreeHelper.build_documentation_tree(self, documentation_tree, {'editor':'Documentation Root', 'editable':false}, {'editor':'Documentation', 'editable':false}, filter_tree_term)
+	call_deferred("update")
+	
 ## *****************************************************************************
 ##						 OPENING EDITORS
 ## *****************************************************************************
@@ -298,33 +301,35 @@ func _on_item_selected():
 	#       resource. Unfortunately there has been so many bugs doing that 
 	#       that I'll revisit it in the future. 
 	#       save_current_resource()
-	var item = get_selected()
-	var metadata = item.get_metadata(0)
-	if metadata['editor'] == 'Timeline':
-		timeline_editor.load_timeline(metadata['file'])
-		show_timeline_editor()
-	elif metadata['editor'] == 'Character':
-		if not character_editor.is_selected(metadata['file']):
+	var metadata = get_selected().get_metadata(0)
+	match metadata['editor']:
+		'Timeline':
+			# Remember to also update this on the `inspector_timeline_picker.gd`
+			timeline_editor.batches.clear()
+			timeline_editor.load_timeline(metadata['file'])
+			show_timeline_editor()
+		'Character':
 			character_editor.load_character(metadata['file'])
-		show_character_editor()
-	elif metadata['editor'] == 'Value':
-		if not value_editor.is_selected(metadata['id']):
-			value_editor.visible = true
+			show_character_editor()
+		'Value':
 			value_editor.load_definition(metadata['id'])
-		show_value_editor()
-	elif metadata['editor'] == 'GlossaryEntry':
-		if not glossary_entry_editor.is_selected(metadata['id']):
-			glossary_entry_editor.visible = true
+			show_value_editor()
+		'GlossaryEntry':
 			glossary_entry_editor.load_definition(metadata['id'])
-		show_glossary_entry_editor()
-	elif metadata['editor'] == 'Theme':
-		theme_editor.load_theme(metadata['file'])
-		show_theme_editor()
-	elif metadata['editor'] == 'Settings':
-		settings_editor.update_data()
-		show_settings_editor()
-	else:
-		hide_all_editors()
+			show_glossary_entry_editor()
+		'Theme':
+			theme_editor.load_theme(metadata['file'])
+			show_theme_editor()
+		'Settings':
+			settings_editor.update_data()
+			show_settings_editor()
+		'Documentation', 'Documentation Root':
+			if metadata['path']:
+				documentation_viewer.load_page(metadata['path'])
+				show_documentatio_editor()
+			get_selected().collapsed = false
+		_:
+			hide_all_editors()
 
 func show_timeline_editor():
 	emit_signal("editor_selected", 'timeline')
@@ -351,15 +356,24 @@ func show_theme_editor():
 	hide_editors()
 	theme_editor.visible = true
 
+
 func show_settings_editor():
 	emit_signal("editor_selected", 'theme')
 	hide_editors()
 	settings_editor.visible = true
 
+
+func show_documentatio_editor():
+	emit_signal("editor_selected", "documentation")
+	hide_editors()
+	documentation_viewer.visible = true
+
+
 func hide_all_editors():
 	emit_signal("editor_selected", 'none')
 	hide_editors()
 	empty_editor.visible = true
+
 
 func hide_editors():
 	character_editor.visible = false
@@ -368,6 +382,7 @@ func hide_editors():
 	glossary_entry_editor.visible = false
 	theme_editor.visible = false
 	settings_editor.visible = false
+	documentation_viewer.visible = false
 	empty_editor.visible = false
 
 ## *****************************************************************************
@@ -432,17 +447,29 @@ func create_rmb_context_menus():
 	add_child(definition_folder_popup)
 	rmb_popup_menus["Definition Root"] = definition_folder_popup
 	
+	var documentation_folder_popup = PopupMenu.new()
+	documentation_folder_popup.add_icon_item(get_icon("Edit", "EditorIcons") ,'Toggle Editing Tools')
+	add_child(documentation_folder_popup)
+	rmb_popup_menus["Documentation Root"] = documentation_folder_popup
+	
+	var documentation_popup = PopupMenu.new()
+	documentation_popup.add_icon_item(get_icon("Edit", "EditorIcons") ,'Toggle Editing Tools')
+	add_child(documentation_popup)
+	rmb_popup_menus["Documentation"] = documentation_popup
 	
 	# Connecting context menus
 	timeline_popup.connect('id_pressed', self, '_on_TimelinePopupMenu_id_pressed')
 	character_popup.connect('id_pressed', self, '_on_CharacterPopupMenu_id_pressed')
 	theme_popup.connect('id_pressed', self, '_on_ThemePopupMenu_id_pressed')
 	definition_popup.connect('id_pressed', self, '_on_DefinitionPopupMenu_id_pressed')
-	
+	documentation_popup.connect('id_pressed', self, '_on_DocumentationPopupMenu_id_pressed')
+		
 	timeline_folder_popup.connect('id_pressed', self, '_on_TimelineRootPopupMenu_id_pressed')
 	character_folder_popup.connect('id_pressed', self, '_on_CharacterRootPopupMenu_id_pressed')
 	theme_folder_popup.connect('id_pressed', self, '_on_ThemeRootPopupMenu_id_pressed')
 	definition_folder_popup.connect('id_pressed', self, '_on_DefinitionRootPopupMenu_id_pressed')
+	documentation_folder_popup.connect('id_pressed', self, '_on_DocumentationPopupMenu_id_pressed')
+
 
 func _on_item_rmb_selected(position):
 	var item = get_selected().get_metadata(0)
@@ -462,11 +489,13 @@ func get_item_folder(item: TreeItem, root : String):
 	if not current_path.begins_with(root):
 		return root
 	return current_path
-	
+
+
 func get_item_path(item: TreeItem) -> String:
 	if item == null:
 		return ''
 	return create_item_path_recursive(item, "").trim_suffix("/")
+
 
 func create_item_path_recursive(item:TreeItem, path:String) -> String:
 	# don't use this function directly
@@ -485,16 +514,18 @@ func _on_TimelinePopupMenu_id_pressed(id):
 	if id == 0: # View files
 		OS.shell_open(ProjectSettings.globalize_path(DialogicResources.get_path('TIMELINE_DIR')))
 	if id == 1: # Copy to clipboard
-		OS.set_clipboard(editor_reference.get_node("MainPanel/TimelineEditor").timeline_name)
+		OS.set_clipboard(get_item_path(get_selected()).replace('Timelines', ''))
 	if id == 2: # Remove
-		editor_reference.get_node('RemoveTimelineConfirmation').popup_centered()
+		editor_reference.popup_remove_confirmation('Timeline')
+
 
 # Character context menu
 func _on_CharacterPopupMenu_id_pressed(id):
 	if id == 0:
 		OS.shell_open(ProjectSettings.globalize_path(DialogicResources.get_path('CHAR_DIR')))
 	if id == 1:
-		editor_reference.get_node('RemoveCharacterConfirmation').popup_centered()
+		editor_reference.popup_remove_confirmation('Character')
+
 
 # Theme context menu
 func _on_ThemePopupMenu_id_pressed(id):
@@ -503,9 +534,10 @@ func _on_ThemePopupMenu_id_pressed(id):
 	if id == 1:
 		var filename = editor_reference.get_node('MainPanel/MasterTreeContainer/MasterTree').get_selected().get_metadata(0)['file']
 		if (filename.begins_with('theme-')):
-			editor_reference.theme_editor.duplicate_theme(filename)
+			theme_editor.duplicate_theme(filename)
 	if id == 2:
-		editor_reference.get_node('RemoveThemeConfirmation').popup_centered()
+		editor_reference.popup_remove_confirmation('Theme')
+
 
 # Definition context menu
 func _on_DefinitionPopupMenu_id_pressed(id):
@@ -514,10 +546,10 @@ func _on_DefinitionPopupMenu_id_pressed(id):
 		OS.shell_open(ProjectSettings.globalize_path(paths['DEFAULT_DEFINITIONS_FILE']))
 	if id == 1:
 		if value_editor.visible:
-			editor_reference.get_node('RemoveValueConfirmation').popup_centered()
+			editor_reference.popup_remove_confirmation('Value')
 		elif glossary_entry_editor.visible:
-			editor_reference.get_node('RemoveGlossaryConfirmation').popup_centered()
-			
+			editor_reference.popup_remove_confirmation('GlossaryEntry')
+	
 ## FOLDER POPUPS
 
 # Timeline Folder context menu
@@ -532,6 +564,7 @@ func _on_TimelineRootPopupMenu_id_pressed(id):
 			return
 		editor_reference.get_node('RemoveFolderConfirmation').popup_centered()
 
+
 # Character Folder context menu
 func _on_CharacterRootPopupMenu_id_pressed(id):
 	if id == 0: # Add Character
@@ -544,6 +577,7 @@ func _on_CharacterRootPopupMenu_id_pressed(id):
 		if get_selected().get_parent() == get_root():
 			return
 		editor_reference.get_node('RemoveFolderConfirmation').popup_centered()
+
 
 # Definition Folder context menu
 func _on_DefinitionRootPopupMenu_id_pressed(id):
@@ -559,6 +593,7 @@ func _on_DefinitionRootPopupMenu_id_pressed(id):
 			return
 		editor_reference.get_node('RemoveFolderConfirmation').popup_centered()
 
+
 # Theme Folder context menu
 func _on_ThemeRootPopupMenu_id_pressed(id):
 	if id == 0: # Add Theme
@@ -571,6 +606,10 @@ func _on_ThemeRootPopupMenu_id_pressed(id):
 			return
 		editor_reference.get_node('RemoveFolderConfirmation').popup_centered()
 
+
+func _on_DocumentationPopupMenu_id_pressed(id):
+	if id == 0: # edit text toggled
+		documentation_viewer.toggle_editing()
 ## *****************************************************************************
 ##						 CREATING AND REMOVING
 ## *****************************************************************************
@@ -582,6 +621,8 @@ func new_timeline():
 	var folder = get_item_folder(get_selected(), "Timelines")
 	DialogicUtil.add_file_to_folder(folder, timeline['metadata']['file'])
 	build_timelines(timeline['metadata']['file'])
+	rename_selected()
+
 
 # creates a new character and opens it
 # it will be added to the selected folder (if it's a character folder) or the Character root folder
@@ -590,6 +631,7 @@ func new_character():
 	var folder = get_item_folder(get_selected(), "Characters")
 	DialogicUtil.add_file_to_folder(folder, character['metadata']['file'])
 	build_characters(character['metadata']['file'])
+	rename_selected()
 
 # creates a new theme and opens it
 # it will be added to the selected folder (if it's a theme folder) or the Theme root folder
@@ -598,6 +640,7 @@ func new_theme():
 	var folder = get_item_folder(get_selected(), "Themes")
 	DialogicUtil.add_file_to_folder(folder, theme_file)
 	build_themes(theme_file)
+	rename_selected()
 
 # creates a new value and opens it
 # it will be added to the selected folder (if it's a definition folder) or the Definition root folder
@@ -606,6 +649,7 @@ func new_value_definition():
 	var folder = get_item_folder(get_selected(), "Definitions")
 	DialogicUtil.add_file_to_folder(folder, definition_id)
 	build_definitions(definition_id)
+	rename_selected()
 
 # creates a new glossary entry and opens it
 # it will be added to the selected folder (if it's a definition folder) or the Definition root folder
@@ -614,6 +658,7 @@ func new_glossary_entry():
 	var folder = get_item_folder(get_selected(), "Definitions")
 	DialogicUtil.add_file_to_folder(folder, definition_id)
 	build_definitions(definition_id)
+	rename_selected()
 	
 
 func remove_selected():
@@ -622,6 +667,11 @@ func remove_selected():
 	timelines_tree.select(0)
 	settings_editor.update_data()
 
+
+func rename_selected():
+	yield(get_tree(), "idle_frame")
+	_start_rename()
+	edit_selected()
 
 ## *****************************************************************************
 ##					 		DRAGGING ITEMS
@@ -691,7 +741,15 @@ func instance_drag_preview(icon, text):
 	dragging_item.get_node("Panel/HBox/Icon").texture = icon
 	dragging_item.get_node("Panel/HBox/Label").text = text
 	editor_reference.add_child(dragging_item)
-	
+
+func _process(delta):
+	if dragging_item != null:
+		if Input.is_mouse_button_pressed(1):
+			dragging_item.rect_global_position = get_global_mouse_position()+Vector2(10,10)
+		else:
+			dragging_item.queue_free()
+			dragging_item = null
+
 
 ## *****************************************************************************
 ##						 ITEM EDITING (RENAMING)
@@ -700,15 +758,21 @@ func instance_drag_preview(icon, text):
 func _on_renamer_reset_timeout():
 	get_selected().set_editable(0, false)
 
+
 func _on_gui_input(event):
 	if event is InputEventMouseButton and event.button_index == 1:
 		if event.is_pressed() and event.doubleclick:
-			var item = get_selected()
-			var metadata = item.get_metadata(0)
-			if metadata.has("editable") and metadata["editable"]:
-				item_path_before_edit = get_item_path(item)
-				item.set_editable(0, true)
-				$RenamerReset.start(0.5)
+			_start_rename()
+
+
+func _start_rename():
+	var item = get_selected()
+	var metadata = item.get_metadata(0)
+	if metadata.has("editable") and metadata["editable"]:
+		item_path_before_edit = get_item_path(item)
+		item.set_editable(0, true)
+		$RenamerReset.start(0.5)
+
 
 func _on_item_edited():
 	var item = get_selected()
@@ -752,8 +816,7 @@ func _on_autosave_timeout():
 	save_current_resource()
 
 func save_current_resource():
-	var root = get_node('../..') # This is the same as the editor_reference
-	if root.visible: #Only save if the editor is open
+	if editor_reference and editor_reference.visible: #Only save if the editor is open
 		var item: TreeItem = get_selected()
 		var metadata: Dictionary
 		if item != null:
@@ -791,6 +854,9 @@ func _on_filter_tree_edit_changed(value):
 		build_full_tree(get_selected().get_metadata(0).get('file', ''))
 	else:
 		build_full_tree()
+	
+	# This was merged, not sure if it is properly placed
+	build_documentation()
 
 
 ## *****************************************************************************
@@ -848,3 +914,7 @@ func select_timeline_item(timeline_name):
 	hide_all_editors()
 	pass
 
+
+func select_documentation_item(docs_page_path):
+	if not $DocsTreeHelper.search_and_select_docs(documentation_tree, docs_page_path):
+		hide_all_editors()
