@@ -21,7 +21,7 @@
 
 			],
 			"portrait": "",
-			"question": "Hi, I'm practising my teleportation spell. Would you like to volunteer?"
+			"question": "DIANA_QUESTION"
 		},
 		{
 			"choice": "Yes",
@@ -34,13 +34,13 @@
 			"character": "character-1621182649.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Okay, here goes......"
+			"text": "DIANA_ANSWER"
 		},
 		{
 			"character": "character-1621182649.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Oh! Sorry, looks like I failed to get it right again."
+			"text": "DIANA_ANSWER2"
 		},
 		{
 			"choice": "No",
@@ -55,7 +55,7 @@
 		}
 	],
 	"metadata": {
-		"dialogic-version": "1.2",
+		"dialogic-version": "1.3",
 		"file": "timeline-1623599410.json",
 		"name": "Diana's Teleportation"
 	}
