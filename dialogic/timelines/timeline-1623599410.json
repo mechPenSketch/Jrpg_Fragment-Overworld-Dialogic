@@ -24,7 +24,7 @@
 			"question": "DIANA_QUESTION"
 		},
 		{
-			"choice": "Yes",
+			"choice": "CHOICE_YES",
 			"condition": "",
 			"definition": "",
 			"event_id": "dialogic_011",
@@ -43,7 +43,7 @@
 			"text": "DIANA_ANSWER2"
 		},
 		{
-			"choice": "No",
+			"choice": "CHOICE_NO",
 			"condition": "",
 			"definition": "",
 			"event_id": "dialogic_011",

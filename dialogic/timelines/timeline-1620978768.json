@@ -24,7 +24,7 @@
 			"question": "BOB_QUESTION"
 		},
 		{
-			"choice": "Apples",
+			"choice": "BOB_CHOICE_APPLES",
 			"condition": "",
 			"definition": "",
 			"event_id": "dialogic_011",
@@ -34,20 +34,20 @@
 			"character": "character-1620978753.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "BOB_APPLES"
+			"text": "BOB_ANSWER_APPLES"
 		},
 		{
-			"choice": "Oranges",
+			"choice": "BOB_CHOICE_ORANGES",
 			"condition": "",
 			"definition": "",
 			"event_id": "dialogic_011",
 			"value": ""
 		},
 		{
-			"character": "",
+			"character": "character-1620978753.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "BOB_ORANGES"
+			"text": "BOB_ANSWER_ORANGES"
 		},
 		{
 			"endbranch": "",

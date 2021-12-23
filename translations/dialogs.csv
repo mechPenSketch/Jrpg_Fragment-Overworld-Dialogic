@@ -1,9 +1,11 @@
 keys,en,ja,es
-SIGNPOST,Welcome to JRPG Fragment - Overworld!,js,js
-SIGNPOST2,"In this version, you can walk around and talk to nearby people.",js2,js2
+SIGNPOST,Welcome to JRPG Fragment - Overworld!,js,ss
+SIGNPOST2,"In this version, you can walk around and talk to nearby people.",js2,ss2
 BOB_QUESTION,"Hi, do you like apples or oranges?",bq,bq
-BOB_APPLES,I like apples too - they're sweet and crunchy!,bqa,bqa
-BOB_ORANGES,I love oranges too - they're soooo juicy!,bqo,bqo
+BOB_CHOICE_APPLES,Apples,りんご,Manzana
+BOB_CHOICE_ORANGES,Oranges,オレンジ,Naranja
+BOB_ANSWER_APPLES,I like apples too - they're sweet and crunchy!,bqa,bqa
+BOB_ANSWER_ORANGES,I love oranges too - they're soooo juicy!,bqo,bqo
 DIANA_QUESTION,"Hi, I'm practicing my teleportation spell. Would you like to volunteer?",dq,dq
 DIANA_ANSWER,"Okay, here goes......",da,da
 DIANA_ANSWER2,"Oh! Sorry, looks like I failed to get it right again.",da2,da2
