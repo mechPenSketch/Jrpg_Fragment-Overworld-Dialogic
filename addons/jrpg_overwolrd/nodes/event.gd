@@ -3,6 +3,12 @@ extends PlayingPiece
 
 class_name Event
 
+# Sprite Data
+export (Texture) var texture setget set_texture
+export (Vector2) var size_ratio = Vector2(1, 1) setget set_size_ratio
+export (Vector2) var sprite_offset setget set_sprite_offset
+export (bool) var is_symmetrical setget set_symmetrical
+
 var base
 var controller
 
@@ -177,6 +183,28 @@ func plugset_cell_width(w):
 func plugset_cell_height(h):
 	.plugset_cell_height(h)
 	update()
+
+func set_texture(val:Texture):
+	$Sprite.set_texture(val)
+	texture = val
+	set_v2frames()
+
+func set_size_ratio(val:Vector2):
+	size_ratio = val
+	set_v2frames()
+
+func set_sprite_offset(val:Vector2):
+	$Sprite.set_offset(val)
+	sprite_offset = val
+
+func set_symmetrical(val:bool):
+	$Sprite.is_symmetrical = val
+	is_symmetrical = val
+
+func set_v2frames():
+	var v2_frames = texture.get_size() / (get_parent().get_cell_size() * size_ratio)
+	$Sprite.set_hframes(v2_frames.x)
+	$Sprite.set_vframes(v2_frames.y)
 
 func turn(dir:Vector2):
 	raycast = get_node(raycast_directions[dir])

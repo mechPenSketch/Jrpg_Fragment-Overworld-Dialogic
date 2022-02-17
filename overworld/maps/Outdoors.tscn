@@ -1,11 +1,6 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://overworld/Base.tscn" type="PackedScene" id=1]
-[ext_resource path="res://addons/snap_map/nodes/raycast_piece.gd" type="Script" id=2]
-[ext_resource path="res://overworld/event/four_dir_sheet.gd" type="Script" id=3]
-[ext_resource path="res://overworld/event/char_tween.gd" type="Script" id=4]
-[ext_resource path="res://addons/snap_map/nodes/colshape_piece.gd" type="Script" id=5]
-[ext_resource path="res://addons/snap_map/nodes/colshape.tres" type="Shape2D" id=6]
 [ext_resource path="res://addons/jrpg_overwolrd/nodes/Prop.tscn" type="PackedScene" id=7]
 [ext_resource path="res://addons/jrpg_overwolrd/nodes/Actor.tscn" type="PackedScene" id=8]
 [ext_resource path="res://overworld/event/sprites/characters/diana.png" type="Texture" id=9]
@@ -20,6 +15,7 @@ tile_data = PoolIntArray( -65536, 536870915, 0, -65535, 536870915, 0, -65534, 53
 
 [node name="Player" parent="Grid" index="0" instance=ExtResource( 8 )]
 position = Vector2( 304, 112 )
+texture = ExtResource( 10 )
 raycast_directions = {
 Vector2( -1, 0 ): NodePath("RayLeft"),
 Vector2( 0, -1 ): NodePath("RayUp"),
@@ -27,37 +23,17 @@ Vector2( 0, 1 ): NodePath("RayDown"),
 Vector2( 1, 0 ): NodePath("RayRight")
 }
 
-[node name="Sprite" parent="Grid/Player" index="1"]
-texture = ExtResource( 10 )
-
-[node name="RayUp" parent="Grid/Player" index="3"]
-position = Vector2( 0, -16 )
-cast_to = Vector2( 0, -16 )
-
-[node name="RayDown" parent="Grid/Player" index="4"]
-position = Vector2( 0, 16 )
-cast_to = Vector2( 0, 16 )
-
-[node name="RayLeft" parent="Grid/Player" index="5"]
-position = Vector2( -16, 0 )
-cast_to = Vector2( -16, 0 )
-
-[node name="RayRight" parent="Grid/Player" index="6"]
-position = Vector2( 16, 0 )
-cast_to = Vector2( 16, 0 )
-
 [node name="Signpost" parent="Grid" index="1" instance=ExtResource( 7 )]
 position = Vector2( 528, 240 )
 collision_mask = 0
+texture = ExtResource( 13 )
 raycast_directions = {
 }
 dialog_timeline = "Signpost"
 
-[node name="Sprite" parent="Grid/Signpost" index="1"]
-texture = ExtResource( 13 )
-
 [node name="Bob" parent="Grid" index="2" instance=ExtResource( 8 )]
 position = Vector2( 336, 304 )
+texture = ExtResource( 12 )
 raycast_directions = {
 Vector2( -1, 0 ): NodePath("RayLeft"),
 Vector2( 0, -1 ): NodePath("RayUp"),
@@ -66,27 +42,11 @@ Vector2( 1, 0 ): NodePath("RayRight")
 }
 dialog_timeline = "Bob's Question"
 
-[node name="Sprite" parent="Grid/Bob" index="1"]
-texture = ExtResource( 12 )
-
-[node name="RayUp" parent="Grid/Bob" index="3"]
-position = Vector2( 0, -16 )
-cast_to = Vector2( 0, -16 )
-
-[node name="RayDown" parent="Grid/Bob" index="4"]
-position = Vector2( 0, 16 )
-cast_to = Vector2( 0, 16 )
-
-[node name="RayLeft" parent="Grid/Bob" index="5"]
-position = Vector2( -16, 0 )
-cast_to = Vector2( -16, 0 )
-
-[node name="RayRight" parent="Grid/Bob" index="6"]
-position = Vector2( 16, 0 )
-cast_to = Vector2( 16, 0 )
-
 [node name="Diana" parent="Grid" index="3" instance=ExtResource( 8 )]
-position = Vector2( 528, 112 )
+position = Vector2( 560, 144 )
+texture = ExtResource( 9 )
+size_ratio = Vector2( 1, 2 )
+sprite_offset = Vector2( 0, -16 )
 raycast_directions = {
 Vector2( -1, 0 ): NodePath("RayLeft"),
 Vector2( 0, -1 ): NodePath("RayUp"),
@@ -95,95 +55,5 @@ Vector2( 1, 0 ): NodePath("RayRight")
 }
 dialog_timeline = "Diana's Teleportation"
 
-[node name="RayUp" parent="Grid/Diana" index="3"]
-position = Vector2( 0, -16 )
-cast_to = Vector2( 0, -16 )
-
-[node name="RayDown" parent="Grid/Diana" index="4"]
-position = Vector2( 0, 16 )
-cast_to = Vector2( 0, 16 )
-
-[node name="RayLeft" parent="Grid/Diana" index="5"]
-position = Vector2( -16, 0 )
-cast_to = Vector2( -16, 0 )
-
-[node name="RayRight" parent="Grid/Diana" index="6"]
-position = Vector2( 16, 0 )
-cast_to = Vector2( 16, 0 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Grid/Diana" index="7"]
-shape = ExtResource( 6 )
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Grid/Diana" index="8"]
-texture = ExtResource( 9 )
-offset = Vector2( 0, -16 )
-hframes = 4
-vframes = 4
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_lock_": true
-}
-is_symmetrical = true
-
-[node name="Tween" type="Tween" parent="Grid/Diana" index="9"]
-script = ExtResource( 4 )
-np_anim_player = NodePath("../Sprite/AnimationPlayer")
-
-[node name="RayUp" type="RayCast2D" parent="Grid/Diana" index="10"]
-position = Vector2( 0, -16 )
-enabled = true
-cast_to = Vector2( 0, -16 )
-collide_with_areas = true
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_lock_": true
-}
-direction_ratio = Vector2( 0, -1 )
-
-[node name="RayDown" type="RayCast2D" parent="Grid/Diana" index="11"]
-position = Vector2( 0, 16 )
-enabled = true
-exclude_parent = false
-cast_to = Vector2( 0, 16 )
-collide_with_areas = true
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_lock_": true
-}
-direction_ratio = Vector2( 0, 1 )
-
-[node name="RayLeft" type="RayCast2D" parent="Grid/Diana" index="12"]
-position = Vector2( -16, 0 )
-enabled = true
-exclude_parent = false
-cast_to = Vector2( -16, 0 )
-collide_with_areas = true
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_lock_": true
-}
-direction_ratio = Vector2( -1, 0 )
-
-[node name="RayRight" type="RayCast2D" parent="Grid/Diana" index="13"]
-position = Vector2( 16, 0 )
-enabled = true
-exclude_parent = false
-cast_to = Vector2( 16, 0 )
-collide_with_areas = true
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_lock_": true
-}
-direction_ratio = Vector2( 1, 0 )
-
 [connection signal="action" from="Controller" to="Grid/Player" method="_action"]
 [connection signal="sig_dir" from="Controller" to="Grid/Player" method="_direction"]
-
-[editable path="Grid/Player"]
-[editable path="Grid/Signpost"]
-[editable path="Grid/Bob"]
-[editable path="Grid/Diana"]
