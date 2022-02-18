@@ -202,9 +202,10 @@ func set_symmetrical(val:bool):
 	is_symmetrical = val
 
 func set_v2frames():
-	var v2_frames = texture.get_size() / (get_parent().get_cell_size() * size_ratio)
-	$Sprite.set_hframes(v2_frames.x)
-	$Sprite.set_vframes(v2_frames.y)
+	if get_parent():
+		var v2_frames = texture.get_size() / (get_parent().get_cell_size() * size_ratio)
+		$Sprite.set_hframes(v2_frames.x)
+		$Sprite.set_vframes(v2_frames.y)
 
 func turn(dir:Vector2):
 	raycast = get_node(raycast_directions[dir])
