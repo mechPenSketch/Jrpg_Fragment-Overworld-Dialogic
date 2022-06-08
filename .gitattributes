@@ -2,7 +2,7 @@
 * text=auto
 
 # Images
-* .png binary
+*.png binary
 
 # Custom for Visual Studio
 *.cs     diff=csharp
