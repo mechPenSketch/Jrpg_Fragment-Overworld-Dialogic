@@ -115,6 +115,10 @@ enabled=PoolStringArray( "res://addons/dialogic/plugin.cfg", "res://addons/jrpg_
 
 2d_physics/layer_1="Wall"
 
+[locale]
+
+translations=PoolStringArray( "res://translations/dialogs.en.translation", "res://translations/dialogs.es.translation", "res://translations/dialogs.ja.translation" )
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"
