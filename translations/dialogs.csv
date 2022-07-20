@@ -1,11 +1,13 @@
 keys,en,ja,es
-SIGNPOST,Welcome to JRPG Fragment - Overworld!,js,ss
-SIGNPOST2,"In this version, you can walk around and talk to nearby people.",js2,ss2
-BOB_QUESTION,"Hi, do you like apples or oranges?",bq,bq
+SIGNPOST,Welcome to JRPG Fragment - Overworld!,はじめまして。これわＪＲＰＧフラグメント・オバワルド。,Bienvenido a JRPG Fragment – Overworld!
+SIGNPOST2,"In this version, you can walk around and talk to nearby people.",このバージョンでは、歩き回って近くの人々と話すことができます。 ,"En esta versión, puedes caminar y hablar con personas cercanas."
+BOB_QUESTION,"Hi, do you like apples or oranges?",今日は。りんごが　好きですが？オレンジ　ですが？,"Hola, ¿te gustan las manzanas o naranjas?"
 BOB_CHOICE_APPLES,Apples,りんご,Manzana
 BOB_CHOICE_ORANGES,Oranges,オレンジ,Naranja
-BOB_ANSWER_APPLES,I like apples too - they're sweet and crunchy!,bqa,bqa
-BOB_ANSWER_ORANGES,I love oranges too - they're soooo juicy!,bqo,bqo
-DIANA_QUESTION,"Hi, I'm practicing my teleportation spell. Would you like to volunteer?",dq,dq
-DIANA_ANSWER,"Okay, here goes......",da,da
-DIANA_ANSWER2,"Oh! Sorry, looks like I failed to get it right again.",da2,da2
+BOB_ANSWER_APPLES,I like apples too - they're sweet and crunchy!,僕も　りんご　好きです。彼らは　甘くてカリカリ　です！,"También me gustan las manzanas, ¡son dulces y crujientes!"
+BOB_ANSWER_ORANGES,I love oranges too - they're soooo juicy!,僕も　オレンジ　好きです。彼らは　すっごくジューシー　です！,"También me encantan las naranjas, ¡son tan jugosas!"
+DIANA_QUESTION,"Hi, I'm practicing my teleportation spell. Would you like to volunteer?",こんにちは。私は私のテレポーテーションの呪文を練習しています。ボランティアをしますか？ ,"Hola, estoy practicando mi hechizo de teletransportación. ¿Te gustaría ser voluntario?"
+CHOICE_YES,Yes,はい,Si
+CHOICE_NO,No,いいえ,No
+DIANA_ANSWER,"Okay, here goes......",はい。行けます…,"Está bien, aquí va ......"
+DIANA_ANSWER2,"Oh! Sorry, looks like I failed to get it right again.",お－！ごめんなさい。失敗です。,"¡Vaya! Lo siento, parece que no pude hacerlo bien de nuevo."
