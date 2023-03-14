@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfrpg5hi4d862"]
+
+[ext_resource type="PackedScene" uid="uid://byc72rvrdhvlo" path="res://overworld/playing_pieces/base.tscn" id="1_aysnk"]
+[ext_resource type="Texture2D" uid="uid://db82gh6t52cvd" path="res://overworld/playing_pieces/sprites/characters/alice.png" id="2_ofmmw"]
+
+[sub_resource type="Animation" id="Animation_fm5j0"]
+resource_name = "dir_down"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w7qxu"]
+_data = {
+"dir_down": SubResource("Animation_fm5j0")
+}
+
+[node name="Sprite2D" instance=ExtResource("1_aysnk")]
+texture = ExtResource("2_ofmmw")
+hframes = 4
+vframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_w7qxu")
+}

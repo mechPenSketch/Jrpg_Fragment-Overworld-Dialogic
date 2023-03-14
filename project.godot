@@ -6,94 +6,13 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-config_version=4
-
-_global_script_classes=[ {
-"base": "CollisionShape2D",
-"class": "ColShapePiece",
-"language": "GDScript",
-"path": "res://addons/snap_map/nodes/colshape_piece.gd"
-}, {
-"base": "ColShapePiece",
-"class": "ColShapePieceEx",
-"language": "GDScript",
-"path": "res://addons/snap_map/nodes/colshape_expiece.gd"
-}, {
-"base": "Node",
-"class": "Controller",
-"language": "GDScript",
-"path": "res://overworld/event/controller.gd"
-}, {
-"base": "Reference",
-"class": "DTS",
-"language": "GDScript",
-"path": "res://addons/dialogic/Localization/translation_service.gd"
-}, {
-"base": "Node",
-"class": "Dialogic",
-"language": "GDScript",
-"path": "res://addons/dialogic/Other/DialogicClass.gd"
-}, {
-"base": "Control",
-"class": "DialogicBackgroundMusic",
-"language": "GDScript",
-"path": "res://addons/dialogic/Nodes/BackgroundMusic.gd"
-}, {
-"base": "Node",
-"class": "DialogicDefinitionsUtil",
-"language": "GDScript",
-"path": "res://addons/dialogic/Other/DialogicDefinitionsUtil.gd"
-}, {
-"base": "Reference",
-"class": "DialogicResources",
-"language": "GDScript",
-"path": "res://addons/dialogic/Other/DialogicResources.gd"
-}, {
-"base": "Reference",
-"class": "DialogicUtil",
-"language": "GDScript",
-"path": "res://addons/dialogic/Other/DialogicUtil.gd"
-}, {
-"base": "PlayingPiece",
-"class": "Event",
-"language": "GDScript",
-"path": "res://addons/jrpg_overwolrd/nodes/event.gd"
-}, {
-"base": "Area2D",
-"class": "PlayingPiece",
-"language": "GDScript",
-"path": "res://addons/snap_map/nodes/playing_piece.gd"
-}, {
-"base": "RayCast2D",
-"class": "RayCastPiece",
-"language": "GDScript",
-"path": "res://addons/snap_map/nodes/raycast_piece.gd"
-}, {
-"base": "TileMap",
-"class": "SnapboundTiles",
-"language": "GDScript",
-"path": "res://addons/snap_map/nodes/snapbound_tiles.gd"
-} ]
-_global_script_class_icons={
-"ColShapePiece": "res://addons/snap_map/nodes/colshape_piece.svg",
-"ColShapePieceEx": "res://addons/snap_map/nodes/colshape_expiece.svg",
-"Controller": "res://overworld/event/controller.svg",
-"DTS": "",
-"Dialogic": "",
-"DialogicBackgroundMusic": "",
-"DialogicDefinitionsUtil": "",
-"DialogicResources": "",
-"DialogicUtil": "",
-"Event": "",
-"PlayingPiece": "res://addons/snap_map/nodes/playing_piece.svg",
-"RayCastPiece": "res://addons/snap_map/nodes/raycast_piece.svg",
-"SnapboundTiles": "res://addons/snap_map/nodes/snapbound_tiles.svg"
-}
+config_version=5
 
 [application]
 
 config/name="JRPG Fragment - Overworld (Dialogic)"
 run/main_scene="res://overworld/maps/Outdoors.tscn"
+config/features=PackedStringArray("4.0")
 config/icon="res://icon.png"
 
 [autoload]
@@ -103,13 +22,12 @@ GlobalOverworld="*res://overworld/global.gd"
 
 [display]
 
-window/size/height=576
 window/stretch/mode="2d"
-window/stretch/aspect="keep"
+window/size/height=576
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/dialogic/plugin.cfg", "res://addons/jrpg_overwolrd/plugin.cfg", "res://addons/snap_map/plugin.cfg" )
+enabled=PackedStringArray()
 
 [layer_names]
 
@@ -117,8 +35,9 @@ enabled=PoolStringArray( "res://addons/dialogic/plugin.cfg", "res://addons/jrpg_
 
 [locale]
 
-translations=PoolStringArray( "res://translations/dialogs.en.translation", "res://translations/dialogs.es.translation", "res://translations/dialogs.ja.translation" )
+translations=PackedStringArray("res://translations/dialogs.en.translation", "res://translations/dialogs.es.translation", "res://translations/dialogs.ja.translation")
 
 [rendering]
 
+renderer/rendering_method="gl_compatibility"
 environment/default_environment="res://default_env.tres"
