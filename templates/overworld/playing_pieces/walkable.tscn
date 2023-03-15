@@ -1,0 +1,99 @@
+[gd_scene load_steps=9 format=3 uid="uid://dreeum33euc7g"]
+
+[ext_resource type="Texture2D" uid="uid://db82gh6t52cvd" path="res://content/overworld/sprites/characters/alice.png" id="1_7casn"]
+[ext_resource type="Script" path="res://templates/overworld/playing_pieces/walkable.gd" id="2_pa1pc"]
+
+[sub_resource type="Animation" id="Animation_dyato"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:dir_frm")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_fm5j0"]
+resource_name = "dir_down"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:dir_frm")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_7f5pv"]
+resource_name = "dir_left"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:dir_frm")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_724bo"]
+resource_name = "dir_right"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:dir_frm")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_fsgc4"]
+resource_name = "dir_up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:dir_frm")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w7qxu"]
+_data = {
+"RESET": SubResource("Animation_dyato"),
+"dir_down": SubResource("Animation_fm5j0"),
+"dir_left": SubResource("Animation_7f5pv"),
+"dir_right": SubResource("Animation_724bo"),
+"dir_up": SubResource("Animation_fsgc4")
+}
+
+[node name="Sprite2D" type="Sprite2D"]
+texture = ExtResource("1_7casn")
+hframes = 4
+vframes = 4
+script = ExtResource("2_pa1pc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_w7qxu")
+}

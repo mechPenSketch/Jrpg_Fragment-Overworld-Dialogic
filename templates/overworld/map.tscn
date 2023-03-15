@@ -1,11 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://b452vp0xfywsy"]
+[gd_scene load_steps=13 format=3]
 
-[ext_resource type="Script" path="res://overworld/playing_pieces/controller.gd" id="1_bxay2"]
-[ext_resource type="Texture2D" uid="uid://c2pjcssms6kdd" path="res://overworld/tiles/grass.png" id="2_3a4sy"]
-[ext_resource type="Texture2D" uid="uid://b6qeqc8ryirij" path="res://overworld/tiles/grass_corners.png" id="3_0lo75"]
-[ext_resource type="Texture2D" uid="uid://3k534inmm67u" path="res://overworld/tiles/grass_sides.png" id="4_al860"]
-[ext_resource type="Texture2D" uid="uid://dknm74fmy2ktt" path="res://overworld/tiles/deadends.png" id="5_oxop4"]
-[ext_resource type="Texture2D" uid="uid://c8j5t75duw2tw" path="res://overworld/tiles/tubes.png" id="6_fr6lb"]
+[ext_resource type="Script" path="res://templates/overworld/playing_pieces/controller.gd" id="1_bxay2"]
+[ext_resource type="Texture2D" uid="uid://c2pjcssms6kdd" path="res://content/overworld/sprites/tiles/grass.png" id="2_3a4sy"]
+[ext_resource type="Texture2D" uid="uid://b6qeqc8ryirij" path="res://content/overworld/sprites/tiles/grass_corners.png" id="3_0lo75"]
+[ext_resource type="Texture2D" uid="uid://3k534inmm67u" path="res://content/overworld/sprites/tiles/grass_sides.png" id="4_al860"]
+[ext_resource type="Texture2D" uid="uid://dknm74fmy2ktt" path="res://content/overworld/sprites/tiles/grass_deadends.png" id="5_oxop4"]
+[ext_resource type="Texture2D" uid="uid://c8j5t75duw2tw" path="res://content/overworld/sprites/tiles/grass_tubes.png" id="6_fr6lb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s2823"]
 texture = ExtResource("2_3a4sy")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://db82gh6t52cvd"
-path="res://.godot/imported/alice.png-16077ee72e8feb0bea4a1c24c3445b34.ctex"
+uid="uid://dknm74fmy2ktt"
+path="res://.godot/imported/grass_deadends.png-5be6b60d919c1d5eb6fc9d3df0c8d138.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://overworld/playing_pieces/sprites/characters/alice.png"
-dest_files=["res://.godot/imported/alice.png-16077ee72e8feb0bea4a1c24c3445b34.ctex"]
+source_file="res://content/overworld/sprites/tiles/grass_deadends.png"
+dest_files=["res://.godot/imported/grass_deadends.png-5be6b60d919c1d5eb6fc9d3df0c8d138.ctex"]
 
 [params]
 
@@ -25,7 +25,7 @@ mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
-process/fix_alpha_border=true
+process/fix_alpha_border=false
 process/premult_alpha=false
 process/normal_map_invert_y=false
 process/hdr_as_srgb=false

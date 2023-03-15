@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3k534inmm67u"
-path="res://.godot/imported/grass_sides.png-3de62c8d7d47be0b885830726835ff81.ctex"
+uid="uid://db82gh6t52cvd"
+path="res://.godot/imported/alice.png-62704e30f116fc2674038e3750d635dc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://overworld/tiles/grass_sides.png"
-dest_files=["res://.godot/imported/grass_sides.png-3de62c8d7d47be0b885830726835ff81.ctex"]
+source_file="res://content/overworld/sprites/characters/alice.png"
+dest_files=["res://.godot/imported/alice.png-62704e30f116fc2674038e3750d635dc.ctex"]
 
 [params]
 

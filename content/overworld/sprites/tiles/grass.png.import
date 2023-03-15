@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cs6tjrecav7um"
-path="res://.godot/imported/playing_piece.svg-9f3f66481592cfe107077952c9cd015d.ctex"
+uid="uid://c2pjcssms6kdd"
+path="res://.godot/imported/grass.png-08dbed7c284d9588b37f8a53210850e6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://overworld/playing_pieces/playing_piece.svg"
-dest_files=["res://.godot/imported/playing_piece.svg-9f3f66481592cfe107077952c9cd015d.ctex"]
+source_file="res://content/overworld/sprites/tiles/grass.png"
+dest_files=["res://.godot/imported/grass.png-08dbed7c284d9588b37f8a53210850e6.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

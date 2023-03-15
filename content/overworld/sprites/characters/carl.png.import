@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxv6t1pmc0svk"
-path="res://.godot/imported/bob.png-d9227d654e19f26da834f5ed9d3b7b5d.ctex"
+uid="uid://bre7dwo6d7jhe"
+path="res://.godot/imported/carl.png-c0e7c73a6395cf16f6b5c9ee1d5b8712.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://overworld/playing_pieces/sprites/characters/bob.png"
-dest_files=["res://.godot/imported/bob.png-d9227d654e19f26da834f5ed9d3b7b5d.ctex"]
+source_file="res://content/overworld/sprites/characters/carl.png"
+dest_files=["res://.godot/imported/carl.png-c0e7c73a6395cf16f6b5c9ee1d5b8712.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6qeqc8ryirij"
-path="res://.godot/imported/grass_corners.png-75d1010786c8e392a18b7872690dcad3.ctex"
+uid="uid://c8j5t75duw2tw"
+path="res://.godot/imported/grass_tubes.png-2ed877cbf3aff159d76cabd62355b472.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://overworld/tiles/grass_corners.png"
-dest_files=["res://.godot/imported/grass_corners.png-75d1010786c8e392a18b7872690dcad3.ctex"]
+source_file="res://content/overworld/sprites/tiles/grass_tubes.png"
+dest_files=["res://.godot/imported/grass_tubes.png-2ed877cbf3aff159d76cabd62355b472.ctex"]
 
 [params]
 
