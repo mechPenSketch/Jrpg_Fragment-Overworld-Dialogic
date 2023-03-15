@@ -6,6 +6,13 @@
 
 [node name="Sprite2D" instance=ExtResource("1_lsvsh")]
 texture = ExtResource("2_qiukr")
+is_symmetrical = null
+act_frm = null
+timeline = null
+expands_symmetrically = null
+expands = null
 
 [node name="Controller" type="Node" parent="." index="2"]
 script = ExtResource("2_jxr1k")
+
+[connection signal="direction" from="Controller" to="." method="_on_controller_direction"]

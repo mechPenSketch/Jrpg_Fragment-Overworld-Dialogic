@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="JRPG Fragment - Overworld (Dialogic)"
-run/main_scene="res://content/overworld/maps/Outdoors.tscn"
+run/main_scene="res://content/overworld/maps/overworld.tscn"
 config/features=PackedStringArray("4.0")
 config/icon="res://icon.png"
 

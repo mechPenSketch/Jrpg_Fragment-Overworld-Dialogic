@@ -90,6 +90,11 @@ _data = {
 hframes = 4
 vframes = 4
 script = ExtResource("2_pa1pc")
+is_symmetrical = null
+act_frm = null
+timeline = null
+expands_symmetrically = null
+expands = null
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
