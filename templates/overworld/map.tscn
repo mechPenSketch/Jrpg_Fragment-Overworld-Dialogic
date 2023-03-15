@@ -1,11 +1,15 @@
-[gd_scene load_steps=13 format=3]
+[gd_scene load_steps=14 format=3 uid="uid://bqq44cficg8js"]
 
-[ext_resource type="Script" path="res://templates/overworld/playing_pieces/controller.gd" id="1_bxay2"]
+[ext_resource type="PackedScene" uid="uid://bdvmqm6aaiqek" path="res://templates/overworld/playing_pieces/player.tscn" id="1_xs4ml"]
 [ext_resource type="Texture2D" uid="uid://c2pjcssms6kdd" path="res://content/overworld/sprites/tiles/grass.png" id="2_3a4sy"]
 [ext_resource type="Texture2D" uid="uid://b6qeqc8ryirij" path="res://content/overworld/sprites/tiles/grass_corners.png" id="3_0lo75"]
 [ext_resource type="Texture2D" uid="uid://3k534inmm67u" path="res://content/overworld/sprites/tiles/grass_sides.png" id="4_al860"]
 [ext_resource type="Texture2D" uid="uid://dknm74fmy2ktt" path="res://content/overworld/sprites/tiles/grass_deadends.png" id="5_oxop4"]
 [ext_resource type="Texture2D" uid="uid://c8j5t75duw2tw" path="res://content/overworld/sprites/tiles/grass_tubes.png" id="6_fr6lb"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_x7be7"]
+resource_name = "Playing Pieces"
+scenes/1/scene = ExtResource("1_xs4ml")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s2823"]
 texture = ExtResource("2_3a4sy")
@@ -172,12 +176,18 @@ sources/5 = SubResource("TileSetAtlasSource_b3j4m")
 sources/6 = SubResource("TileSetAtlasSource_pcvs6")
 sources/7 = SubResource("TileSetAtlasSource_lv0jo")
 sources/8 = SubResource("TileSetAtlasSource_gedtk")
+sources/0 = SubResource("TileSetScenesCollectionSource_x7be7")
 
 [node name="Game" type="Node"]
-
-[node name="Controller" type="Node" parent="."]
-script = ExtResource("1_bxay2")
 
 [node name="Grid" type="TileMap" parent="."]
 tile_set = SubResource("3")
 format = 2
+layer_0/name = "Ground"
+layer_1/name = "Playing Pieces"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 0
+layer_1/tile_data = PackedInt32Array()

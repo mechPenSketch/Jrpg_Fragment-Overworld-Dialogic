@@ -1,6 +1,5 @@
-[gd_scene load_steps=9 format=3 uid="uid://dreeum33euc7g"]
+[gd_scene load_steps=8 format=3 uid="uid://dreeum33euc7g"]
 
-[ext_resource type="Texture2D" uid="uid://db82gh6t52cvd" path="res://content/overworld/sprites/characters/alice.png" id="1_7casn"]
 [ext_resource type="Script" path="res://templates/overworld/playing_pieces/walkable.gd" id="2_pa1pc"]
 
 [sub_resource type="Animation" id="Animation_dyato"]
@@ -88,7 +87,6 @@ _data = {
 }
 
 [node name="Sprite2D" type="Sprite2D"]
-texture = ExtResource("1_7casn")
 hframes = 4
 vframes = 4
 script = ExtResource("2_pa1pc")
@@ -97,3 +95,6 @@ script = ExtResource("2_pa1pc")
 libraries = {
 "": SubResource("AnimationLibrary_w7qxu")
 }
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+anim_player = NodePath("../AnimationPlayer")

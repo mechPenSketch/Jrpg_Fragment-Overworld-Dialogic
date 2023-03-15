@@ -3,7 +3,7 @@ extends Node
 class_name Controller
 
 signal action
-signal sig_dir
+signal sig_dir(v2i)
 
 enum {NORMAL, DIALOG, DIALOG_JUST_FINISHED}
 var current_mode = NORMAL
@@ -17,7 +17,7 @@ func _input(event):
 			else:
 
 				# DIRECTION
-				var direction = Vector2()
+				var direction = Vector2i()
 					
 				if event.is_action_pressed("ui_up", true):
 					direction.y -= 1
@@ -28,7 +28,7 @@ func _input(event):
 				elif event.is_action_pressed("ui_right", true):
 					direction.x += 1
 				
-				if direction != Vector2(0, 0):
+				if direction != Vector2i(0, 0):
 					sig_dir.emit(direction)
 		
 		DIALOG_JUST_FINISHED:

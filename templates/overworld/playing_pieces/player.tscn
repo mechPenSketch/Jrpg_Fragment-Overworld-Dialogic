@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://bdvmqm6aaiqek"]
+
+[ext_resource type="PackedScene" uid="uid://dreeum33euc7g" path="res://templates/overworld/playing_pieces/walkable.tscn" id="1_lsvsh"]
+[ext_resource type="Script" path="res://templates/overworld/playing_pieces/controller.gd" id="2_jxr1k"]
+[ext_resource type="Texture2D" uid="uid://db82gh6t52cvd" path="res://content/overworld/sprites/characters/alice.png" id="2_qiukr"]
+
+[node name="Sprite2D" instance=ExtResource("1_lsvsh")]
+texture = ExtResource("2_qiukr")
+
+[node name="Controller" type="Node" parent="." index="2"]
+script = ExtResource("2_jxr1k")

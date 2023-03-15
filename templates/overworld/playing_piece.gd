@@ -5,5 +5,5 @@ class_name PlayingPiece
 @export var timeline: String
 
 @export_category("Expansion")
-@export var expand_from_center: bool = true
+@export var expands_symmetrically: bool = true
 @export var expands: Vector2
