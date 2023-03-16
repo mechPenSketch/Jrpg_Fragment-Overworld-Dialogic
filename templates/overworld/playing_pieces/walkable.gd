@@ -1,11 +1,11 @@
 extends PlayingPiece
 
 enum {DIR_DOWN, DIR_RIGHT, DIR_UP, DIR_LEFT}
-var dir_from_v2i: Dictionary = {
-	Vector2i(-1, 0): DIR_LEFT,
-	Vector2i(1, 0): DIR_RIGHT,
-	Vector2i(0, -1): DIR_UP,
-	Vector2i(0, 1): DIR_DOWN
+var animdir_from_v2i: Dictionary = {
+	Vector2i(-1, 0): "dir_left",
+	Vector2i(1, 0): "dir_right",
+	Vector2i(0, -1): "dir_up",
+	Vector2i(0, 1): "dir_down"
 }
 @export var is_symmetrical: bool
 @export var dir_frm: int:
@@ -26,6 +26,7 @@ func get_dir_frm()-> int:
 
 func move_piece(v2i: Vector2i):
 	turn_piece(v2i)
+	$AnimationTree["parameters/Actions/playback"].travel("act_walking")
 	super.move_piece(v2i)
 
 
@@ -41,4 +42,4 @@ func set_dir_frm(value):
 
 
 func turn_piece(v2i):
-	set_dir_frm(dir_from_v2i[v2i])
+	$AnimationTree["parameters/Directions/playback"].travel(animdir_from_v2i[v2i])

@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://bqq44cficg8js"]
 
-[ext_resource type="PackedScene" uid="uid://bdvmqm6aaiqek" path="res://templates/overworld/playing_pieces/player.tscn" id="1_xs4ml"]
+[ext_resource type="PackedScene" uid="uid://bhylhgdiehm2y" path="res://content/overworld/plaing_pieces/alice.tscn" id="1_m3sb8"]
 [ext_resource type="Texture2D" uid="uid://c2pjcssms6kdd" path="res://content/overworld/sprites/tiles/grass.png" id="2_3a4sy"]
 [ext_resource type="Texture2D" uid="uid://b6qeqc8ryirij" path="res://content/overworld/sprites/tiles/grass_corners.png" id="3_0lo75"]
 [ext_resource type="Texture2D" uid="uid://3k534inmm67u" path="res://content/overworld/sprites/tiles/grass_sides.png" id="4_al860"]
@@ -9,7 +9,7 @@
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_x7be7"]
 resource_name = "Playing Pieces"
-scenes/1/scene = ExtResource("1_xs4ml")
+scenes/1/scene = ExtResource("1_m3sb8")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s2823"]
 texture = ExtResource("2_3a4sy")

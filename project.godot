@@ -40,4 +40,5 @@ translations=PackedStringArray("res://translations/dialogs.en.translation", "res
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
+textures/canvas_textures/default_texture_filter=0
 environment/default_environment="res://default_env.tres"

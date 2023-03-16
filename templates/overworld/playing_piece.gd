@@ -7,8 +7,8 @@ class_name PlayingPiece
 var move_duration = 0.8
 
 @export_category("Expansion")
-@export var expands_symmetrically: bool = true
 @export var expands: Vector2
+@export var symmetrically: bool = true
 
 
 func move_piece(v2i: Vector2i):
