@@ -1,8 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://bhylhgdiehm2y"]
+[gd_scene load_steps=5 format=3 uid="uid://bhylhgdiehm2y"]
 
 [ext_resource type="PackedScene" uid="uid://bdvmqm6aaiqek" path="res://templates/overworld/playing_pieces/player.tscn" id="1_e1kkf"]
 [ext_resource type="Texture2D" uid="uid://db82gh6t52cvd" path="res://content/overworld/sprites/characters/alice.png" id="2_v1wri"]
 
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_ok5vi"]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_xu0so"]
+
 [node name="Sprite2D" instance=ExtResource("1_e1kkf")]
 texture = ExtResource("2_v1wri")
 is_symmetrical = true
+
+[node name="AnimationTree" parent="." index="2"]
+parameters/Actions/playback = SubResource("AnimationNodeStateMachinePlayback_ok5vi")
+parameters/Directions/playback = SubResource("AnimationNodeStateMachinePlayback_xu0so")
