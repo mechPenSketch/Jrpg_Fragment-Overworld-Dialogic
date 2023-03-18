@@ -14,10 +14,12 @@ var move_duration = 0.8
 
 func move_piece(v2i: Vector2i):
 	var map_pos = get_parent().local_to_map(get_position())
-	map_pos += v2i
+	var target_mapos = map_pos + v2i
 	
-	if not is_blocked(map_pos):
-		var final_pos = get_parent().map_to_local(map_pos)
+	if not is_blocked(target_mapos):
+		var final_pos = get_parent().map_to_local(target_mapos)
+		
+		get_parent().update_map_pos(self, map_pos, target_mapos)
 	
 		var tween = create_tween()
 		tween.tween_property(self, "position", final_pos, move_duration)
@@ -28,7 +30,12 @@ func is_blocked(map_pos)-> bool:
 
 
 func is_blocked_by_playing_piece(map_pos):
-	return false
+	var dict_playpieces = get_parent().playpieces_by_mapos
+	if map_pos in dict_playpieces:
+		var playing_piece = dict_playpieces[map_pos]
+		return playing_piece.blocks_path
+	else:
+		return false
 
 
 func is_blocked_by_terrain(map_pos)-> bool:
