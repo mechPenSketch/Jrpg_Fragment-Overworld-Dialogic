@@ -4,6 +4,7 @@ class_name PlayingPiece
 
 @export var timeline: String
 
+var walking_in_progress: bool
 var move_duration = 0.8
 
 @export_category("Expansion")
@@ -23,6 +24,10 @@ func move_piece(v2i: Vector2i):
 	
 		var tween = create_tween()
 		tween.tween_property(self, "position", final_pos, move_duration)
+		walking_in_progress = true
+		tween.tween_callback(func():
+			walking_in_progress = false
+		)
 
 
 func is_blocked(map_pos)-> bool:

@@ -7,6 +7,7 @@ var animdir_from_v2i: Dictionary = {
 	Vector2i(0, -1): "dir_up",
 	Vector2i(0, 1): "dir_down"
 }
+
 @export var is_symmetrical: bool
 @export var dir_frm: int:
 	get = get_dir_frm, set = set_dir_frm
@@ -17,7 +18,8 @@ var animdir_from_v2i: Dictionary = {
 
 
 func _on_controller_direction(v2i):
-	move_piece(v2i)
+	if not walking_in_progress:
+		move_piece(v2i)
 
 
 func get_dir_frm()-> int:
