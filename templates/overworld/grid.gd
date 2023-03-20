@@ -2,6 +2,8 @@ extends TileMap
 
 var playpieces_by_mapos: Dictionary
 
+@export var events_by_playpieces: Dictionary
+
 
 func _on_child_entered_tree(node):
 	var map_pos = local_to_map(node.get_position())

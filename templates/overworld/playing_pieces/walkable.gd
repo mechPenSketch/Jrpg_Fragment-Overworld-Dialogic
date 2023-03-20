@@ -8,9 +8,14 @@ var animdir_from_v2i: Dictionary = {
 	Vector2i(0, 1): "dir_down"
 }
 
+## Checks whether sprite texture is symmetrical
 @export var is_symmetrical: bool
+
+## Directional frame
 @export var dir_frm: int:
 	get = get_dir_frm, set = set_dir_frm
+
+## Action frame
 @export var act_frm: int:
 	set(value):
 		act_frm = value

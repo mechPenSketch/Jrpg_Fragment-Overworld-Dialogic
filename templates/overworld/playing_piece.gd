@@ -2,14 +2,15 @@
 extends Sprite2D
 class_name PlayingPiece
 
-@export var timeline: String
-
 var walking_in_progress: bool
 var move_duration = 0.8
 
 @export_category("Expansion")
+## Checks whether this pieces can block path
 @export var blocks_path: bool = true
+## Measures how much more space does this piece cover.
 @export var expands: Vector2
+## Checks whether property Expands applies to the opposite side, too.
 @export var symmetrically: bool = true
 
 
