@@ -13,22 +13,29 @@ var animdir_from_v2i: Dictionary = {
 
 ## Directional frame
 @export var dir_frm: int:
-	get = get_dir_frm, set = set_dir_frm
-
-## Action frame
-@export var act_frm: int:
 	set(value):
-		act_frm = value
-		set_frame_coords(Vector2i(act_frm, dir_frm))
+		if is_symmetrical:
+			if value == DIR_LEFT:
+				value = DIR_RIGHT
+				set_flip_h(true)
+			else:
+				set_flip_h(false)
+		dir_frm = value
+		calculate_frame_coords()
+
+## Number of rows for each direction in a sprite sheet.
+@export_range(1, 2^63-1) var vframes_per_dir: int = 1
+
+## Action frame co-ordinates
+@export var act_frm_coords: Vector2i:
+	set(value):
+		act_frm_coords = value
+		calculate_frame_coords()
 
 
 func _on_controller_direction(v2i):
 	if not walking_in_progress:
 		move_piece(v2i)
-
-
-func get_dir_frm()-> int:
-	return dir_frm
 
 
 func move_piece(v2i: Vector2i):
@@ -37,15 +44,10 @@ func move_piece(v2i: Vector2i):
 	super.move_piece(v2i)
 
 
-func set_dir_frm(value):
-	if is_symmetrical:
-		if value == DIR_LEFT:
-			value = DIR_RIGHT
-			set_flip_h(true)
-		else:
-			set_flip_h(false)
-	dir_frm = value
-	set_frame_coords(Vector2i(act_frm, dir_frm))
+func calculate_frame_coords():
+	var final_value = act_frm_coords
+	final_value += Vector2i(0, dir_frm * vframes_per_dir)
+	set_frame_coords(final_value)
 
 
 func turn_piece(v2i):
