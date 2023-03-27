@@ -23,14 +23,14 @@ Dialogic="*res://addons/dialogic/Other/DialogicGameHandler.gd"
 [dialogic]
 
 editor/character_preview_mode=0
-editor/current_editor=&"VariablesEditor"
+editor/current_editor=&"Settings"
 editor/current_resources={}
 editor/last/resources=[]
 animations/join_default_length=0.5
 animations/leave_default_length=0.5
 animations/leave_default_wait=true
 animations/join_default_wait=true
-choices/autofocus_first=true
+choices/autofocus_first=false
 choices/delay=0.2
 save/autosave_delay=60.0
 text/speed=0.01
@@ -39,6 +39,7 @@ text/autocontinue_delay=1.0
 glossary/default_case_sensitive=true
 layout/mode=0
 variables={}
+text/autocolor_names=true
 
 [display]
 
