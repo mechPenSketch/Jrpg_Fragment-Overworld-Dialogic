@@ -18,6 +18,7 @@ config/icon="res://icon.png"
 [autoload]
 
 GlobalOverworld="res://templates/overworld/global.gd"
+Dialogic="*res://addons/dialogic/Other/DialogicGameHandler.gd"
 
 [dialogic]
 

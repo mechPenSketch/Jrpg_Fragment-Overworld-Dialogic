@@ -510,7 +510,7 @@ func start(timeline, single_instance = true) -> Node:
 		else:
 			scene = get_tree().get_meta('dialogic_layout_node', null)
 			scene.show()
-	Dialogic.start_timeline(timeline)
+	start_timeline(timeline)
 	return scene
 
 
