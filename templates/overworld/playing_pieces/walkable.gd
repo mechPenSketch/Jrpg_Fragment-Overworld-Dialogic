@@ -1,3 +1,4 @@
+@tool
 extends PlayingPiece
 
 enum {DIR_DOWN, DIR_RIGHT, DIR_UP, DIR_LEFT}

@@ -1,17 +1,31 @@
+@tool
 @icon("playing_piece.svg")
 extends Sprite2D
 class_name PlayingPiece
+
+signal moved(node, position)
 
 var walking_in_progress: bool
 var move_duration = 0.8
 
 @export_category("Expansion")
+
+## The timeline to be played when interracted
+@export var timeline: String
+
 ## Checks whether this pieces can block path
 @export var blocks_path: bool = true
+
 ## Measures how much more space does this piece cover.
 @export var expands: Vector2
+
 ## Checks whether property Expands applies to the opposite side, too.
 @export var symmetrically: bool = true
+
+func _notification(what):
+	match what:
+		NOTIFICATION_NODE_RECACHE_REQUESTED:
+			moved.emit(self, get_position())
 
 
 func move_piece(v2i: Vector2i):
@@ -50,4 +64,3 @@ func is_blocked_by_terrain(map_pos)-> bool:
 		return tiledata.get_terrain_set() != 0
 	else:
 		return false
-

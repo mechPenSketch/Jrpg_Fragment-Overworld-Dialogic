@@ -1,20 +1,12 @@
-[gd_scene load_steps=20 format=3 uid="uid://bqq44cficg8js"]
+[gd_scene load_steps=15 format=3 uid="uid://bqq44cficg8js"]
 
-[ext_resource type="PackedScene" uid="uid://bhylhgdiehm2y" path="res://content/overworld/plaing_pieces/alice.tscn" id="1_m3sb8"]
-[ext_resource type="PackedScene" uid="uid://ckwouv4tdwpj2" path="res://content/overworld/plaing_pieces/bob.tscn" id="2_3725c"]
 [ext_resource type="Texture2D" uid="uid://bsc3ycfkhuvj4" path="res://content/overworld/sprites/tiles/grass/set.png" id="2_gc1dq"]
 [ext_resource type="Texture2D" uid="uid://dxkffxnm87hel" path="res://content/overworld/sprites/tiles/grass/set1.png" id="3_uu31r"]
 [ext_resource type="Texture2D" uid="uid://q63ugvaprkbd" path="res://content/overworld/sprites/tiles/grass/set2.png" id="4_56ljj"]
 [ext_resource type="Texture2D" uid="uid://cnajutgsuk84w" path="res://content/overworld/sprites/tiles/wall/set.png" id="5_l5lui"]
 [ext_resource type="Texture2D" uid="uid://dqvplbbos4w0i" path="res://content/overworld/sprites/tiles/wall/set1.png" id="6_o8pac"]
 [ext_resource type="Texture2D" uid="uid://coedlx15hl1y8" path="res://content/overworld/sprites/tiles/wall/set2.png" id="7_d2qxh"]
-[ext_resource type="PackedScene" uid="uid://cbyvu4at0cpk" path="res://content/overworld/plaing_pieces/signpost.tscn" id="8_gswwo"]
 [ext_resource type="Script" path="res://templates/overworld/grid.gd" id="8_vhcss"]
-
-[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_x7be7"]
-resource_name = "Playing Pieces"
-scenes/1/scene = ExtResource("1_m3sb8")
-scenes/2/scene = ExtResource("2_3725c")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s2823"]
 texture = ExtResource("2_gc1dq")
@@ -894,10 +886,6 @@ texture_region_size = Vector2i(32, 32)
 0:3/0/terrains_peering_bit/top_side = 0
 0:3/0/terrains_peering_bit/top_right_corner = 0
 
-[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_seyba"]
-resource_name = "Props"
-scenes/1/scene = ExtResource("8_gswwo")
-
 [sub_resource type="TileSet" id="3"]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
@@ -907,14 +895,12 @@ terrain_set_0/terrain_0/color = Color(0, 0.639216, 0, 1)
 terrain_set_1/mode = 0
 terrain_set_1/terrain_0/name = "Wall"
 terrain_set_1/terrain_0/color = Color(0.360784, 0.364706, 0.384314, 1)
-sources/0 = SubResource("TileSetScenesCollectionSource_x7be7")
 sources/1 = SubResource("TileSetAtlasSource_s2823")
 sources/2 = SubResource("TileSetAtlasSource_b3j4m")
 sources/3 = SubResource("TileSetAtlasSource_pcvs6")
 sources/4 = SubResource("TileSetAtlasSource_a1i13")
 sources/5 = SubResource("TileSetAtlasSource_dsw04")
 sources/6 = SubResource("TileSetAtlasSource_ic5vr")
-sources/7 = SubResource("TileSetScenesCollectionSource_seyba")
 
 [node name="Game" type="Node"]
 
@@ -939,3 +925,4 @@ layer_2/tile_data = PackedInt32Array()
 script = ExtResource("8_vhcss")
 
 [connection signal="child_entered_tree" from="Grid" to="Grid" method="_on_child_entered_tree"]
+[connection signal="child_exiting_tree" from="Grid" to="Grid" method="_on_child_exiting_tree"]
