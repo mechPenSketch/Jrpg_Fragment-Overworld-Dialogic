@@ -225,6 +225,7 @@ node_connections = [&"output", 0, &"Add2", &"Add2", 0, &"Actions", &"Add2", 1, &
 hframes = 4
 vframes = 4
 script = ExtResource("2_pa1pc")
+hide_on_play = null
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

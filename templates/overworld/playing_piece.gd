@@ -8,12 +8,12 @@ signal moved(node, position)
 var walking_in_progress: bool
 var move_duration = 0.8
 
-@export_category("Expansion")
-
 ## The timeline to be played when interracted
 @export var timeline: String
 
-## Checks whether this pieces can block path
+@export_category("Expansion")
+
+## Checks whether this piece can block path
 @export var blocks_path: bool = true
 
 ## Measures how much more space does this piece cover.
@@ -21,6 +21,16 @@ var move_duration = 0.8
 
 ## Checks whether property Expands applies to the opposite side, too.
 @export var symmetrically: bool = true
+
+@export_category("Visual")
+
+## Makes this piece invivisble when played.
+@export var hide_on_play: bool
+
+func _ready():
+	if hide_on_play and not Engine.is_editor_hint():
+		hide()
+
 
 func _notification(what):
 	match what:

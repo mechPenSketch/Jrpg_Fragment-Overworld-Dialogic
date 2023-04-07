@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cp1q6kywbc8uv"]
+[gd_scene load_steps=6 format=3 uid="uid://cp1q6kywbc8uv"]
 
 [ext_resource type="PackedScene" uid="uid://bqq44cficg8js" path="res://templates/overworld/map.tscn" id="1_3ef1u"]
+[ext_resource type="PackedScene" uid="uid://c7qy034425siv" path="res://templates/overworld/playing_pieces/mark.tscn" id="2_7o66d"]
 [ext_resource type="PackedScene" uid="uid://bhylhgdiehm2y" path="res://content/overworld/plaing_pieces/alice.tscn" id="2_xe6wd"]
 [ext_resource type="PackedScene" uid="uid://ckwouv4tdwpj2" path="res://content/overworld/plaing_pieces/bob.tscn" id="3_u63wm"]
 [ext_resource type="PackedScene" uid="uid://cbyvu4at0cpk" path="res://content/overworld/plaing_pieces/signpost.tscn" id="4_rt3ms"]
@@ -11,11 +12,17 @@
 layer_0/tile_data = PackedInt32Array(65536, 3, 1, 131072, 3, 1, 196608, 3, 1, 262144, 3, 1, 327680, 3, 1, 393216, 3, 3, 393217, 65539, 3, 393218, 65539, 3, 393219, 65539, 3, 393220, 65539, 3, 393221, 65539, 3, 393222, 65539, 3, 393223, 65539, 3, 393224, 65539, 3, 393225, 65539, 3, 393226, 65539, 3, 393227, 196611, 3, 327691, 196611, 2, 262155, 196611, 2, 196619, 196611, 2, 131083, 196611, 2, 65547, 196611, 2, 327690, 65539, 2, 262154, 65539, 2, 196618, 65539, 2, 131082, 65539, 2, 65546, 65539, 2, 327689, 65539, 2, 262153, 65539, 2, 196617, 65539, 2, 131081, 65539, 2, 65545, 65539, 2, 327688, 65539, 2, 262152, 65539, 2, 196616, 65539, 2, 131080, 65539, 2, 65544, 65539, 2, 327687, 65539, 2, 262151, 65539, 2, 196615, 65539, 2, 131079, 65539, 2, 65543, 65539, 2, 327686, 65539, 2, 262150, 65539, 2, 196614, 65539, 2, 131078, 65539, 2, 65542, 65539, 2, 327685, 65539, 2, 262149, 65539, 2, 131077, 65539, 2, 65541, 65539, 2, 327684, 65539, 2, 262148, 65539, 2, 65540, 65539, 2, 327683, 65539, 2, 262147, 65539, 2, 65539, 65539, 2, 327682, 65539, 2, 262146, 65539, 2, 196610, 65539, 2, 131074, 65539, 2, 65538, 65539, 2, 327681, 65539, 2, 262145, 65539, 2, 196609, 65539, 2, 131073, 65539, 2, 65537, 65539, 2, 11, 196611, 0, 10, 131075, 0, 9, 131075, 0, 8, 131075, 0, 7, 131075, 0, 6, 131075, 0, 5, 131075, 0, 4, 131075, 0, 3, 131075, 0, 2, 131075, 0, 1, 131075, 0, 0, 3, 0, 196612, 65539, 2, 196611, 65539, 2, 131075, 65539, 2, 131076, 65539, 2, 196613, 65539, 2)
 layer_1/tile_data = PackedInt32Array(196616, 4, 0, 327688, 4, 1, 393224, 4, 2, 458760, 4, 3, 196618, 65540, 0, 196619, 131076, 0, 196620, 196612, 0, 327690, 65540, 1, 393226, 4, 2, 458762, 65540, 2, 524298, 4, 2, 589834, 65540, 3, 589835, 131076, 0, 589836, 131076, 3, 589837, 131076, 0, 589838, 196612, 3, 524302, 4, 2, 458766, 196612, 2, 393230, 4, 2, 327694, 196612, 1, 327693, 131076, 0, 327692, 131076, 1, 327691, 131076, 0, 393228, 4, 2, 458764, 131076, 2, 524300, 4, 2, 458763, 131076, 0, 458765, 131076, 0, 196622, 6, 3, 131086, 6, 1, 65550, 6, 0, 65551, 131078, 0, 65552, 196614, 0, 131088, 196614, 2, 196624, 196614, 3, 196623, 65542, 3, 131087, 65542, 2)
 
-[node name="Alice" parent="Grid" index="0" instance=ExtResource("2_xe6wd")]
-position = Vector2(170, 91)
+[node name="Mark" parent="Grid" index="0" instance=ExtResource("2_7o66d")]
+position = Vector2(80, 112)
 
-[node name="Bob" parent="Grid" index="1" instance=ExtResource("3_u63wm")]
-position = Vector2(176, 203)
+[node name="Alice" parent="Grid" index="1" instance=ExtResource("2_xe6wd")]
+position = Vector2(176, 80)
+hide_on_play = false
 
-[node name="Signboard" parent="Grid" index="2" instance=ExtResource("4_rt3ms")]
-position = Vector2(173, 52)
+[node name="Bob" parent="Grid" index="2" instance=ExtResource("3_u63wm")]
+position = Vector2(176, 208)
+hide_on_play = false
+
+[node name="Signboard" parent="Grid" index="3" instance=ExtResource("4_rt3ms")]
+position = Vector2(176, 48)
+hide_on_play = false
