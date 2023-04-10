@@ -322,7 +322,13 @@ func convertTimelines():
 							# Character event
 							
 							#For some reason this is loading as a float, and the match is failing. so hard casting as string
-							var eventType:String = str(event['type'])
+							var eventType: String
+							
+							#If there's no type in event, set it to default
+							if 'type' in event:
+								eventType = str(event['type'])
+							else:
+								eventType = "0"
 							
 							match eventType:
 								"0":
@@ -337,7 +343,7 @@ func convertTimelines():
 												#1.x uses positions 0-4, while the default 2.0 scene uses positions 1-5
 												eventLine += str(i.to_int() + 1)
 										
-										if (event['animation'] != "[Default]" && event['animation'] != "") || ('z_index' in event) || ('mirror_portrait' in event):
+										if ('animation' in event and event['animation'] != "[Default]") || ('z_index' in event) || ('mirror_portrait' in event):
 											# Note: due to Anima changes, animations will be converted into a default. Times and wait will be perserved
 											eventLine += " ["
 											if (event['animation'] != "[Default]" && event['animation'] != ""):

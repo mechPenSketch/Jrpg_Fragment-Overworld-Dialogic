@@ -1,0 +1,14 @@
+Join Bob (Default) 
+
+Bob: BOB_QUESTION
+
+- BOB_CHOICE_APPLES
+
+	Bob: BOB_ANSWER_APPLES
+
+- BOB_CHOICE_ORANGES
+
+	Bob: BOB_ANSWER_ORANGES
+
+# unimplemented Dialogic control with unknown number
+
