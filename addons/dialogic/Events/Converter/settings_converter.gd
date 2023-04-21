@@ -250,12 +250,11 @@ func convertTimelines():
 			var fileName = contents["metadata"]["name"]
 			%OutputLog.text += "Name: " + fileName + ", " + str(contents["events"].size()) + " timeline events"
 			
-			
 			var dir_timelines = conversionRootFolder + "/timelines"
 			if not DirAccess.dir_exists_absolute(dir_timelines + folderPath): 
+				var directory = DirAccess.open(dir_timelines)
 				if not DirAccess.dir_exists_absolute(dir_timelines):
 					DirAccess.make_dir_absolute(dir_timelines)
-				var directory = DirAccess.open(dir_timelines)
 				
 				var progresiveDirectory = ""
 				for pathItem in folderPath.split('/'):
@@ -322,9 +321,7 @@ func convertTimelines():
 							# Character event
 							
 							#For some reason this is loading as a float, and the match is failing. so hard casting as string
-							var eventType: String
-							
-							#If there's no type in event, set it to default
+							var eventType:String
 							if 'type' in event:
 								eventType = str(event['type'])
 							else:
@@ -343,10 +340,10 @@ func convertTimelines():
 												#1.x uses positions 0-4, while the default 2.0 scene uses positions 1-5
 												eventLine += str(i.to_int() + 1)
 										
-										if ('animation' in event and event['animation'] != "[Default]") || ('z_index' in event) || ('mirror_portrait' in event):
+										if (event['animation'] != "[Default]" && event['animation'] != "") || ('z_index' in event) || ('mirror_portrait' in event):
 											# Note: due to Anima changes, animations will be converted into a default. Times and wait will be perserved
 											eventLine += " ["
-											if (event['animation'] != "[Default]" && event['animation'] != ""):
+											if ('animation' in event && event['animation'] != "[Default]" && event['animation'] != ""):
 												eventLine += " [animation=\"Instant In Or Out\" "
 												eventLine += "length=\"" +  str(event['animation_length']) + "\""
 												if "animation_wait" in event:
@@ -762,7 +759,7 @@ func convertCharacters():
 				
 			
 			var dir_char = conversionRootFolder + "/characters"
-			if not DirAccess.dir_exists_absolute(dir_char + folderPath): 
+			if not DirAccess.dir_exists_absolute(dir_char + folderPath):
 				if not DirAccess.dir_exists_absolute(dir_char):
 					DirAccess.make_dir_absolute(dir_char)
 				var directory = DirAccess.open(dir_char)

@@ -1,0 +1,11 @@
+Join Diana (Default) 1
+
+Diana: DIANA_QUESTION
+
+- CHOICE_YES
+	
+	Diana: DIANA_ANSWER
+	
+	Diana: DIANA_ANSWER2
+
+- CHOICE_NO

@@ -20,12 +20,7 @@ func _register() -> void:
 		load("res://addons/dialogic/Editor/Images/Toolbar/add-timeline.svg"),
 		"Add Timeline",
 		self)
-	add_timeline_button.pressed.connect(editors_manager.show_add_resource_dialog.bind(
-			new_timeline, 
-			'*.dtl; DialogicTimeline',
-			'Create new timeline',
-			'timeline',
-			))
+	add_timeline_button.pressed.connect(_on_create_timeline_button_pressed)
 	# play timeline button
 	var play_timeline_button: Button = editors_manager.add_custom_button(
 		"Play Timeline",
@@ -69,7 +64,7 @@ func _open_resource(resource:Resource) -> void:
 
 
 ## If this editor supports editing resources, save them here (overwrite in subclass)
-func _save_resource() -> void:
+func _save() -> void:
 	match current_editor_mode:
 		0:
 			$VisualEditor.save_timeline()
@@ -86,7 +81,7 @@ func _input(event: InputEvent) -> void:
 
 ## Method to play the current timeline. Connected to the button in the sidebar.
 func play_timeline():
-	_save_resource()
+	_save()
 	
 	var dialogic_plugin = DialogicUtil.get_dialogic_plugin()
 	
@@ -128,7 +123,7 @@ func _on_resource_saved():
 
 
 func new_timeline(path:String) -> void:
-	_save_resource()
+	_save()
 	var new_timeline := DialogicTimeline.new()
 	new_timeline.resource_path = path
 	new_timeline.set_meta('timeline_not_saved', true)
@@ -141,6 +136,7 @@ func _ready():
 	$NoTimelineScreen.add_theme_stylebox_override("panel", get_theme_stylebox("Background", "EditorStyles"))
 	get_parent().set_tab_title(get_index(), 'Timeline')
 	get_parent().set_tab_icon(get_index(), get_theme_icon("TripleBar", "EditorIcons"))
+
 
 func _on_create_timeline_button_pressed():
 	editors_manager.show_add_resource_dialog(

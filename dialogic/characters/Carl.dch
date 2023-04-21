@@ -1,0 +1,19 @@
+{
+"@path": "res://addons/dialogic/Resources/character.gd",
+"@subpath": NodePath(""),
+"color": Color(1, 1, 1, 1),
+"custom_info": {
+"sound_mood_default": "",
+"sound_moods": {},
+"style": "",
+"theme": ""
+},
+"default_portrait": "",
+"description": "He has learnt many languages in his past travels.",
+"display_name": "Carl",
+"mirror": false,
+"nicknames": [""],
+"offset": Vector2(0, 0),
+"portraits": {},
+"scale": 1.0
+}
