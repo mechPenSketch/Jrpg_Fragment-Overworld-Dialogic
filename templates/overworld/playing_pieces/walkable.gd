@@ -1,7 +1,13 @@
 @tool
 extends PlayingPiece
 
-enum {DIR_DOWN, DIR_RIGHT, DIR_UP, DIR_LEFT}
+enum {
+	DIR_DOWN,
+	DIR_RIGHT,
+	DIR_UP,
+	DIR_LEFT,
+}
+
 var animdir_from_v2i: Dictionary = {
 	Vector2i(-1, 0): "dir_left",
 	Vector2i(1, 0): "dir_right",
@@ -37,6 +43,21 @@ var animdir_from_v2i: Dictionary = {
 func _on_controller_direction(v2i):
 	if not walking_in_progress:
 		move_piece(v2i)
+
+
+func get_v2dir()-> Vector2i:
+	match frame_coords.y / vframes_per_dir:
+		DIR_RIGHT:
+			if is_flipped_h:
+				return Vector2i(-1, 0)
+			else:
+				return Vector2i(1, 0)
+		DIR_UP:
+			return Vector2i(0, -1)
+		DIR_LEFT:
+			return Vector2i(-1, 0)
+		_:
+			return Vector2i(0, 1)
 
 
 func move_piece(v2i: Vector2i):

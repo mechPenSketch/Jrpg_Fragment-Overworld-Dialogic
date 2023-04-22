@@ -19,12 +19,11 @@ trigger = 1
 [node name="Alice" parent="Grid" index="1" instance=ExtResource("2_xe6wd")]
 position = Vector2(176, 80)
 trigger = 1
-hide_on_play = false
 
 [node name="Bob" parent="Grid" index="2" instance=ExtResource("3_u63wm")]
 position = Vector2(176, 208)
 timeline = "res://dialogic/timelines/bobs_question.dtl"
-hide_on_play = false
+trigger = 0
 
 [node name="Signboard" parent="Grid" index="3" instance=ExtResource("4_rt3ms")]
 position = Vector2(176, 48)
