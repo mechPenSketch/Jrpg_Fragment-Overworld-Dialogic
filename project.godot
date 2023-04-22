@@ -23,8 +23,10 @@ Dialogic="*res://addons/dialogic/Other/DialogicGameHandler.gd"
 [dialogic]
 
 editor/character_preview_mode=0
-editor/current_editor=&"GlossaryEditor"
-editor/current_resources={}
+editor/current_editor=&"Timeline Editor"
+editor/current_resources={
+"Timeline Editor": "res://dialogic/timelines/Bob's Question.dtl"
+}
 editor/last/resources=[]
 animations/join_default_length=0.5
 animations/leave_default_length=0.5
@@ -41,7 +43,7 @@ layout/mode=0
 text/autocolor_names=true
 editor/visual_timeline_editor_sidebar=200.0
 variables={}
-editor/last_resources=PackedStringArray("")
+editor/last_resources=PackedStringArray("res://dialogic/timelines/Bob\'s Question.dtl")
 text/autopauses={}
 
 [display]

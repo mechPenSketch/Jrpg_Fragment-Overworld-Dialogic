@@ -5,11 +5,22 @@ class_name PlayingPiece
 
 signal moved(node, position)
 
+enum Triggers {
+	ACTION_BY_SIDE,
+	NONE,
+	STEPPED_ON,
+	ACTION_ON_SPOT,
+	ABOUT_TO_WALK_IN,
+}
+
 var walking_in_progress: bool
 var move_duration = 0.8
 
 ## The timeline to be played when interracted
-@export var timeline: String
+@export_file("*.dtl") var timeline: String
+
+## How the piece is to be interracted
+@export var trigger: Triggers
 
 @export_category("Expansion")
 
