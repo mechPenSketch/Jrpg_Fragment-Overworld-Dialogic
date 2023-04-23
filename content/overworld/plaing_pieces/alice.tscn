@@ -10,7 +10,6 @@
 [node name="Sprite2D" instance=ExtResource("1_e1kkf")]
 texture = ExtResource("2_v1wri")
 is_symmetrical = true
-trigger = 0
 
 [node name="AnimationTree" parent="." index="2"]
 parameters/Actions/playback = SubResource("AnimationNodeStateMachinePlayback_ok5vi")
