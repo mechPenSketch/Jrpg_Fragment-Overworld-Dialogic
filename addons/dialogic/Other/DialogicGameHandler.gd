@@ -1,8 +1,6 @@
 extends Node
 
-enum states {IDLE, SHOWING_TEXT, ANIMATING, AWAITING_CHOICE, WAITING, JUST_BY_ACTION}
-
-const START_BY_ACTION_PRESSED = -2
+enum states {IDLE, SHOWING_TEXT, ANIMATING, AWAITING_CHOICE, WAITING}
 
 var current_timeline: Variant = null
 var current_timeline_events: Array = []
@@ -82,9 +80,7 @@ func start_timeline(timeline_resource:Variant, label_or_idx:Variant = "") -> voi
 			if has_subsystem('Jump'):
 				self.Jump.jump_to_label(label_or_idx)
 	elif typeof(label_or_idx) == TYPE_INT:
-		if label_or_idx == START_BY_ACTION_PRESSED:
-			current_state = states.JUST_BY_ACTION
-		if label_or_idx > -1:
+		if label_or_idx >-1:
 			current_event_idx = label_or_idx -1
 	
 	timeline_started.emit()
@@ -463,7 +459,7 @@ func process_timeline(timeline: DialogicTimeline) -> DialogicTimeline:
 ################################################################################
 ##						FOR END USER
 ################################################################################
-func start(timeline, custom_index = "", single_instance = true) -> Node:
+func start(timeline, single_instance = true) -> Node:
 	var scene :Node = null
 	if single_instance:
 		# if none exists, create a new one
@@ -482,7 +478,7 @@ func start(timeline, custom_index = "", single_instance = true) -> Node:
 		else:
 			scene = get_tree().get_meta('dialogic_layout_node', null)
 			scene.show()
-	Dialogic.start_timeline(timeline, custom_index)
+	Dialogic.start_timeline(timeline)
 	return scene
 
 
