@@ -45,6 +45,7 @@ editor/visual_timeline_editor_sidebar=200.0
 variables={}
 editor/last_resources=PackedStringArray("res://dialogic/timelines/signpost.dtl")
 text/autopauses={}
+editor/timeline_editor_mode=0
 
 [display]
 
