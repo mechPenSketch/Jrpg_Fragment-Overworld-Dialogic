@@ -23,11 +23,11 @@ Dialogic="*res://addons/dialogic/Other/DialogicGameHandler.gd"
 [dialogic]
 
 editor/character_preview_mode=0
-editor/current_editor=&"Timeline Editor"
+editor/current_editor=&"Settings"
 editor/current_resources={
 "Timeline Editor": "res://dialogic/timelines/signpost.dtl"
 }
-editor/last/resources=["res://dialogic/timelines/signpost.dtl"]
+editor/last/resources=["res://dialogic/timelines/signpost.dtl", "res://dialogic/timelines/bobs_question.dtl"]
 animations/join_default_length=0.5
 animations/leave_default_length=0.5
 animations/leave_default_wait=true
@@ -43,8 +43,9 @@ layout/mode=0
 text/autocolor_names=true
 editor/visual_timeline_editor_sidebar=200.0
 variables={}
-editor/last_resources=PackedStringArray("res://dialogic/timelines/signpost.dtl")
+editor/last_resources=PackedStringArray("res://dialogic/timelines/signpost.dtl", "")
 text/autopauses={}
+editor/timeline_editor_mode=0
 
 [display]
 
