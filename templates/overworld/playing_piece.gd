@@ -72,11 +72,13 @@ func is_blocked(map_pos)-> bool:
 
 func is_blocked_by_playing_piece(map_pos):
 	var dict_playpieces = get_parent().children_by_mapos
+	
 	if map_pos in dict_playpieces:
-		var playing_piece = dict_playpieces[map_pos]
-		return playing_piece.blocks_path
-	else:
-		return false
+		for playing_piece in dict_playpieces[map_pos]:
+			if playing_piece.blocks_path:
+				return true
+	
+	return false
 
 
 func is_blocked_by_terrain(map_pos)-> bool:
