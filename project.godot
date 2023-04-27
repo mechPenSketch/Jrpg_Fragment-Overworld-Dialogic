@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="JRPG Fragment - Overworld (Dialogic)"
-run/main_scene="res://content/overworld/maps/overworld.tscn"
+run/main_scene="res://content/overworld/map/list/overworld.tscn"
 config/features=PackedStringArray("4.0")
 config/icon="res://icon.png"
 
 [autoload]
 
-GlobalOverworld="res://templates/overworld/global.gd"
+GlobalOverworld="res://content/global.gd"
 Dialogic="*res://addons/dialogic/Other/DialogicGameHandler.gd"
 
 [dialogic]

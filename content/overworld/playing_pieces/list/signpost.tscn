@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbyvu4at0cpk"]
+
+[ext_resource type="PackedScene" uid="uid://2302lbbkwh0s" path="res://content/overworld/playing_pieces/playing_piece.tscn" id="1_em7a4"]
+[ext_resource type="Texture2D" uid="uid://crnlo4aeqd3at" path="res://content/overworld/playing_pieces/sprites/props/signpost.png" id="2_p7hsx"]
+
+[node name="Sprite2D" instance=ExtResource("1_em7a4")]
+texture = ExtResource("2_p7hsx")
+hide_on_play = null

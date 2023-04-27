@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="PackedScene" uid="uid://dpcnapfttae0" path="res://content/overworld/playing_pieces/sub_pieces/walkable.tscn" id="1_lsvsh"]
+[ext_resource type="Script" path="res://content/overworld/playing_pieces/sub_pieces/controller.gd" id="2_jxr1k"]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_k2hni"]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_60mrp"]
+
+[node name="Sprite2D" instance=ExtResource("1_lsvsh")]
+
+[node name="Controller" type="Node" parent="." index="1"]
+script = ExtResource("2_jxr1k")
+
+[node name="AnimationTree" parent="." index="2"]
+parameters/Actions/playback = SubResource("AnimationNodeStateMachinePlayback_k2hni")
+parameters/Directions/playback = SubResource("AnimationNodeStateMachinePlayback_60mrp")
+
+[connection signal="direction" from="Controller" to="." method="_on_controller_direction"]
