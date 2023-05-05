@@ -5,9 +5,29 @@ var player
 var controller
 var children_by_mapos: Dictionary
 
+@export var pksc_custom_player: PackedScene
+
 
 func _ready():
-	set_player($Alice)
+	if not Engine.is_editor_hint() and get_child_count():
+		if pksc_custom_player:
+			var custom_player = pksc_custom_player.instantiate()
+			set_player(custom_player)
+		else:
+			set_player(GlobalOverworld.player)
+			GlobalOverworld.remove_child(player)
+		
+		var spawn_target
+		var spawn_key = GlobalOverworld.spawn_target
+		if spawn_key:
+			if spawn_key is String:
+				spawn_target = get_node(spawn_key)
+			else:
+				spawn_target = get_child(spawn_key)
+		else:
+			spawn_target = get_child(0)
+		
+		spawn_target.spawn_new_piece(player)
 
 
 func _on_child_entered_tree(node):

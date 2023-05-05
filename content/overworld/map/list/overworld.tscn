@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cp1q6kywbc8uv"]
+[gd_scene load_steps=5 format=3 uid="uid://cp1q6kywbc8uv"]
 
 [ext_resource type="PackedScene" uid="uid://c3kgf68muppgv" path="res://content/overworld/map/base.tscn" id="1_3ef1u"]
 [ext_resource type="PackedScene" uid="uid://c2dn4xmd04bku" path="res://content/overworld/playing_pieces/sub_pieces/mark.tscn" id="1_dm0fl"]
-[ext_resource type="PackedScene" uid="uid://crt7qi6f0t6av" path="res://content/overworld/playing_pieces/list/alice.tscn" id="2_tnm17"]
 [ext_resource type="PackedScene" uid="uid://ckwouv4tdwpj2" path="res://content/overworld/playing_pieces/list/bob.tscn" id="3_3u7sd"]
 [ext_resource type="PackedScene" uid="uid://cbyvu4at0cpk" path="res://content/overworld/playing_pieces/list/signpost.tscn" id="4_c5dok"]
 
@@ -13,18 +12,14 @@ layer_0/tile_data = PackedInt32Array(65536, 3, 1, 131072, 3, 1, 196608, 3, 1, 26
 layer_1/tile_data = PackedInt32Array(0, 65540, 1, 65536, 4, 2, 131072, 4, 2, 196608, 4, 2, 262144, 4, 2, 327680, 4, 2, 393216, 4, 2, 458752, 65540, 3, 458753, 131076, 0, 458754, 131076, 0, 458756, 131076, 0, 458755, 131076, 0, 458757, 131076, 0, 458758, 131076, 0, 458759, 131076, 0, 458760, 131076, 0, 458761, 131076, 0, 458762, 131076, 0, 458763, 131076, 0, 458764, 196612, 3, 393228, 4, 2, 327692, 4, 2, 262156, 4, 2, 196620, 4, 2, 131084, 4, 2, 65548, 4, 2, 12, 196612, 1, 11, 131076, 0, 10, 131076, 0, 9, 131077, 0, 8, 131078, 0, 7, 65541, 0, 5, 131076, 0, 6, 131076, 0, 4, 131076, 0, 3, 131076, 0, 2, 131076, 0, 1, 131076, 0, 65543, 6, 1, 131079, 5, 2, 196615, 4, 3, 65544, 65542, 2, 131080, 131078, 1, 65545, 196614, 2, 131081, 196613, 2, 196617, 4, 3)
 
 [node name="Mark" parent="Grid" index="0" instance=ExtResource("1_dm0fl")]
-position = Vector2(80, 112)
-trigger = 1
-
-[node name="Alice" parent="Grid" index="1" instance=ExtResource("2_tnm17")]
 position = Vector2(176, 112)
 trigger = 1
 
-[node name="Bob" parent="Grid" index="2" instance=ExtResource("3_3u7sd")]
+[node name="Bob" parent="Grid" index="1" instance=ExtResource("3_3u7sd")]
 position = Vector2(144, 176)
 timeline = "res://dialogic/timelines/bobs_question.dtl"
 
-[node name="Signboard" parent="Grid" index="3" instance=ExtResource("4_c5dok")]
+[node name="Signboard" parent="Grid" index="2" instance=ExtResource("4_c5dok")]
 position = Vector2(176, 48)
 timeline = "res://dialogic/timelines/signpost.dtl"
 hide_on_play = false

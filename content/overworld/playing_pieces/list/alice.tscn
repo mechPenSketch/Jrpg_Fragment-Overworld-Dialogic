@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bhylhgdiehm2y"]
 
-[ext_resource type="PackedScene" path="res://content/overworld/playing_pieces/sub_pieces/player.tscn" id="1_e1kkf"]
+[ext_resource type="PackedScene" uid="uid://bc5n0ifh058w8" path="res://content/overworld/playing_pieces/sub_pieces/player.tscn" id="1_e1kkf"]
 [ext_resource type="Texture2D" uid="uid://db82gh6t52cvd" path="res://content/overworld/playing_pieces/sprites/characters/alice.png" id="2_v1wri"]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_ok5vi"]

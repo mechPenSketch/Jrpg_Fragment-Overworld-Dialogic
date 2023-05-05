@@ -1,6 +1,6 @@
 [gd_scene load_steps=38 format=3 uid="uid://dpcnapfttae0"]
 
-[ext_resource type="Script" path="res://content/overworld/playing_pieces/playing_pieces/walkable.gd" id="1_4n876"]
+[ext_resource type="Script" path="res://content/overworld/playing_pieces/sub_pieces/walkable.gd" id="1_56ws3"]
 
 [sub_resource type="Animation" id="Animation_dyato"]
 length = 0.001
@@ -224,7 +224,7 @@ node_connections = [&"output", 0, &"Add2", &"Add2", 0, &"Actions", &"Add2", 1, &
 [node name="Sprite2D" type="Sprite2D"]
 hframes = 4
 vframes = 4
-script = ExtResource("1_4n876")
+script = ExtResource("1_56ws3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

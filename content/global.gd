@@ -1,7 +1,12 @@
 extends Node
 
+const fp_player = "res://content/overworld/playing_pieces/list/alice.tscn"
+
+var player
 var cur_map
-var player_pos
+var spawn_target
 
 func _ready():
-	pass
+	var pksc_player = load(fp_player)
+	player = pksc_player.instantiate()
+	add_child(player)
