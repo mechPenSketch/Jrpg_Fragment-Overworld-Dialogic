@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cp1q6kywbc8uv"]
+[gd_scene load_steps=6 format=3 uid="uid://cp1q6kywbc8uv"]
 
 [ext_resource type="PackedScene" uid="uid://c3kgf68muppgv" path="res://content/overworld/map/base.tscn" id="1_3ef1u"]
 [ext_resource type="PackedScene" uid="uid://c2dn4xmd04bku" path="res://content/overworld/playing_pieces/sub_pieces/mark.tscn" id="1_dm0fl"]
 [ext_resource type="PackedScene" uid="uid://ckwouv4tdwpj2" path="res://content/overworld/playing_pieces/list/bob.tscn" id="3_3u7sd"]
 [ext_resource type="PackedScene" uid="uid://cbyvu4at0cpk" path="res://content/overworld/playing_pieces/list/signpost.tscn" id="4_c5dok"]
+[ext_resource type="PackedScene" uid="uid://b1jia5gep10is" path="res://content/overworld/playing_pieces/sub_pieces/warp.tscn" id="5_0xmsn"]
 
 [node name="Game" instance=ExtResource("1_3ef1u")]
 
@@ -23,3 +24,7 @@ timeline = "res://dialogic/timelines/bobs_question.dtl"
 position = Vector2(176, 48)
 timeline = "res://dialogic/timelines/signpost.dtl"
 hide_on_play = false
+
+[node name="Warp" parent="Grid" index="3" instance=ExtResource("5_0xmsn")]
+position = Vector2(272, 112)
+target_map = "res://content/overworld/map/list/indoor.tscn"
