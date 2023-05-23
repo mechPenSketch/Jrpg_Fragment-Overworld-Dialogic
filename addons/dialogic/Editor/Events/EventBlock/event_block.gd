@@ -26,7 +26,7 @@ var expanded := true
 var body_was_build := false
 
 # does the body have elements?
-var has_body_content := false
+var has_any_enabled_body_content := false
 
 # list that stores visibility conditions 
 var field_list := []
@@ -43,6 +43,9 @@ var collapsed := false
 
 ### extarnal node references
 var editor_reference
+
+### Icon size
+var icon_size := 32
 
 ### the indent size
 var indent_size := 22
@@ -62,10 +65,12 @@ func visual_select() -> void:
 	selected = true
 	%IconPanel.self_modulate = resource.event_color
 
+
 func visual_deselect() -> void:
 	$PanelContainer.add_theme_stylebox_override('panel', load("res://addons/dialogic/Editor/Events/styles/unselected_stylebox.tres"))
 	selected = false
 	%IconPanel.self_modulate = resource.event_color.lerp(Color.DARK_SLATE_GRAY, 0.3)
+
 
 func is_selected() -> bool:
 	return selected
@@ -94,17 +99,17 @@ func set_indent(indent: int) -> void:
 
 func _set_event_icon(icon: Texture) -> void:
 	icon_texture.texture = icon
-	var _scale = DialogicUtil.get_editor_scale()
-	var ip = %IconPanel
-	var ipc = icon_texture
+	var _scale := DialogicUtil.get_editor_scale()
+	var ip := %IconPanel
+	var ipc := icon_texture
 	
 	# Resizing the icon acording to the scale
-	var icon_size = 32
+	
 	ip.custom_minimum_size = Vector2(icon_size, icon_size) * _scale
 	ipc.custom_minimum_size = ip.custom_minimum_size
 	
 	# Updating the theme properties to scale
-	var custom_style = ip.get_theme_stylebox('panel')
+	var custom_style :StyleBox = ip.get_theme_stylebox('panel')
 	custom_style.corner_radius_top_left = 5 * _scale
 	custom_style.corner_radius_top_right = 5 * _scale
 	custom_style.corner_radius_bottom_left = 5 * _scale
@@ -137,8 +142,11 @@ func build_editor(build_header:bool = true, build_body:bool = false) ->  void:
 		body_was_build = true
 	
 	for p in resource.get_event_editor_info():
+		field_list.append({'node':null, 'location':p.location})
+		if p.has('condition'):
+			field_list[-1]['condition'] = p.condition
+		
 		if !build_body and p.location == 1:
-			has_body_content = true
 			continue
 		elif !build_header and p.location == 0:
 			continue
@@ -149,6 +157,7 @@ func build_editor(build_header:bool = true, build_body:bool = false) ->  void:
 		
 		### LINEBREAK
 		if p.name == "linebreak":
+			field_list.remove_at(field_list.size()-1)
 			if !current_body_container.get_child_count():
 				current_body_container.queue_free()
 			current_body_container = HFlowContainer.new()
@@ -249,7 +258,7 @@ func build_editor(build_header:bool = true, build_body:bool = false) ->  void:
 		
 		### --------------------------------------------------------------------
 		### 3. FILL THE NEW NODE WITH INFORMATION AND LISTEN TO CHANGES
-		field_list.append({'node':editor_node})
+		field_list[-1]['node'] = editor_node 
 		if "event_resource" in editor_node:
 			editor_node.event_resource = resource
 		if 'property_name' in editor_node:
@@ -275,14 +284,14 @@ func build_editor(build_header:bool = true, build_body:bool = false) ->  void:
 		if p.has('condition'):
 			field_list[-1]['condition'] = p.condition
 			if left_label: 
-				field_list.append({'node': left_label, 'condition':p.condition})
+				field_list.append({'node': left_label, 'condition':p.condition, 'location':p.location})
 			if right_label: 
-				field_list.append({'node': right_label, 'condition':p.condition})
+				field_list.append({'node': right_label, 'condition':p.condition, 'location':p.location})
 	
 	if build_body:
-		has_body_content = true
+#		has_body_content = true
 		if current_body_container.get_child_count() == 0:
-			has_body_content = false
+#			has_body_content = false
 			expanded = false
 			body_container.visible = false
 		
@@ -290,25 +299,27 @@ func build_editor(build_header:bool = true, build_body:bool = false) ->  void:
 
 
 func recalculate_field_visibility() -> void:
+	has_any_enabled_body_content = false
 	for p in field_list:
 		if !p.has('condition') or p.condition.is_empty():
-			p.node.show()
+			if p.node != null:
+				p.node.show()
+			if p.location == 1:
+				has_any_enabled_body_content = true
 		else:
 			var expr := Expression.new()
 			expr.parse(p.condition)
 			if expr.execute([], resource):
-				p.node.show()
+				if p.node != null:
+					p.node.show()
+				if p.location == 1:
+					has_any_enabled_body_content = true
 			else:
-				p.node.hide()
+				if p.node != null:
+					p.node.hide()
 			if expr.has_execute_failed():
 				printerr("[Dialogic] Failed executing visibility condition for '",p.get('property', 'unnamed'),"': " + expr.get_error_text())
-	%ExpandButton.visible = false
-	if body_content_container != null:
-		for node in body_content_container.get_children():
-			for sub_node in node.get_children():
-				if sub_node.visible:
-					%ExpandButton.visible = true
-					break
+	%ExpandButton.visible = has_any_enabled_body_content
 
 
 func set_property(property_name:String, value:Variant) -> void:
@@ -322,18 +333,17 @@ func _on_resource_ui_update_needed() -> void:
 	for node_info in field_list:
 		if node_info.node.has_method('set_value'):
 			node_info.node.set_value(resource.get(node_info.property))
-		
+
 
 func _update_color() -> void:
 	if resource.dialogic_color_name != '':
 		%IconPanel.self_modulate = DialogicUtil.get_color(resource.dialogic_color_name)
-	
-## *****************************************************************************
-##								OVERRIDES
-## *****************************************************************************
+
+
+######################## OVERRIDES #############################################
+################################################################################
 
 func _ready():
-	
 	## DO SOME STYLING
 	var _scale := DialogicUtil.get_editor_scale()
 	$PanelContainer.self_modulate = get_theme_color("accent_color", "Editor")
@@ -346,7 +356,8 @@ func _ready():
 	
 	indent_size = indent_size * DialogicUtil.get_editor_scale()
 	
-	%ExpandButton.icon = get_theme_icon("Tools", "EditorIcons")
+	%ExpandButton.icon = get_theme_icon("CodeFoldDownArrow", "EditorIcons")
+	%ExpandButton.modulate = get_theme_color("readonly_color", "Editor")
 	
 	
 	if resource:
@@ -376,23 +387,27 @@ func _ready():
 	%CollapseButton.toggled.connect(toggle_collapse)
 	%CollapseButton.icon = get_theme_icon("Collapse", "EditorIcons")
 	%CollapseButton.hide()
-	await get_tree().process_frame
-	body_container.add_theme_constant_override("margin_left", title_label.position.x)
+
 
 func _on_ExpandButton_toggled(button_pressed:bool) -> void:
 	if button_pressed and !body_was_build:
 		build_editor(false, true)
 	%ExpandButton.set_pressed_no_signal(button_pressed)
+	if button_pressed:
+		%ExpandButton.icon = get_theme_icon("CodeFoldDownArrow", "EditorIcons")
+	else:
+		%ExpandButton.icon = get_theme_icon("CodeFoldedRightArrow", "EditorIcons")
 	expanded = button_pressed
 	body_container.visible = button_pressed
 	get_parent().get_parent().queue_redraw()
+	body_container.add_theme_constant_override("margin_left", icon_size*DialogicUtil.get_editor_scale())
 
 
 func _on_EventNode_gui_input(event:InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == 1:
 		grab_focus() # Grab focus to avoid copy pasting text or events
 		if event.double_click:
-			if has_body_content:
+			if has_any_enabled_body_content:
 				_on_ExpandButton_toggled(!expanded)
 	# For opening the context menu
 	if event is InputEventMouseButton:
