@@ -46,6 +46,8 @@ variables={}
 editor/last_resources=PackedStringArray("res://dialogic/timelines/signpost.dtl", "res://dialogic/timelines/warp.dtl")
 text/autopauses={}
 editor/timeline_editor_mode=0
+text/autoadvance_delay=1.0
+text/hide_empty_textbox=true
 
 [display]
 
@@ -78,6 +80,6 @@ translations=PackedStringArray("res://translations/dialogs.en.translation", "res
 
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
 textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
 environment/default_environment="res://default_env.tres"

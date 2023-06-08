@@ -684,6 +684,7 @@ func _add_event_button_pressed(event_resource:DialogicEvent):
 		at_index = %Timeline.get_child_count()
 	
 	var resource := event_resource.duplicate()
+	print(resource is DialogicEvent)
 	resource._load_custom_defaults()
 	
 	TimelineUndoRedo.create_action("[D] Add "+event_resource.event_name+" event.")

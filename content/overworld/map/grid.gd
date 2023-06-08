@@ -78,6 +78,7 @@ func start_dialogic_by_mapos(v2: Vector2i, trg):
 	var target_piece = children_by_mapos[v2][0]
 	
 	if target_piece.trigger == trg:
+		GlobalOverworld.interracting_with = target_piece
 		Dialogic.start(target_piece.timeline)
 		get_viewport().set_input_as_handled()
 		controller.paused = true
