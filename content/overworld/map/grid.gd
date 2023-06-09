@@ -55,6 +55,11 @@ func _on_action_pressed():
 		start_dialogic_by_possible_mapos(target_pos, player.Triggers.ACTION_BY_SIDE)
 
 
+func _on_tween_finished(mapos):
+	if mapos in children_by_mapos and children_by_mapos[mapos].size() > 1:
+		start_dialogic_by_mapos(mapos, player.Triggers.STEPPED_ON)
+
+
 func _moved_in_editor(node, v2):
 	var mapos = local_to_map(v2)
 	var snappos = map_to_local(mapos)
@@ -72,6 +77,7 @@ func set_player(playpiece):
 	player = playpiece
 	controller = playpiece.get_node("Controller")
 	controller.action.connect(_on_action_pressed)
+	player.move_tween_finished.connect(_on_tween_finished)
 
 
 func start_dialogic_by_mapos(v2: Vector2i, trg):

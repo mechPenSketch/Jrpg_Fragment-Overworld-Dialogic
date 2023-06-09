@@ -4,6 +4,7 @@ extends Sprite2D
 class_name PlayingPiece
 
 signal moved(node, position)
+signal move_tween_finished(new_mapos)
 
 enum Triggers {
 	ACTION_BY_SIDE,
@@ -63,6 +64,7 @@ func move_piece(v2i: Vector2i):
 		walking_in_progress = true
 		tween.tween_callback(func():
 			walking_in_progress = false
+			move_tween_finished.emit(target_mapos)
 		)
 
 
