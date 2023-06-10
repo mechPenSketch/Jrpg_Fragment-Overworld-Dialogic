@@ -92,5 +92,5 @@ func is_blocked_by_terrain(map_pos)-> bool:
 
 
 func spawn_new_piece(playing_piece):
-	add_sibling(playing_piece)
 	playing_piece.set_position(get_position())
+	add_sibling(playing_piece)

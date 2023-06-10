@@ -18,7 +18,7 @@ func _ready():
 			GlobalOverworld.remove_child(player)
 		
 		var spawn_target
-		var spawn_key = GlobalOverworld.spawn_target
+		var spawn_key = GlobalOverworld.spawn_index
 		if spawn_key:
 			if spawn_key is String:
 				spawn_target = get_node(spawn_key)
