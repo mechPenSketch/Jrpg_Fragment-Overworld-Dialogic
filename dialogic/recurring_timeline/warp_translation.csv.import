@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://buqr1jqpio047"
+
+[deps]
+
+files=["res://dialogic/recurring_timeline/warp_translation.en.translation"]
+
+source_file="res://dialogic/recurring_timeline/warp_translation.csv"
+dest_files=["res://dialogic/recurring_timeline/warp_translation.en.translation"]
+
+[params]
+
+compress=true
+delimiter=0

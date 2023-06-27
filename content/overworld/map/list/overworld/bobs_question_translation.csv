@@ -1,0 +1,8 @@
+keys,en,ja,es
+Text/16/text,"Hi, do you like apples or oranges?",今日は。りんごが　好きですが？オレンジ　ですが？,"Hola, ¿te gustan las manzanas o naranjas?"
+Choice/17/text,Apples,りんご,Manzana
+Choice/17/disabled_text,,,
+Text/18/text,I like apples too - they're sweet and crunchy!,僕も　りんご　好きです。彼らは　甘くてカリカリ　です！,"También me gustan las manzanas, ¡son dulces y crujientes!"
+Choice/19/text,Oranges,オレンジ,Naranja
+Choice/19/disabled_text,,,
+Text/1a/text,I love oranges too - they're soooo juicy!,僕も　オレンジ　好きです。彼らは　すっごくジューシー　です！,"También me encantan las naranjas, ¡son tan jugosas!"

@@ -48,6 +48,11 @@ text/autopauses={}
 editor/timeline_editor_mode=0
 text/autoadvance_delay=1.0
 text/hide_empty_textbox=true
+translation/enabled=true
+translation/original_locale="en"
+translation/file_mode=1
+translation/translation_folder=""
+translation/id_counter=28
 
 [display]
 
@@ -69,6 +74,10 @@ dialogic_default_action={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":0,"pressure":0.0,"pressed":false,"script":null)
 ]
 }
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://content/overworld/map/list/indoor/dianas_teleportation_translation.en.translation", "res://content/overworld/map/list/indoor/dianas_teleportation_translation.es.translation", "res://content/overworld/map/list/indoor/dianas_teleportation_translation.ja.translation", "res://content/overworld/map/list/overworld/bobs_question_translation.en.translation", "res://content/overworld/map/list/overworld/bobs_question_translation.es.translation", "res://content/overworld/map/list/overworld/bobs_question_translation.ja.translation", "res://content/overworld/map/list/overworld/signpost_translation.en.translation", "res://content/overworld/map/list/overworld/signpost_translation.es.translation", "res://content/overworld/map/list/overworld/signpost_translation.ja.translation", "res://dialogic/recurring_timeline/warp_translation.en.translation")
 
 [layer_names]
 

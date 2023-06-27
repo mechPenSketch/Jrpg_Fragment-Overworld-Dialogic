@@ -7,7 +7,7 @@
 self_modulate = Color(1, 1, 1, 0.709804)
 texture = ExtResource("2_u8cg1")
 script = ExtResource("2_ooa2o")
-timeline = "res://dialogic/timelines/warp.dtl"
+timeline = "res://dialogic/recurring_timeline/warp.dtl"
 trigger = 2
 blocks_path = false
 hide_on_play = true
