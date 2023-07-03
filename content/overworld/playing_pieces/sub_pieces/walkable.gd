@@ -8,6 +8,8 @@ enum {
 	DIR_LEFT,
 }
 
+const PLAYBACK_DIR := "parameters/Directions/playback"
+
 var animdir_from_v2i: Dictionary = {
 	Vector2i(-1, 0): "dir_left",
 	Vector2i(1, 0): "dir_right",
@@ -60,10 +62,10 @@ func get_v2dir()-> Vector2i:
 			return Vector2i(0, 1)
 
 
-func move_piece(v2i: Vector2i):
+func move_piece(v2i: Vector2i, custom_track := "act_walking"):
 	turn_piece(v2i)
-	$AnimationTree["parameters/Actions/playback"].travel("act_walking")
-	super.move_piece(v2i)
+	$AnimationTree[PLAYBACK_ACTION].travel(custom_track)
+	super.move_piece(v2i, custom_track)
 
 
 func calculate_frame_coords():
@@ -73,4 +75,4 @@ func calculate_frame_coords():
 
 
 func turn_piece(v2i):
-	$AnimationTree["parameters/Directions/playback"].travel(animdir_from_v2i[v2i])
+	$AnimationTree[PLAYBACK_DIR].travel(animdir_from_v2i[v2i])

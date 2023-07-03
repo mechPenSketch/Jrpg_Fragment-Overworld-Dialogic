@@ -47,6 +47,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_opih0"]
 resource_name = "act_walking"
 length = 0.8
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -143,8 +144,6 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ldnb4"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pxcvk"]
-switch_mode = 2
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ucor5"]
 states/Start/position = Vector2(170, 77)
@@ -209,6 +208,7 @@ transitions = ["Start", "dir_down", SubResource("AnimationNodeStateMachineTransi
 graph_offset = Vector2(-221, 0.622314)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_4mphs"]
+graph_offset = Vector2(-451.104, 185.391)
 nodes/Actions/node = SubResource("AnimationNodeStateMachine_ucor5")
 nodes/Actions/position = Vector2(-240, 180)
 nodes/Add2/node = SubResource("AnimationNodeAdd2_he6ui")

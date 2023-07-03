@@ -14,8 +14,9 @@ enum Triggers {
 	ABOUT_TO_WALK_IN,
 }
 
+const PLAYBACK_ACTION := "parameters/Actions/playback"
+
 var walking_in_progress: bool
-var move_duration = 0.8
 
 ## The timeline to be played when interracted
 @export_file("*.dtl") var timeline: String
@@ -50,7 +51,7 @@ func _notification(what):
 			moved.emit(self, get_position())
 
 
-func move_piece(v2i: Vector2i):
+func move_piece(v2i: Vector2i, custom_track := "act_walking"):
 	var map_pos = get_parent().local_to_map(get_position())
 	var target_mapos = map_pos + v2i
 	
@@ -60,9 +61,14 @@ func move_piece(v2i: Vector2i):
 		get_parent().update_map_pos(self, map_pos, target_mapos)
 	
 		var tween = create_tween()
+		var anim = $AnimationPlayer.get_animation(custom_track)
+		var move_duration = anim.get_length()
+		
 		tween.tween_property(self, "position", final_pos, move_duration)
 		walking_in_progress = true
+		
 		tween.tween_callback(func():
+			$AnimationTree[PLAYBACK_ACTION].travel("act_idle")
 			walking_in_progress = false
 			move_tween_finished.emit(target_mapos)
 		)
