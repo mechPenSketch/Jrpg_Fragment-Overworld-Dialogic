@@ -2,21 +2,25 @@
 @icon("playing_piece.svg")
 extends Sprite2D
 class_name PlayingPiece
+## A piece played on the board. Typically used for events.
 
+## Emmited when the piece starts moving
 signal moved(node, position)
+
+## Emmited when the piece finishes moving
 signal move_tween_finished(new_mapos)
 
+## Ways the event can be triggered
 enum Triggers {
-	ACTION_BY_SIDE,
-	NONE,
-	STEPPED_ON,
-	ACTION_ON_SPOT,
-	ABOUT_TO_WALK_IN,
+	ACTION_BY_SIDE, ## Press Action when facing event.
+	NONE, ## Nothing can trigger the event.
+	STEPPED_ON, ## Pressing the direction into the event and walking in.
+	ACTION_ON_SPOT, ## Press Action while being on the event.
+	ABOUT_TO_WALK_IN, ## Pressing the direction into the event. It triggers before the player walks in.
 }
 
+## Link to an [AnimationNodeStateMachinePlayback] for playing an action.
 const PLAYBACK_ACTION := "parameters/Actions/playback"
-
-var walking_in_progress: bool
 
 ## The timeline to be played when interracted
 @export_file("*.dtl") var timeline: String
@@ -40,6 +44,9 @@ var walking_in_progress: bool
 ## Makes this piece invivisble when played.
 @export var hide_on_play: bool
 
+## Checks whether the play is still walking.
+var walking_in_progress: bool
+
 func _ready():
 	if hide_on_play and not Engine.is_editor_hint():
 		hide()
@@ -51,6 +58,7 @@ func _notification(what):
 			moved.emit(self, get_position())
 
 
+## If the piece is not blocked to the given direction, the piece is moved through a created tween.
 func move_piece(v2i: Vector2i, custom_track := "act_walking"):
 	var map_pos = get_parent().local_to_map(get_position())
 	var target_mapos = map_pos + v2i
@@ -74,10 +82,12 @@ func move_piece(v2i: Vector2i, custom_track := "act_walking"):
 		)
 
 
+## Checks whether the piece is blocked to the given direction.
 func is_blocked(map_pos)-> bool:
 	return is_blocked_by_playing_piece(map_pos) or is_blocked_by_terrain(map_pos)
 
 
+## Checks whether the piece is blocked to the given direction, specifically by another piece.
 func is_blocked_by_playing_piece(map_pos):
 	var dict_playpieces = get_parent().children_by_mapos
 	
@@ -89,6 +99,7 @@ func is_blocked_by_playing_piece(map_pos):
 	return false
 
 
+## Checks whether the piece is blocked to the given direction, specifically by the terrain property.
 func is_blocked_by_terrain(map_pos)-> bool:
 	var tiledata = get_parent().get_cell_tile_data(1, map_pos)
 	if tiledata:
@@ -97,6 +108,7 @@ func is_blocked_by_terrain(map_pos)-> bool:
 		return false
 
 
+## Adds a new piece in the same position as it is in.
 func spawn_new_piece(playing_piece):
 	playing_piece.set_position(get_position())
 	add_sibling(playing_piece)

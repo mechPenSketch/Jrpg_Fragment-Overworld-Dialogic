@@ -1,12 +1,13 @@
 @tool
 extends TileMap
+## The game board, where the pieces are placed in specific co-odinates.
 
 var player
 var controller
 var children_by_mapos: Dictionary
 
+## A custom playable character. If nothing is set, the global's playable character will be used.
 @export var pksc_custom_player: PackedScene
-
 
 func _ready():
 	if not Engine.is_editor_hint() and get_child_count():
@@ -43,6 +44,7 @@ func _on_child_exiting_tree(node):
 		node.moved.disconnect(_moved_in_editor)
 
 
+## To be called when an action button is pressed.
 func _on_action_pressed():
 	var player_pos = local_to_map(player.get_position())
 	

@@ -1,6 +1,8 @@
 @tool
 extends PlayingPiece
+## Typically used for NPCs.
 
+## Directions the piece can move in.
 enum {
 	DIR_DOWN,
 	DIR_RIGHT,
@@ -8,14 +10,8 @@ enum {
 	DIR_LEFT,
 }
 
+## Link to an [AnimationNodeStateMachinePlayback] for playing a direction.
 const PLAYBACK_DIR := "parameters/Directions/playback"
-
-var animdir_from_v2i: Dictionary = {
-	Vector2i(-1, 0): "dir_left",
-	Vector2i(1, 0): "dir_right",
-	Vector2i(0, -1): "dir_up",
-	Vector2i(0, 1): "dir_down"
-}
 
 ## Checks whether sprite texture is symmetrical
 @export var is_symmetrical: bool
@@ -41,10 +37,26 @@ var animdir_from_v2i: Dictionary = {
 		act_frm_coords = value
 		calculate_frame_coords()
 
+## A dictionary of animation names by firection co-ordinates.
+var animdir_from_v2i: Dictionary = {
+	Vector2i(-1, 0): "dir_left",
+	Vector2i(1, 0): "dir_right",
+	Vector2i(0, -1): "dir_up",
+	Vector2i(0, 1): "dir_down"
+}
 
+
+## To be called when a directional button is pressed.
 func _on_controller_direction(v2i):
 	if not walking_in_progress:
 		move_piece(v2i)
+
+
+## To be called after its action or directional frame is set.
+func calculate_frame_coords():
+	var final_value = act_frm_coords
+	final_value += Vector2i(0, dir_frm * vframes_per_dir)
+	set_frame_coords(final_value)
 
 
 func get_v2dir()-> Vector2i:
@@ -68,11 +80,6 @@ func move_piece(v2i: Vector2i, custom_track := "act_walking"):
 	super.move_piece(v2i, custom_track)
 
 
-func calculate_frame_coords():
-	var final_value = act_frm_coords
-	final_value += Vector2i(0, dir_frm * vframes_per_dir)
-	set_frame_coords(final_value)
-
-
+## Changes the facing direction of the piece.
 func turn_piece(v2i):
 	$AnimationTree[PLAYBACK_DIR].travel(animdir_from_v2i[v2i])
