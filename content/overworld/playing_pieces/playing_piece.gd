@@ -1,7 +1,7 @@
 @tool
 @icon("playing_piece.svg")
-extends Sprite2D
-class_name PlayingPiece
+class_name PlayingPiece extends Sprite2D
+
 ## A piece played on the board. Typically used for events.
 
 ## Emmited when the piece starts moving
@@ -19,29 +19,32 @@ enum Triggers {
 	ABOUT_TO_WALK_IN, ## Pressing the direction into the event. It triggers before the player walks in.
 }
 
-## Link to an [AnimationNodeStateMachinePlayback] for playing an action.
+## Link to an [AnimationNodeStateMachinePlayback]
+## for playing an action.
 const PLAYBACK_ACTION := "parameters/Actions/playback"
 
-## The timeline to be played when interracted
+## The timeline to be played when interracted.
 @export_file("*.dtl") var timeline: String
 
-## How the piece is to be interracted
+## How the piece is to be interracted.
 @export var trigger: Triggers
 
-@export_category("Expansion")
+@export_group("Expansion")
 
-## Checks whether this piece can block path
+## Checks whether this piece can block path.
 @export var blocks_path: bool = true
 
 ## Measures how much more space does this piece cover.
 @export var expands: Vector2
 
-## Checks whether property Expands applies to the opposite side, too.
+## Checks whether property Expands applies to
+## the opposite side, too.
 @export var symmetrically: bool = true
 
-@export_category("Visual")
+@export_group("Visual")
 
-## Makes this piece invivisble when played.
+## If [param true], makes this piece invivisble when
+## the scene is played.
 @export var hide_on_play: bool
 
 ## Checks whether the play is still walking.
@@ -58,7 +61,8 @@ func _notification(what):
 			moved.emit(self, get_position())
 
 
-## If the piece is not blocked to the given direction, the piece is moved through a created tween.
+## If the piece is not blocked to the given direction,
+## the piece is moved through a created tween.
 func move_piece(v2i: Vector2i, custom_track := "act_walking"):
 	var map_pos = get_parent().local_to_map(get_position())
 	var target_mapos = map_pos + v2i
@@ -82,12 +86,15 @@ func move_piece(v2i: Vector2i, custom_track := "act_walking"):
 		)
 
 
-## Checks whether the piece is blocked to the given direction.
+## Checks whether the piece is blocked to
+## the given direction.
 func is_blocked(map_pos)-> bool:
 	return is_blocked_by_playing_piece(map_pos) or is_blocked_by_terrain(map_pos)
 
 
-## Checks whether the piece is blocked to the given direction, specifically by another piece.
+## Checks whether the piece is blocked
+## to the given direction,
+## specifically by another piece.
 func is_blocked_by_playing_piece(map_pos):
 	var dict_playpieces = get_parent().children_by_mapos
 	
@@ -99,7 +106,9 @@ func is_blocked_by_playing_piece(map_pos):
 	return false
 
 
-## Checks whether the piece is blocked to the given direction, specifically by the terrain property.
+## Checks whether the piece is blocked
+## to the given direction,
+## specifically by the terrain property.
 func is_blocked_by_terrain(map_pos)-> bool:
 	var tiledata = get_parent().get_cell_tile_data(1, map_pos)
 	if tiledata:

@@ -1,5 +1,6 @@
 @tool
 extends PlayingPiece
+
 ## Typically used for NPCs.
 
 ## Directions the piece can move in.
@@ -10,13 +11,15 @@ enum {
 	DIR_LEFT,
 }
 
-## Link to an [AnimationNodeStateMachinePlayback] for playing a direction.
+## Link to an [AnimationNodeStateMachinePlayback]
+## for playing a direction.
 const PLAYBACK_DIR := "parameters/Directions/playback"
 
-## Checks whether sprite texture is symmetrical
+## Checks whether sprite texture is symmetrical.
 @export var is_symmetrical: bool
 
-## Directional frame
+## An integer that represents the direction
+## to face.
 @export var dir_frm: int:
 	set(value):
 		if is_symmetrical:
@@ -31,7 +34,8 @@ const PLAYBACK_DIR := "parameters/Directions/playback"
 ## Number of rows for each direction in a sprite sheet.
 @export_range(1, 2^63-1) var vframes_per_dir: int = 1
 
-## Action frame co-ordinates
+## Represents an action frame, in the form of [Vector2i]
+## to account for [member vframes_per_dir].
 @export var act_frm_coords: Vector2i:
 	set(value):
 		act_frm_coords = value
