@@ -214,11 +214,11 @@ graph_offset = Vector2(-221, 0.622314)
 graph_offset = Vector2(-428.085, 101.932)
 nodes/Actions/node = SubResource("AnimationNodeStateMachine_ucor5")
 nodes/Actions/position = Vector2(-240, 180)
-nodes/Add2/node = SubResource("AnimationNodeAdd2_he6ui")
-nodes/Add2/position = Vector2(60, 200)
+nodes/AddDirections/node = SubResource("AnimationNodeAdd2_he6ui")
+nodes/AddDirections/position = Vector2(60, 200)
 nodes/Directions/node = SubResource("AnimationNodeStateMachine_12q0w")
 nodes/Directions/position = Vector2(-240, 400)
-node_connections = [&"output", 0, &"Add2", &"Add2", 0, &"Actions", &"Add2", 1, &"Directions"]
+node_connections = [&"output", 0, &"AddDirections", &"AddDirections", 0, &"Actions", &"AddDirections", 1, &"Directions"]
 
 [node name="Sprite2D" type="Sprite2D"]
 hframes = 4
@@ -234,4 +234,4 @@ libraries = {
 tree_root = SubResource("AnimationNodeBlendTree_4mphs")
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/Add2/add_amount = 1.0
+parameters/AddDirections/add_amount = 1.0

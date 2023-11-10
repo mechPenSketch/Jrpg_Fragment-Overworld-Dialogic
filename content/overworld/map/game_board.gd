@@ -1,5 +1,5 @@
 @tool
-extends TileMap
+class_name GameBoard extends TileMap
 
 ## The game board, where the [PlayingPiece]s are placed
 ## in specific co-odinates.

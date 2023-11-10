@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cnajutgsuk84w" path="res://content/overworld/map/tiles/wall/set.png" id="4_8ar6s"]
 [ext_resource type="Texture2D" uid="uid://dqvplbbos4w0i" path="res://content/overworld/map/tiles/wall/set1.png" id="5_6mp1x"]
 [ext_resource type="Texture2D" uid="uid://coedlx15hl1y8" path="res://content/overworld/map/tiles/wall/set2.png" id="6_5otn7"]
-[ext_resource type="Script" path="res://content/overworld/map/grid.gd" id="7_dx5k7"]
+[ext_resource type="Script" path="res://content/overworld/map/game_board.gd" id="8_gfjdm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2ne0b"]
 texture = ExtResource("1_5wae2")
@@ -931,7 +931,7 @@ layer_2/y_sort_enabled = false
 layer_2/y_sort_origin = 0
 layer_2/z_index = 0
 layer_2/tile_data = PackedInt32Array()
-script = ExtResource("7_dx5k7")
+script = ExtResource("8_gfjdm")
 
 [connection signal="child_entered_tree" from="Grid" to="Grid" method="_on_child_entered_tree"]
 [connection signal="child_exiting_tree" from="Grid" to="Grid" method="_on_child_exiting_tree"]
