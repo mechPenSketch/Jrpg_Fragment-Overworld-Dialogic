@@ -9,6 +9,11 @@ class_name GameBoard extends TileMap
 ## the [TileMap] is recommended for their
 ## editable properties.
 
+## A custom playable character.
+## If nothing is set, the global's
+## playable character will be used.
+@export var pksc_custom_player: PackedScene
+
 ## A [PlayingPiece] representing the playable character.
 var player
 
@@ -18,11 +23,6 @@ var controller
 ## The keys are grid co-ordinates (in [Vector2i]) while
 ## each value is an [Array] of [PlayingPiece]s.
 var children_by_mapos: Dictionary
-
-## A custom playable character.
-## If nothing is set, the global's
-## playable character will be used.
-@export var pksc_custom_player: PackedScene
 
 func _ready():
 	if not Engine.is_editor_hint() and get_child_count():

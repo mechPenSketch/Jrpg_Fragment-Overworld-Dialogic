@@ -25,7 +25,7 @@ enum Triggers {
 ## How the piece is to be interracted.
 @export var trigger: Triggers
 
-@export_group("Expansion")
+@export_group("Area")
 
 ## Checks whether this piece can block path.
 @export var blocks_path: bool = true
@@ -39,8 +39,8 @@ enum Triggers {
 
 @export_group("Visual")
 
-## If [param true], makes this piece invivisble when
-## the scene is played.
+## If [param true], sets [member visible] to
+## [param false] when the scene is played.
 @export var hide_on_play: bool
 
 ## Checks whether the play is still walking.
