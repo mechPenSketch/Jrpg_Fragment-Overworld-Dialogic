@@ -11,7 +11,11 @@ enum {
 	DIR_LEFT,
 }
 
-## Link to an [AnimationNodeStateMachinePlayback]
+## Path to an [AnimationNodeStateMachinePlayback]
+## for playing an action.
+const PLAYBACK_ACTION := "parameters/Actions/playback"
+
+## Path to an [AnimationNodeStateMachinePlayback]
 ## for playing a direction.
 const PLAYBACK_DIR := "parameters/Directions/playback"
 
@@ -41,13 +45,22 @@ const PLAYBACK_DIR := "parameters/Directions/playback"
 		act_frm_coords = value
 		calculate_frame_coords()
 
-## A dictionary of animation names by firection co-ordinates.
+## [AnimationNodeStateMachinePlayback]
+## for playing an action.
+var playback_action
+
+## A dictionary of animation names
+## by direction co-ordinates.
 var animdir_from_v2i: Dictionary = {
 	Vector2i(-1, 0): "dir_left",
 	Vector2i(1, 0): "dir_right",
 	Vector2i(0, -1): "dir_up",
 	Vector2i(0, 1): "dir_down"
 }
+
+func _ready():
+	super()
+	playback_action = $AnimationTree[PLAYBACK_ACTION]
 
 
 ## To be called when a directional button is pressed.
@@ -56,7 +69,8 @@ func _on_controller_direction(v2i):
 		move_piece(v2i)
 
 
-## To be called after its action or directional frame is set.
+## To be called after its action or directional frame
+## is set.
 func calculate_frame_coords():
 	var final_value = act_frm_coords
 	final_value += Vector2i(0, dir_frm * vframes_per_dir)
@@ -80,8 +94,16 @@ func get_v2dir()-> Vector2i:
 
 func move_piece(v2i: Vector2i, custom_track := "act_walking"):
 	turn_piece(v2i)
-	$AnimationTree[PLAYBACK_ACTION].travel(custom_track)
 	super.move_piece(v2i, custom_track)
+
+
+func moving_when_blocked(custom_track):
+	playback_action.travel(custom_track)
+
+
+func moving_when_unblocked(custom_track, map_pos, target_mapos):
+	playback_action.start(custom_track)
+	super.moving_when_unblocked(custom_track, map_pos, target_mapos)
 
 
 ## Changes the facing direction of the piece.

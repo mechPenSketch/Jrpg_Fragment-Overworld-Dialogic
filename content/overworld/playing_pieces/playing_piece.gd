@@ -19,10 +19,6 @@ enum Triggers {
 	ABOUT_TO_WALK_IN, ## Pressing the direction into the event. It triggers before the player walks in.
 }
 
-## Link to an [AnimationNodeStateMachinePlayback]
-## for playing an action.
-const PLAYBACK_ACTION := "parameters/Actions/playback"
-
 ## The timeline to be played when interracted.
 @export_file("*.dtl") var timeline: String
 
@@ -61,29 +57,55 @@ func _notification(what):
 			moved.emit(self, get_position())
 
 
-## If the piece is not blocked to the given direction,
-## the piece is moved through a created tween.
+## Returns the movement duration, which is typically
+## gotten from the length of a walking animation.
+##
+## Not all playing pieces have [AnimationPlayer], so
+## for those exceptions, the default is 0.8s.
+func get_moving_duration(custom_track := "")-> float:
+	if custom_track:
+		var anim = $AnimationPlayer.get_animation(custom_track)
+		return anim.get_length()
+	else:
+		return 0.8
+
+
+## For moving the piece to the given direction,
+## check whether it is blocked and
+## what to do then.
 func move_piece(v2i: Vector2i, custom_track := "act_walking"):
 	var map_pos = get_parent().local_to_map(get_position())
 	var target_mapos = map_pos + v2i
 	
-	if not is_blocked(target_mapos):
-		var final_pos = get_parent().map_to_local(target_mapos)
-		
-		get_parent().update_map_pos(self, map_pos, target_mapos)
+	if is_blocked(target_mapos):
+		moving_when_blocked(custom_track)
+	else:
+		moving_when_unblocked(custom_track, map_pos, target_mapos)
+
+
+## For additional effects when
+## attempting to move is blocked.
+func moving_when_blocked(_ct):
+	pass
+
+
+## For moving the piece now that
+## the direction is unblocked.
+func moving_when_unblocked(custom_track, map_pos, target_mapos):
+	var final_pos = get_parent().map_to_local(target_mapos)
 	
-		var tween = create_tween()
-		var anim = $AnimationPlayer.get_animation(custom_track)
-		var move_duration = anim.get_length()
-		
-		tween.tween_property(self, "position", final_pos, move_duration)
-		walking_in_progress = true
-		
-		tween.tween_callback(func():
-			$AnimationTree[PLAYBACK_ACTION].travel("act_idle")
-			walking_in_progress = false
-			move_tween_finished.emit(target_mapos)
-		)
+	get_parent().update_map_pos(self, map_pos, target_mapos)
+
+	var tween = create_tween()
+	var move_duration = get_moving_duration(custom_track)
+	
+	tween.tween_property(self, "position", final_pos, move_duration)
+	walking_in_progress = true
+	
+	tween.tween_callback(func():
+		walking_in_progress = false
+		move_tween_finished.emit(target_mapos)
+	)
 
 
 ## Checks whether the piece is blocked to

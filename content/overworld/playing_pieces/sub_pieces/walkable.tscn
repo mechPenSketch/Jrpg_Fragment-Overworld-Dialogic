@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dpcnapfttae0"]
+[gd_scene load_steps=36 format=3 uid="uid://dpcnapfttae0"]
 
 [ext_resource type="Script" path="res://content/overworld/playing_pieces/sub_pieces/walkable.gd" id="1_56ws3"]
 
@@ -47,7 +47,6 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_opih0"]
 resource_name = "act_walking"
 length = 0.8
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -144,6 +143,8 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ldnb4"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pxcvk"]
+switch_mode = 2
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ucor5"]
 states/Start/position = Vector2(170, 77)
@@ -154,6 +155,8 @@ states/act_walking/position = Vector2(522, 77)
 transitions = ["Start", "act_idle", SubResource("AnimationNodeStateMachineTransition_30yif"), "act_idle", "act_walking", SubResource("AnimationNodeStateMachineTransition_ldnb4"), "act_walking", "act_idle", SubResource("AnimationNodeStateMachineTransition_pxcvk")]
 
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_he6ui"]
+filter_enabled = true
+filters = [".:dir_frm"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8bpwo"]
 animation = &"dir_down"
@@ -208,7 +211,7 @@ transitions = ["Start", "dir_down", SubResource("AnimationNodeStateMachineTransi
 graph_offset = Vector2(-221, 0.622314)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_4mphs"]
-graph_offset = Vector2(-451.104, 185.391)
+graph_offset = Vector2(-428.085, 101.932)
 nodes/Actions/node = SubResource("AnimationNodeStateMachine_ucor5")
 nodes/Actions/position = Vector2(-240, 180)
 nodes/Add2/node = SubResource("AnimationNodeAdd2_he6ui")
@@ -216,10 +219,6 @@ nodes/Add2/position = Vector2(60, 200)
 nodes/Directions/node = SubResource("AnimationNodeStateMachine_12q0w")
 nodes/Directions/position = Vector2(-240, 400)
 node_connections = [&"output", 0, &"Add2", &"Add2", 0, &"Actions", &"Add2", 1, &"Directions"]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_i1s25"]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_wvqt6"]
 
 [node name="Sprite2D" type="Sprite2D"]
 hframes = 4
@@ -235,6 +234,4 @@ libraries = {
 tree_root = SubResource("AnimationNodeBlendTree_4mphs")
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/Actions/playback = SubResource("AnimationNodeStateMachinePlayback_i1s25")
 parameters/Add2/add_amount = 1.0
-parameters/Directions/playback = SubResource("AnimationNodeStateMachinePlayback_wvqt6")
