@@ -62,7 +62,7 @@ window/size/height=576
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogic/plugin.cfg", "res://addons/jrpgfragment_overworld/plugin.cfg")
 
 [input]
 
