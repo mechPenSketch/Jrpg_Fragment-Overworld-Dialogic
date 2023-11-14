@@ -1,6 +1,14 @@
 @tool
 extends EditorPlugin
 
+const PROP_PIECE_ICON_PATH := "res://addons/jrpgfragment_overworld/toolbtn_icons/add_prop.svg"
+const WALKING_PIECE_ICON_PATH := "res://addons/jrpgfragment_overworld/toolbtn_icons/add_walk.svg"
+const WARP_PIECE_ICON_PATH := "res://addons/jrpgfragment_overworld/toolbtn_icons/add_warp.svg"
+
+const PROP_PIECE_SCENE_PATH := "res://content/overworld/playing_pieces/list/signpost.tscn"
+const WALKING_PIECE_SCENE_PATH := "res://content/overworld/playing_pieces/sub_pieces/walkable.tscn"
+const WARP_PIECE_SCENE_PATH := "res://content/overworld/playing_pieces/sub_pieces/warp.tscn"
+
 var new_tools: Array[Control]
 
 var nearest_game_board: GameBoard
@@ -9,18 +17,21 @@ func _enter_tree():
 	# Define new buttons
 	#	Prop Piece
 	var prop_piece_btn = generate_toolbtn()
+	prop_piece_btn.set_button_icon(load(PROP_PIECE_ICON_PATH))
+	prop_piece_btn.pressed.connect(_add_new_node.bind(load(PROP_PIECE_SCENE_PATH)))
 	new_tools.append(prop_piece_btn)
 	
 	#	Walking Piece
 	var walk_piece_btn = generate_toolbtn()
+	walk_piece_btn.set_button_icon(load(WALKING_PIECE_ICON_PATH))
+	walk_piece_btn.pressed.connect(_add_new_node.bind(load(WALKING_PIECE_SCENE_PATH)))
 	new_tools.append(walk_piece_btn)
 	
 	#	Warping
 	var warp_piece_btn = generate_toolbtn()
+	warp_piece_btn.set_button_icon(load(WARP_PIECE_ICON_PATH))
+	warp_piece_btn.pressed.connect(_add_new_node.bind(load(WARP_PIECE_SCENE_PATH)))
 	new_tools.append(warp_piece_btn)
-	
-	#	Seperating Line
-	new_tools.append(VSeparator.new)
 	
 	# Add new buttons to toolbar
 	for nd in new_tools:
@@ -31,12 +42,23 @@ func _enter_tree():
 		nearest_game_board = null
 		show_or_hide_new_toolbtns(scene_root)
 	)
+	
+	show_or_hide_new_toolbtns(get_editor_interface().get_edited_scene_root())
 
 
 func _exit_tree():
+	# Toolbar buttons
 	for nd in new_tools:
 		remove_control_from_container(CONTAINER_CANVAS_EDITOR_MENU, nd)
 		nd.queue_free()
+
+
+func _add_new_node(pksc: PackedScene):
+	if nearest_game_board:
+		var inst = pksc.instantiate()
+		nearest_game_board.add_child(inst)
+		inst.set_owner(get_editor_interface().get_edited_scene_root())
+		get_editor_interface().mark_scene_as_unsaved()
 
 
 func generate_toolbtn()-> Button:
