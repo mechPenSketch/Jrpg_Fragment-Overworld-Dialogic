@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cb1xlomhhcghp"
-path="res://.godot/imported/warp.png-3c8eab8af79338fede8f53a438e4e2dd.ctex"
+uid="uid://dxv6t1pmc0svk"
+path="res://.godot/imported/bob.png-9234b7e515c70f79cc5659c702c5483c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://content/overworld/playing_pieces/sprites/props/warp.png"
-dest_files=["res://.godot/imported/warp.png-3c8eab8af79338fede8f53a438e4e2dd.ctex"]
+source_file="res://content/overworld/playing_pieces/walkables/sprites/bob.png"
+dest_files=["res://.godot/imported/bob.png-9234b7e515c70f79cc5659c702c5483c.ctex"]
 
 [params]
 

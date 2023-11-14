@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b1jia5gep10is"]
 
-[ext_resource type="Script" path="res://content/overworld/playing_pieces/sub_pieces/warp.gd" id="2_ooa2o"]
-[ext_resource type="Texture2D" uid="uid://cb1xlomhhcghp" path="res://content/overworld/playing_pieces/sprites/props/warp.png" id="2_u8cg1"]
+[ext_resource type="Script" path="res://content/overworld/playing_pieces/warps/warp.gd" id="2_ooa2o"]
+[ext_resource type="Texture2D" uid="uid://cb1xlomhhcghp" path="res://content/overworld/playing_pieces/props/sprites/warp.png" id="2_u8cg1"]
 
 [node name="Warp" type="Sprite2D"]
 self_modulate = Color(1, 1, 1, 0.709804)

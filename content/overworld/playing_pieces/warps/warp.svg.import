@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6aufjlevrf6e"
-path="res://.godot/imported/controller.svg-24c34a2dc31d2e5cd1e24a40a90c5f35.ctex"
+uid="uid://dgn6utu0v2sdf"
+path="res://.godot/imported/warp.svg-10e7d7f6472c3caa02eb379e876aace7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://content/overworld/playing_pieces/sub_pieces/controller.svg"
-dest_files=["res://.godot/imported/controller.svg-24c34a2dc31d2e5cd1e24a40a90c5f35.ctex"]
+source_file="res://content/overworld/playing_pieces/warps/warp.svg"
+dest_files=["res://.godot/imported/warp.svg-10e7d7f6472c3caa02eb379e876aace7.ctex"]
 
 [params]
 

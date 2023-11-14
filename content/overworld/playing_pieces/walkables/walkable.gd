@@ -1,5 +1,6 @@
 @tool
-extends PlayingPiece
+@icon("walkable.svg")
+class_name WalkingPiece extends PlayingPiece
 
 ## Typically used for NPCs.
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ckwouv4tdwpj2"]
 
-[ext_resource type="PackedScene" uid="uid://dpcnapfttae0" path="res://content/overworld/playing_pieces/sub_pieces/walkable.tscn" id="1_kofy1"]
+[ext_resource type="PackedScene" uid="uid://dpcnapfttae0" path="res://content/overworld/playing_pieces/walkables/walkable.tscn" id="1_kofy1"]
 [ext_resource type="Texture2D" uid="uid://dxv6t1pmc0svk" path="res://content/overworld/playing_pieces/sprites/characters/bob.png" id="2_xub7t"]
 
 [node name="Sprite2D" instance=ExtResource("1_kofy1")]

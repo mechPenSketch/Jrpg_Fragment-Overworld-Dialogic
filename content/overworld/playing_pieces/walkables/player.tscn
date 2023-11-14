@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bc5n0ifh058w8"]
 
-[ext_resource type="PackedScene" uid="uid://dpcnapfttae0" path="res://content/overworld/playing_pieces/sub_pieces/walkable.tscn" id="1_lsvsh"]
-[ext_resource type="Script" path="res://content/overworld/playing_pieces/sub_pieces/controller.gd" id="2_jxr1k"]
+[ext_resource type="PackedScene" uid="uid://dpcnapfttae0" path="res://content/overworld/playing_pieces/walkables/walkable.tscn" id="1_lsvsh"]
+[ext_resource type="Script" path="res://content/overworld/playing_pieces/walkables/controller.gd" id="2_jxr1k"]
 
 [node name="Sprite2D" instance=ExtResource("1_lsvsh")]
 

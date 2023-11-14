@@ -5,9 +5,9 @@ const PROP_PIECE_ICON_PATH := "res://addons/jrpgfragment_overworld/toolbtn_icons
 const WALKING_PIECE_ICON_PATH := "res://addons/jrpgfragment_overworld/toolbtn_icons/add_walk.svg"
 const WARP_PIECE_ICON_PATH := "res://addons/jrpgfragment_overworld/toolbtn_icons/add_warp.svg"
 
-const PROP_PIECE_SCENE_PATH := "res://content/overworld/playing_pieces/list/signpost.tscn"
-const WALKING_PIECE_SCENE_PATH := "res://content/overworld/playing_pieces/sub_pieces/walkable.tscn"
-const WARP_PIECE_SCENE_PATH := "res://content/overworld/playing_pieces/sub_pieces/warp.tscn"
+const PROP_PIECE_SCENE_PATH := "res://content/overworld/playing_pieces/playing_piece.tscn"
+const WALKING_PIECE_SCENE_PATH := "res://content/overworld/playing_pieces/walkables/walkable.tscn"
+const WARP_PIECE_SCENE_PATH := "res://content/overworld/playing_pieces/warps/warp.tscn"
 
 var new_tools: Array[Control]
 
@@ -56,7 +56,7 @@ func _exit_tree():
 func _add_new_node(pksc: PackedScene):
 	if nearest_game_board:
 		var inst = pksc.instantiate()
-		nearest_game_board.add_child(inst)
+		nearest_game_board.add_child(inst, true)
 		inst.set_owner(get_editor_interface().get_edited_scene_root())
 		get_editor_interface().mark_scene_as_unsaved()
 

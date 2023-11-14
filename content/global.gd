@@ -1,6 +1,6 @@
 extends Node
 
-const FP_PLAYER = "res://content/overworld/playing_pieces/list/alice.tscn"
+const FP_PLAYER = "res://content/overworld/playing_pieces/walkables/list/alice.tscn"
 
 ## The playable [PlayingPiece] to be typically used
 ## in every map.

@@ -1,6 +1,6 @@
 [gd_scene load_steps=36 format=3 uid="uid://dpcnapfttae0"]
 
-[ext_resource type="Script" path="res://content/overworld/playing_pieces/sub_pieces/walkable.gd" id="1_56ws3"]
+[ext_resource type="Script" path="res://content/overworld/playing_pieces/walkables/walkable.gd" id="1_56ws3"]
 
 [sub_resource type="Animation" id="Animation_dyato"]
 length = 0.001
@@ -211,7 +211,6 @@ transitions = ["Start", "dir_down", SubResource("AnimationNodeStateMachineTransi
 graph_offset = Vector2(-221, 0.622314)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_4mphs"]
-graph_offset = Vector2(-428.085, 101.932)
 nodes/Actions/node = SubResource("AnimationNodeStateMachine_ucor5")
 nodes/Actions/position = Vector2(-240, 180)
 nodes/AddDirections/node = SubResource("AnimationNodeAdd2_he6ui")
@@ -220,7 +219,7 @@ nodes/Directions/node = SubResource("AnimationNodeStateMachine_12q0w")
 nodes/Directions/position = Vector2(-240, 400)
 node_connections = [&"output", 0, &"AddDirections", &"AddDirections", 0, &"Actions", &"AddDirections", 1, &"Directions"]
 
-[node name="Sprite2D" type="Sprite2D"]
+[node name="Walkable" type="Sprite2D"]
 hframes = 4
 vframes = 4
 script = ExtResource("1_56ws3")

@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://cp1q6kywbc8uv"]
 
 [ext_resource type="PackedScene" uid="uid://c3kgf68muppgv" path="res://content/overworld/map/base.tscn" id="1_3ef1u"]
-[ext_resource type="PackedScene" uid="uid://c2dn4xmd04bku" path="res://content/overworld/playing_pieces/sub_pieces/mark.tscn" id="1_dm0fl"]
-[ext_resource type="PackedScene" uid="uid://ckwouv4tdwpj2" path="res://content/overworld/playing_pieces/list/bob.tscn" id="3_3u7sd"]
-[ext_resource type="PackedScene" uid="uid://cbyvu4at0cpk" path="res://content/overworld/playing_pieces/list/signpost.tscn" id="4_c5dok"]
-[ext_resource type="PackedScene" uid="uid://b1jia5gep10is" path="res://content/overworld/playing_pieces/sub_pieces/warp.tscn" id="5_0xmsn"]
+[ext_resource type="PackedScene" uid="uid://c2dn4xmd04bku" path="res://content/overworld/playing_pieces/props/mark.tscn" id="1_dm0fl"]
+[ext_resource type="PackedScene" uid="uid://ckwouv4tdwpj2" path="res://content/overworld/playing_pieces/walkables/list/bob.tscn" id="3_3u7sd"]
+[ext_resource type="PackedScene" uid="uid://cbyvu4at0cpk" path="res://content/overworld/playing_pieces/props/list/signpost.tscn" id="4_c5dok"]
+[ext_resource type="PackedScene" uid="uid://b1jia5gep10is" path="res://content/overworld/playing_pieces/warps/warp.tscn" id="5_0xmsn"]
 
 [node name="Game" instance=ExtResource("1_3ef1u")]
 
@@ -15,7 +15,6 @@ layer_1/tile_data = PackedInt32Array(0, 65540, 1, 65536, 4, 2, 131072, 4, 2, 196
 [node name="Mark" parent="Grid" index="0" instance=ExtResource("1_dm0fl")]
 position = Vector2(176, 112)
 trigger = 1
-blocks_path = false
 
 [node name="Bob" parent="Grid" index="1" instance=ExtResource("3_3u7sd")]
 position = Vector2(144, 176)

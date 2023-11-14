@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bft08s4uvcyvo"
-path="res://.godot/imported/walkable.svg-9c830888decd0c4fa415b1c7aa1f33d9.ctex"
+uid="uid://crnlo4aeqd3at"
+path="res://.godot/imported/signpost.png-c3dbea0226ec237734fcaf1b63d658e8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://content/overworld/playing_pieces/sub_pieces/walkable.svg"
-dest_files=["res://.godot/imported/walkable.svg-9c830888decd0c4fa415b1c7aa1f33d9.ctex"]
+source_file="res://content/overworld/playing_pieces/props/sprites/signpost.png"
+dest_files=["res://.godot/imported/signpost.png-c3dbea0226ec237734fcaf1b63d658e8.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgn6utu0v2sdf"
-path="res://.godot/imported/warp.svg-7cb558a9aa05214ec2551a5db3f779ee.ctex"
+uid="uid://pu65de3n8okg"
+path="res://.godot/imported/diana.png-653e59a503f1391454a73a67e2224480.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://content/overworld/playing_pieces/sub_pieces/warp.svg"
-dest_files=["res://.godot/imported/warp.svg-7cb558a9aa05214ec2551a5db3f779ee.ctex"]
+source_file="res://content/overworld/playing_pieces/walkables/sprites/diana.png"
+dest_files=["res://.godot/imported/diana.png-653e59a503f1391454a73a67e2224480.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

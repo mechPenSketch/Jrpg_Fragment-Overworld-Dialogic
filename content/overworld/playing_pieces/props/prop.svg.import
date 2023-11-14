@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bre7dwo6d7jhe"
-path="res://.godot/imported/carl.png-66618c3f511f55d0898c8f4ce8c68605.ctex"
+uid="uid://bmqpo2tk3eb7b"
+path="res://.godot/imported/prop.svg-d82981c51a799f7a4707818fa0587e15.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://content/overworld/playing_pieces/sprites/characters/carl.png"
-dest_files=["res://.godot/imported/carl.png-66618c3f511f55d0898c8f4ce8c68605.ctex"]
+source_file="res://content/overworld/playing_pieces/props/prop.svg"
+dest_files=["res://.godot/imported/prop.svg-d82981c51a799f7a4707818fa0587e15.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

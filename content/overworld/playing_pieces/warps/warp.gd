@@ -1,5 +1,6 @@
 @tool
-extends PlayingPiece
+@icon("warp.svg")
+class_name WarpPiece extends PlayingPiece
 
 ## For the player to walk into to change
 ## the game map scene.

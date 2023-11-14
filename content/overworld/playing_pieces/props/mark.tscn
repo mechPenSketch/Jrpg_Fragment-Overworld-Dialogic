@@ -1,9 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://c2dn4xmd04bku"]
 
 [ext_resource type="PackedScene" uid="uid://2302lbbkwh0s" path="res://content/overworld/playing_pieces/playing_piece.tscn" id="1_1hvp5"]
-[ext_resource type="Texture2D" uid="uid://cms41c8u4pd0f" path="res://content/overworld/sprites/props/mark.png" id="2_cqqdc"]
+[ext_resource type="Texture2D" uid="uid://cms41c8u4pd0f" path="res://content/overworld/playing_pieces/props/sprites/mark.png" id="2_cqqdc"]
 
-[node name="Sprite2D" instance=ExtResource("1_1hvp5")]
+[node name="Mark" instance=ExtResource("1_1hvp5")]
 self_modulate = Color(1, 1, 1, 0.709804)
 texture = ExtResource("2_cqqdc")
+blocks_path = false
 hide_on_play = true

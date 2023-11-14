@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cms41c8u4pd0f"
-path="res://.godot/imported/mark.png-6f665cafc143f0ce30361261724b6932.ctex"
+uid="uid://db82gh6t52cvd"
+path="res://.godot/imported/alice.png-d71715bcd2ad671c87ebdabec13a77cb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://content/overworld/playing_pieces/sprites/props/mark.png"
-dest_files=["res://.godot/imported/mark.png-6f665cafc143f0ce30361261724b6932.ctex"]
+source_file="res://content/overworld/playing_pieces/walkables/sprites/alice.png"
+dest_files=["res://.godot/imported/alice.png-d71715bcd2ad671c87ebdabec13a77cb.ctex"]
 
 [params]
 

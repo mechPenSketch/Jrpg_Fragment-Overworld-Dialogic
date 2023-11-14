@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxv6t1pmc0svk"
-path="res://.godot/imported/bob.png-3e4b5ddee26d0ffccdfd52e98753df6e.ctex"
+uid="uid://bft08s4uvcyvo"
+path="res://.godot/imported/walkable.svg-fc62fdc9080e695ad873f07777c3ae77.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://content/overworld/playing_pieces/sprites/characters/bob.png"
-dest_files=["res://.godot/imported/bob.png-3e4b5ddee26d0ffccdfd52e98753df6e.ctex"]
+source_file="res://content/overworld/playing_pieces/walkables/walkable.svg"
+dest_files=["res://.godot/imported/walkable.svg-fc62fdc9080e695ad873f07777c3ae77.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

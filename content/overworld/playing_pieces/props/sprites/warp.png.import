@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crnlo4aeqd3at"
-path="res://.godot/imported/signpost.png-5d2a30f797bb9af707adc291369d3fa0.ctex"
+uid="uid://cb1xlomhhcghp"
+path="res://.godot/imported/warp.png-ea45968784e7489794e7cb0458cb3766.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://content/overworld/playing_pieces/sprites/props/signpost.png"
-dest_files=["res://.godot/imported/signpost.png-5d2a30f797bb9af707adc291369d3fa0.ctex"]
+source_file="res://content/overworld/playing_pieces/props/sprites/warp.png"
+dest_files=["res://.godot/imported/warp.png-ea45968784e7489794e7cb0458cb3766.ctex"]
 
 [params]
 
