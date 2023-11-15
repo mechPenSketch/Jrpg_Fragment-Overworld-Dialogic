@@ -18,7 +18,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-GlobalOverworld="*res://content/global.gd"
+GlobalOverworld="*res://content/overworld/global.gd"
 Dialogic="*res://addons/dialogic/Other/DialogicGameHandler.gd"
 
 [dialogic]

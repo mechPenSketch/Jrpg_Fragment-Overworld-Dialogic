@@ -1,6 +1,9 @@
 @tool
 extends EditorPlugin
 
+const OVERWORLD_SINGLETON_NAME := "GlobalOverworld"
+const OVERWORLD_SINGLETON_PATH := "res://content/overworld/global.gd"
+
 const PROP_PIECE_ICON_PATH := "res://addons/jrpgfragment_overworld/toolbtn_icons/add_prop.svg"
 const WALKING_PIECE_ICON_PATH := "res://addons/jrpgfragment_overworld/toolbtn_icons/add_walk.svg"
 const WARP_PIECE_ICON_PATH := "res://addons/jrpgfragment_overworld/toolbtn_icons/add_warp.svg"
@@ -51,6 +54,15 @@ func _exit_tree():
 	for nd in new_tools:
 		remove_control_from_container(CONTAINER_CANVAS_EDITOR_MENU, nd)
 		nd.queue_free()
+
+
+func _disable_plugin():
+	remove_autoload_singleton(OVERWORLD_SINGLETON_NAME)
+
+
+func _enable_plugin():
+	# Add singleton for overworld data
+	add_autoload_singleton(OVERWORLD_SINGLETON_NAME, OVERWORLD_SINGLETON_PATH)
 
 
 func _add_new_node(pksc: PackedScene):
