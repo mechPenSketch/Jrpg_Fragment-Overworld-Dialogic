@@ -1,11 +1,11 @@
-Join Bob (Default) 1
+Join 
 
-BOB_QUESTION #id:16
+Hi, do you like apples or oranges? #id:16
 
-- BOB_CHOICE_APPLES #id:17
+- Apples #id:17
 	
-	BOB_ANSWER_APPLES #id:18
+	I like apples too - they're sweet and crunchy! #id:18
 
-- BOB_CHOICE_ORANGES #id:19
+- Oranges #id:19
 	
-	BOB_ANSWER_ORANGES #id:1a
+	I love oranges too - they're soooo juicy! #id:1a

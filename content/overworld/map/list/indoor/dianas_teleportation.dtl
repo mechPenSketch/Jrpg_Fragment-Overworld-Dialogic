@@ -1,11 +1,11 @@
-Join Diana (Default) 1
+Join 
 
-DIANA_QUESTION #id:11
+Hi, I'm practicing my teleportation spell. Would you like to volunteer? #id:11
 
-- CHOICE_YES #id:12
+- {RecurringChoice.Yes} #id:12
 	
-	DIANA_ANSWER #id:13
+	Okay, here goes...... #id:13
 	
-	DIANA_ANSWER2 #id:14
+	Oh! Sorry, looks like I failed to get it right again. #id:14
 
-- CHOICE_NO #id:15
+- {RecurringChoice.No} #id:15
