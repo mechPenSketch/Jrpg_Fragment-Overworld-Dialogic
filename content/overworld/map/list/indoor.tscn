@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://rxu73sjsi7qu"]
 
 [ext_resource type="PackedScene" uid="uid://c3kgf68muppgv" path="res://content/overworld/map/base.tscn" id="1_g1qr3"]
-[ext_resource type="PackedScene" uid="uid://b1jia5gep10is" path="res://content/overworld/playing_pieces/sub_pieces/warp.tscn" id="2_yre7c"]
-[ext_resource type="PackedScene" uid="uid://dpcnapfttae0" path="res://content/overworld/playing_pieces/sub_pieces/walkable.tscn" id="3_bu03w"]
-[ext_resource type="Texture2D" uid="uid://pu65de3n8okg" path="res://content/overworld/playing_pieces/sprites/characters/diana.png" id="4_f8lb8"]
+[ext_resource type="PackedScene" uid="uid://b1jia5gep10is" path="res://content/overworld/playing_pieces/warps/warp.tscn" id="2_yre7c"]
+[ext_resource type="PackedScene" uid="uid://dpcnapfttae0" path="res://content/overworld/playing_pieces/walkables/walkable.tscn" id="3_bu03w"]
+[ext_resource type="Texture2D" uid="uid://pu65de3n8okg" path="res://content/overworld/playing_pieces/walkables/sprites/diana.png" id="4_f8lb8"]
 
 [node name="Game" instance=ExtResource("1_g1qr3")]
 
@@ -20,4 +20,4 @@ target_child_index = 3
 position = Vector2(208, 80)
 texture = ExtResource("4_f8lb8")
 offset = Vector2(0, -16)
-timeline = "res://content/overworld/map/list/indoor/dianas_teleportation.dtl"
+timeline = "res://content/overworld/map/events/indoor/dianas_teleportation.dtl"

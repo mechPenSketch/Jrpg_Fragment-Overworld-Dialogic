@@ -18,11 +18,11 @@ trigger = 1
 
 [node name="Bob" parent="Grid" index="1" instance=ExtResource("3_3u7sd")]
 position = Vector2(144, 176)
-timeline = "res://content/overworld/map/list/overworld/bobs_question.dtl"
+timeline = "res://content/overworld/map/events/overworld/bobs_question.dtl"
 
 [node name="Signboard" parent="Grid" index="2" instance=ExtResource("4_c5dok")]
 position = Vector2(176, 48)
-timeline = "res://content/overworld/map/list/overworld/signpost.dtl"
+timeline = "res://content/overworld/map/events/overworld/signpost.dtl"
 hide_on_play = false
 
 [node name="Warp" parent="Grid" index="3" instance=ExtResource("5_0xmsn")]

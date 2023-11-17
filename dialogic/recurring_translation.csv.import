@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://dh2j8m5b0kvo6"
+
+[deps]
+
+files=["res://dialogic/recurring_translation.en.translation", "res://dialogic/recurring_translation.ja.translation", "res://dialogic/recurring_translation.es.translation"]
+
+source_file="res://dialogic/recurring_translation.csv"
+dest_files=["res://dialogic/recurring_translation.en.translation", "res://dialogic/recurring_translation.ja.translation", "res://dialogic/recurring_translation.es.translation"]
+
+[params]
+
+compress=true
+delimiter=0
