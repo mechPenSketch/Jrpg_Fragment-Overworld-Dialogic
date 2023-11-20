@@ -59,6 +59,14 @@ translation/original_locale="en"
 translation/file_mode=1
 translation/translation_folder=""
 translation/id_counter=28
+text/letter_speed=0.01
+text/initial_text_reveal_skippable=true
+text/text_reveal_skip_delay=0.1
+text/autoadvance_per_character_delay=0.1
+text/autoadvance_ignored_characters_enabled=true
+choices/reveal_delay=0
+choices/reveal_by_input=false
+save/encryption_on_exports_only=true
 
 [display]
 
@@ -84,6 +92,8 @@ dialogic_default_action={
 [internationalization]
 
 locale/translations=PackedStringArray("res://content/overworld/map/list/indoor/dianas_teleportation_translation.en.translation", "res://content/overworld/map/list/indoor/dianas_teleportation_translation.es.translation", "res://content/overworld/map/list/indoor/dianas_teleportation_translation.ja.translation", "res://content/overworld/map/list/overworld/bobs_question_translation.en.translation", "res://content/overworld/map/list/overworld/bobs_question_translation.es.translation", "res://content/overworld/map/list/overworld/bobs_question_translation.ja.translation", "res://content/overworld/map/list/overworld/signpost_translation.en.translation", "res://content/overworld/map/list/overworld/signpost_translation.es.translation", "res://content/overworld/map/list/overworld/signpost_translation.ja.translation", "res://dialogic/recurring_timeline/warp_translation.en.translation")
+locale/test="en"
+save_mode=1
 
 [layer_names]
 

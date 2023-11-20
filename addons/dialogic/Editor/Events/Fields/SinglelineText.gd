@@ -14,8 +14,8 @@ var placeholder :String= "":
 
 func _ready() -> void:
 	text_changed.connect(_on_text_changed)
-	add_theme_stylebox_override('normal', get_theme_stylebox('normal', 'LineEdit'))
-	add_theme_stylebox_override('focus', get_theme_stylebox('focus', 'LineEdit'))
+#	add_theme_stylebox_override('normal', get_theme_stylebox('normal', 'LineEdit'))
+#	add_theme_stylebox_override('focus', get_theme_stylebox('focus', 'LineEdit'))
 
 
 func _on_text_changed(value := "") -> void:
@@ -24,3 +24,6 @@ func _on_text_changed(value := "") -> void:
 
 func set_value(value:String) -> void:
 	text = str(value)
+
+func take_autofocus():
+	grab_focus()

@@ -1,30 +1,31 @@
-extends TextureRect
+extends DialogicBackground
 
-## This is the DefaultBackground scene that can simply display a image
-## 
-## You can create your own scenes. They can override the following methods:
-##   - _update_background(@argument:String, @time:float)
-##   - _fade_in(@time) (if not overriden modulate is animated)
-##   - _fade_out(@time) (if not overriden modulate is animated) 
-##                      make sure to free the scene at the end of the fade
-##   - _should_do_background_update(@arg) -> bool
+## The default background scene.
+## Extend the DialogicBackground class to create your own background scene.
+
+@onready var image_node = $Image
+@onready var color_node = $ColorRect
 
 
 func _ready() -> void:
-	expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
-	
-	anchor_right = 1
-	anchor_bottom = 1
+	image_node.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	image_node.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 
-# load the new background in here. 
-# The time argument is given for when [_should_do_background_update] returns true 
-# (then you have to do the transition in here)
+	image_node.anchor_right = 1
+	image_node.anchor_bottom = 1
+
+
 func _update_background(argument:String, time:float) -> void:
-	texture = load(argument)
+	if argument.begins_with('res://'):
+		image_node.texture = load(argument)
+		color_node.color = Color.TRANSPARENT
+	elif argument.is_valid_html_color():
+		image_node.texture = null
+		color_node.color = Color(argument, 1)
+	else:
+		image_node.texture = null
+		color_node.color = Color.from_string(argument, Color.TRANSPARENT)
 
 
-# if a Background event with this scene is encountered while this background is used,
-# this decides whether to create a new instance and call fade_out or just call [_update_background] # on this scene. Default is false
 func _should_do_background_update(argument:String) -> bool:
 	return false
