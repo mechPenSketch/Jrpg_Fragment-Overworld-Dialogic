@@ -6,10 +6,10 @@ uid="uid://buqr1jqpio047"
 
 [deps]
 
-files=["res://dialogic/recurring_timeline/warp_translation.en.translation"]
+files=["res://dialogic/recurring_timeline/warp_translation.en.translation", "res://dialogic/recurring_timeline/warp_translation.ja.translation", "res://dialogic/recurring_timeline/warp_translation.es.translation"]
 
 source_file="res://dialogic/recurring_timeline/warp_translation.csv"
-dest_files=["res://dialogic/recurring_timeline/warp_translation.en.translation"]
+dest_files=["res://dialogic/recurring_timeline/warp_translation.en.translation", "res://dialogic/recurring_timeline/warp_translation.ja.translation", "res://dialogic/recurring_timeline/warp_translation.es.translation"]
 
 [params]
 

@@ -67,6 +67,12 @@ text/autoadvance_ignored_characters_enabled=true
 choices/reveal_delay=0
 choices/reveal_by_input=false
 save/encryption_on_exports_only=true
+layout/styles={
+"Default": {
+"inherits": ""
+}
+}
+layout/default_style="Default"
 
 [display]
 
@@ -91,8 +97,7 @@ dialogic_default_action={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://content/overworld/map/list/indoor/dianas_teleportation_translation.en.translation", "res://content/overworld/map/list/indoor/dianas_teleportation_translation.es.translation", "res://content/overworld/map/list/indoor/dianas_teleportation_translation.ja.translation", "res://content/overworld/map/list/overworld/bobs_question_translation.en.translation", "res://content/overworld/map/list/overworld/bobs_question_translation.es.translation", "res://content/overworld/map/list/overworld/bobs_question_translation.ja.translation", "res://content/overworld/map/list/overworld/signpost_translation.en.translation", "res://content/overworld/map/list/overworld/signpost_translation.es.translation", "res://content/overworld/map/list/overworld/signpost_translation.ja.translation", "res://dialogic/recurring_timeline/warp_translation.en.translation")
-locale/test="en"
+locale/translations=PackedStringArray("res://content/overworld/map/list/indoor/dianas_teleportation_translation.en.translation", "res://content/overworld/map/list/indoor/dianas_teleportation_translation.es.translation", "res://content/overworld/map/list/indoor/dianas_teleportation_translation.ja.translation", "res://content/overworld/map/list/overworld/bobs_question_translation.en.translation", "res://content/overworld/map/list/overworld/bobs_question_translation.es.translation", "res://content/overworld/map/list/overworld/bobs_question_translation.ja.translation", "res://content/overworld/map/list/overworld/signpost_translation.en.translation", "res://content/overworld/map/list/overworld/signpost_translation.es.translation", "res://content/overworld/map/list/overworld/signpost_translation.ja.translation", "res://dialogic/recurring_timeline/warp_translation.en.translation", "res://dialogic/recurring_timeline/warp_translation.es.translation", "res://dialogic/recurring_timeline/warp_translation.ja.translation", "res://content/overworld/map/events/indoor/dianas_teleportation_translation.en.translation", "res://content/overworld/map/events/indoor/dianas_teleportation_translation.es.translation", "res://content/overworld/map/events/indoor/dianas_teleportation_translation.ja.translation", "res://content/overworld/map/events/overworld/bobs_question_translation.en.translation", "res://content/overworld/map/events/overworld/bobs_question_translation.es.translation", "res://content/overworld/map/events/overworld/bobs_question_translation.ja.translation", "res://content/overworld/map/events/overworld/signpost_translation.en.translation", "res://content/overworld/map/events/overworld/signpost_translation.es.translation", "res://content/overworld/map/events/overworld/signpost_translation.ja.translation", "res://dialogic/recurring_translation.en.translation", "res://dialogic/recurring_translation.es.translation", "res://dialogic/recurring_translation.ja.translation")
 save_mode=1
 
 [layer_names]

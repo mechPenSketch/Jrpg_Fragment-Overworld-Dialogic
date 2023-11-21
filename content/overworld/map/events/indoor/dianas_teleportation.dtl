@@ -1,11 +1,10 @@
-Join 
 
 Hi, I'm practicing my teleportation spell. Would you like to volunteer? #id:11
 
-- {RecurringChoice.Yes} #id:12
+- {RecurringChoices.Yes} #id:12
 	
 	Okay, here goes...... #id:13
 	
 	Oh! Sorry, looks like I failed to get it right again. #id:14
 
-- {RecurringChoice.No} #id:15
+- {RecurringChoices.No} #id:15

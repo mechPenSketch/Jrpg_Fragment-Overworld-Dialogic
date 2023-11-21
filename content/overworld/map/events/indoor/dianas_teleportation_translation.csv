@@ -1,8 +1,8 @@
 keys,en,ja,es
 Text/11/text,"Hi, I'm practicing my teleportation spell. Would you like to volunteer?",こんにちは。私は私のテレポーテーションの呪文を練習しています。ボランティアをしますか？ ,"Hola, estoy practicando mi hechizo de teletransportación. ¿Te gustaría ser voluntario?"
-Choice/12/text,{RecurringChoice.Yes},,
+Choice/12/text,{RecurringChoices.Yes},,
 Choice/12/disabled_text,,,
 Text/13/text,"Okay, here goes......",はい。行けます…,"Está bien, aquí va ......"
 Text/14/text,"Oh! Sorry, looks like I failed to get it right again.",お－！ごめんなさい。失敗です。,"¡Vaya! Lo siento, parece que no pude hacerlo bien de nuevo."
-Choice/15/text,{RecurringChoice.No},,
+Choice/15/text,{RecurringChoices.No},,
 Choice/15/disabled_text,,,
