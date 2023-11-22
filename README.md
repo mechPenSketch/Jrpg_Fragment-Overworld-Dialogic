@@ -11,8 +11,8 @@ This variant utilizes Dialogic to handle in-game dialogs. Recommended to those w
 
 ## Contributions
 * As I am new to learning Japanese and Spanish, filling up the translations is appreciated.
-  * Edits to translations are to be done on `translations/dialogs.ods`.
-  * If you can offer other languages, I would be willing to replace them with Spanish followed by Japanese.
+  * Edits to translations are to be done on the respective `.csv` files. They share the same folder as their timeline (`.dtl`) counterparts.
+  * If you can offer other languages, I am willing to replace them with Spanish followed by Japanese.
 
 ## Acknowledgements
-* [Dialogic 1.2](https://github.com/coppolaemilio/dialogic) by [Emilio Coppola](https://github.com/coppolaemilio) and other contributors.
+* [Dialogic 2.0 Alpha 11](https://github.com/coppolaemilio/dialogic) by [Emilio Coppola](https://github.com/coppolaemilio) and other contributors.
